@@ -26,9 +26,7 @@ class ViewAllView extends StatefulWidget {
 class _ViewAllViewState extends State<ViewAllView> {
   final ViewAllLogic logic = Get.find<ViewAllLogic>();
 
-  final ViewAllState state = Get
-      .find<ViewAllLogic>()
-      .state;
+  final ViewAllState state = Get.find<ViewAllLogic>().state;
 
   @override
   Widget build(BuildContext context) {
@@ -54,84 +52,12 @@ class _ViewAllViewState extends State<ViewAllView> {
             ),
           ),
           centerTitle: true,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           elevation: 0,
           actions: [
             IconButton(
               onPressed: () {
-                // Get.bottomSheet(
-                //   // Container(
-                //   //   height: 250.h,
-                //   //   width: Get.width,
-                //   //   decoration: BoxDecoration(
-                //   //     color: Colors.white,
-                //   //     borderRadius: BorderRadius.only(
-                //   //       topLeft: Radius.circular(10.sp),
-                //   //       topRight: Radius.circular(10.sp),
-                //   //     ),
-                //   //   ),
-                //   //   child: Padding(
-                //   //     padding: EdgeInsets.symmetric(horizontal: 20.w),
-                //   //     child: Column(
-                //   //       crossAxisAlignment: CrossAxisAlignment.start,
-                //   //       children: [
-                //   //         IconButton(
-                //   //           onPressed: () {
-                //   //             logic.state.selectedZone = null;
-                //   //             logic.state.selectedCity = null;
-                //   //             Get.back();
-                //   //           },
-                //   //           icon: Icon(Icons.close),
-                //   //         ),
-                //   //         Column(
-                //   //           children: [
-                //   //             CitySelectorS(),
-                //   //             SizedBox(height: 10.h),
-                //   //             GetBuilder<ViewAllLogic>(
-                //   //               id: 'z',
-                //   //
-                //   //               builder: (logic) {
-                //   //                 return logic.state.selectedCity != null
-                //   //                     ? Obx(() => logic.state.gettingZones.value
-                //   //                     ? const MyIndicator()
-                //   //                     : ZoneSelectorS())
-                //   //                     : Container();
-                //   //               },
-                //   //             ),
-                //   //           ],
-                //   //         ),
-                //   //         SizedBox(height: 30.h),
-                //   //         Center(
-                //   //           child: GetBuilder<ViewAllLogic>(
-                //   //             id: 'z',
-                //   //             builder: (logic) {
-                //   //               return ElevatedButton(
-                //   //                 onPressed: logic.state.selectedZone == null ? null : () {
-                //   //                   logic.changeSearchMode(true);
-                //   //                   Get.back();
-                //   //                 },
-                //   //                 child: Text(
-                //   //                   'Filter'.tr,
-                //   //                   style: Get.theme.textTheme.bodyText1!.copyWith(
-                //   //                     color: Colors.white,
-                //   //                   ),
-                //   //                 ),
-                //   //               );
-                //   //             },
-                //   //           ),
-                //   //         )
-                //   //       ],
-                //   //     ),
-                //   //   ),
-                //   // ),
-                //   SearchCont(),
-                //   elevation: 10,
-                //   isDismissible: false,
-                //   barrierColor: Colors.black26,
-                // );
-                Get.dialog(
-                  SearchCont()
-                );
+                Get.dialog(SearchCont());
                 // logic.changeSearchMode();
               },
               icon: Icon(
@@ -144,19 +70,25 @@ class _ViewAllViewState extends State<ViewAllView> {
         body: state.getState.value
             ? MyIndicator()
             : Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 10.h),
-              child: SizedBox(
-                height: Get.height * 0.9.h,
-                child: Obx(() {
-                  return state.searchMode.value?SearchMode(): NormalMode();
-                }),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/newb.png'),
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
+                    height: Get.height.h,
+                    child: Obx(() {
+                      return state.searchMode.value
+                          ? SearchMode()
+                          : NormalMode();
+                    }),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
       );
     });
   }

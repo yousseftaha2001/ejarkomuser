@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:ejarkom/app/Ads/models/GetCityModel.dart';
 import 'package:ejarkom/app/Ads/models/Zone.dart';
+import 'package:ejarkom/app/services/models/service_type_model/type_serve.dart';
 import 'package:ejarkom/app/services/models/services_pandles_ads_model/pandle_serve.dart';
 import 'package:ejarkom/app/services/models/services_pandles_ads_model/services_pandles_ads_model.dart';
 import 'package:ejarkom/utils/http_manager/create_ad_http.dart';
@@ -26,6 +27,7 @@ class CreateServicesAdState {
     whats = TextEditingController();
     zones = [];
     cities = [];
+    typeServes = [];
   }
 
   late ServicesPandlesAdsModel servicesPandlesAdsModel;
@@ -44,8 +46,11 @@ class CreateServicesAdState {
   late PageController pageController;
   RxInt cureentIndex = 0.obs;
   Zone? selectedZone;
+  TypeServe? selectedType;
   late List<Zone> zones;
+  late List<TypeServe> typeServes;
   RxBool gettingZones = false.obs;
+  RxBool gettingTypes = false.obs;
   late List<City> cities;
   RxBool gettingCities = false.obs;
   City? selectedCity;

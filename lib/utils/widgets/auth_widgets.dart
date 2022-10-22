@@ -10,11 +10,13 @@ class DataInput extends StatelessWidget {
       required this.controller,
       required this.hint,
       this.type,
+      this.onC,
       this.obs})
       : super(key: key);
   final TextEditingController controller;
   final String hint;
   final Icon icon;
+  final onC;
   bool? obs;
   int? type;
 
@@ -24,6 +26,7 @@ class DataInput extends StatelessWidget {
       height: 50.h,
       child: TextField(
         keyboardType: TextInputType.emailAddress,
+        onChanged: onC,
         inputFormatters: type == 1
             ? <TextInputFormatter>[
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9--]')),
@@ -40,7 +43,7 @@ class DataInput extends StatelessWidget {
           fillColor: Colors.white,
           prefixIcon: icon,
           label: Text(hint.tr),
-          hintText: hint.tr,
+          // hintText: hint.tr,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.sp),
             borderSide: const BorderSide(color: Colors.black12),

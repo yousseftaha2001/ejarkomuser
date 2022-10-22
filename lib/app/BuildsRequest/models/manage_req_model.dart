@@ -1,18 +1,13 @@
 class ManageRequestModel {
   ManageRequestModel({
     required this.nameA,
-
     required this.video,
     required this.descE,
-
     required this.cost,
-
     required this.addressE,
     required this.phone,
-
     required this.zoneId,
     required this.typeBuild,
-
     required this.photos,
   });
 
@@ -59,7 +54,6 @@ class ManageRequestModel {
 
     map['zone_id'] = zoneId!;
     map['type_build'] = typeBuild!;
-
 
     return map;
   }

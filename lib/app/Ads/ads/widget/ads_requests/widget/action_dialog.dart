@@ -4,12 +4,12 @@ import 'package:ejarkom/app/Ads/ads/widget/ads_requests/ads_requests_logic.dart'
 import 'package:ejarkom/app/Ads/ads/widget/ads_requests/ads_requests_state.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 class MyActionDialog extends StatelessWidget {
-   MyActionDialog({Key? key,required this.type}) : super(key: key);
+  MyActionDialog({Key? key, required this.type}) : super(key: key);
   final AdsRequestsLogic logic = Get.find<AdsRequestsLogic>();
   final AdsRequestsState state = Get.find<AdsRequestsLogic>().state;
   late String type;
-
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +18,11 @@ class MyActionDialog extends StatelessWidget {
         title: Row(
           children: [
             IconButton(
-              onPressed:state.actionState.value?null: () {
-                Get.back();
-              },
+              onPressed: state.actionState.value
+                  ? null
+                  : () {
+                      Get.back();
+                    },
               icon: Icon(Icons.close),
             )
           ],
@@ -31,17 +33,21 @@ class MyActionDialog extends StatelessWidget {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            state.actionState.value?MyIndicator(): Text(
-              '$type this user?'.tr,
-              style: Get.textTheme.bodyText1,
-            ),
+            state.actionState.value
+                ? MyIndicator()
+                : Text(
+                    '$type this user?'.tr,
+                    style: Get.textTheme.bodyText1,
+                  ),
           ],
         ),
         actions: [
           TextButton(
-            onPressed:state.actionState.value?null: () {
-              logic.actionDialog(type: type);
-            },
+            onPressed: state.actionState.value
+                ? null
+                : () {
+                    logic.actionDialog(type: type);
+                  },
             child: Text(
               'Yes',
               style: Get.textTheme.bodyText1!.copyWith(

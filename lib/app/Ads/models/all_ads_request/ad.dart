@@ -131,6 +131,26 @@ class Ad {
         'zones_A': zonesA,
       };
 
+  getPhoto() {
+    if (photos != null) {
+      List<dynamic> result = jsonDecode(photos!);
+      print(result.length);
+      return result.first;
+    } else {
+      return '';
+    }
+  }
+
+  getAllPhoto() {
+    if (photos != null) {
+      List<dynamic> result = jsonDecode(photos!);
+      print(result.length);
+      return result;
+    } else {
+      return '';
+    }
+  }
+
   /// `dart:convert`
   ///
   /// Parses the string and returns the resulting Json object as [Ad].

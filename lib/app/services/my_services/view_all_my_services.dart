@@ -37,7 +37,7 @@ class _ViewAllMyServicesState extends State<ViewAllMyServices>
     return Scaffold(
       appBar: AppBar(
         leading: LeadingButton(),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
           'My Services ADs'.tr,
@@ -84,18 +84,28 @@ class _ViewAllMyServicesState extends State<ViewAllMyServices>
           ),
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          WaitingServiceAdsView(),
-          FinishedServicesView(),
-          DoneServicesView(),
-          CanceledServicesView(),
-          // WaitingRequestsView(),
-          // DoneRequestsView(),
-          // RejectedRequestView(),
-          // CanceledRequestsView(),
-        ],
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          image: DecorationImage(
+            image: AssetImage('assets/images/newb.png'),
+            fit: BoxFit.fitHeight,
+          ),
+        ),
+        height: Get.height,
+        child: TabBarView(
+          controller: _tabController,
+          children: [
+            WaitingServiceAdsView(),
+            FinishedServicesView(),
+            DoneServicesView(),
+            CanceledServicesView(),
+            // WaitingRequestsView(),
+            // DoneRequestsView(),
+            // RejectedRequestView(),
+            // CanceledRequestsView(),
+          ],
+        ),
       ),
     );
   }

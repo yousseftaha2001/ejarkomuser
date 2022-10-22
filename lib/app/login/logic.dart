@@ -2,12 +2,20 @@ import 'package:ejarkom/app/home/view.dart';
 import 'package:ejarkom/app/start_point/view.dart';
 import 'package:ejarkom/utils/http_manager/auth_manager.dart';
 import 'package:ejarkom/utils/my_database.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
 import 'state.dart';
 
 class LoginLogic extends GetxController {
   final LoginState state = LoginState();
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getFireBaseToken();
+  }
 
   @override
   void onReady() {
@@ -21,6 +29,9 @@ class LoginLogic extends GetxController {
     super.onClose();
   }
 
+
+
+
   changeLoginState() => state.loginState.value = !state.loginState.value;
 
   void loginButton() async {
@@ -29,6 +40,7 @@ class LoginLogic extends GetxController {
       var result = await AuthManger.login(
         email: state.email.text.trim(),
         password: state.password.text.trim(),
+        fire: state.firebaseToken,
       );
       result.fold(
         (l) {
@@ -51,5 +63,16 @@ class LoginLogic extends GetxController {
     } else {
       Get.snackbar('Error'.tr, 'please complete your data'.tr);
     }
+  }
+
+  void getFireBaseToken() async {
+    var token = await FirebaseMessaging.instance.getToken();
+    print(token);
+    if (token == null) {
+      state.firebaseToken = '';
+    } else {
+      state.firebaseToken = token;
+    }
+    // state.firebaseToken = token!;
   }
 }

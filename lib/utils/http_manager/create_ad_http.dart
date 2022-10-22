@@ -46,7 +46,9 @@ class CreateAdHttp {
       );
     }
   }
-  Future<Either<String, ManagementsRequestsAll>> getAllManagementRequests() async {
+
+  Future<Either<String, ManagementsRequestsAll>>
+      getAllManagementRequests() async {
     try {
       var token = MyDataBase.getToken();
       var headers = {'Authorization': 'Bearer $token'};
@@ -169,6 +171,7 @@ class CreateAdHttp {
       );
     }
   }
+
   Future<Either<String, String>> checkRequest({required String userId}) async {
     try {
       var token = MyDataBase.getToken();
@@ -224,6 +227,7 @@ class CreateAdHttp {
       if (response.statusCode == 200) {
         // print(await response.stream.bytesToString());
         var result = await response.stream.bytesToString();
+        print(result);
         var formattedResult = jsonDecode(result);
         if (formattedResult['status'] == true) {
           return Right(formattedResult['msg'].toString());
@@ -239,6 +243,7 @@ class CreateAdHttp {
       return Left(e.toString());
     }
   }
+
   Future<Either<String, String>> createManagementRequest(
       {required ManageRequestModel createAdModel, required List photos}) async {
     try {
@@ -342,8 +347,9 @@ class CreateAdHttp {
       );
     }
   }
+
   Future<Either<String, String>> actionOnRequest(
-      {required String id,required String api}) async {
+      {required String id, required String api}) async {
     try {
       var token = MyDataBase.getToken();
       var headers = {'Authorization': 'Bearer $token'};
@@ -359,7 +365,6 @@ class CreateAdHttp {
         var formattedResult = jsonDecode(result);
         if (jsonDecode(result)['status'] == true) {
           return const Right('Done');
-
         } else {
           return Left(formattedResult['msg']);
         }

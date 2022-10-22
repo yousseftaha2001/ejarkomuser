@@ -11,14 +11,14 @@ class ViewAllState {
   ViewAllState() {
     // allBuildingsModel=AllBuildingsModel();
     mainScreenHTTP = MainScreenHTTP();
-    createAdHttp=CreateAdHttp();
-    zones=[];
-    cities=[];
+    createAdHttp = CreateAdHttp();
+    zones = [];
+    cities = [];
   }
   RxBool getState = false.obs;
   RxBool searchMode = false.obs;
   AllBuildingsModel? allBuildingsModel;
-  List<BuildAds>searchedList=[];
+  List<BuildAds> searchedList = [];
   late MainScreenHTTP mainScreenHTTP;
   late List<City> cities;
   late List<Zone> zones;

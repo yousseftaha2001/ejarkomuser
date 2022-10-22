@@ -36,6 +36,26 @@ class RequestAd {
   String? zonesE;
   String? zonesA;
 
+  getPhoto() {
+    if (photos != null) {
+      List<dynamic> result = jsonDecode(photos!);
+      print(result.length);
+      return result.first;
+    } else {
+      return '';
+    }
+  }
+
+  getAllPhoto() {
+    if (photos != null) {
+      List<dynamic> result = jsonDecode(photos!);
+      print(result.length);
+      return result;
+    } else {
+      return '';
+    }
+  }
+
   RequestAd({
     this.reqestId,
     this.reqestStatus,

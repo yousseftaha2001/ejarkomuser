@@ -1,15 +1,17 @@
 class ProfileModel {
   ProfileModel({
-      this.status, 
-      this.errNum, 
-      this.msg, 
-      this.dataUser,});
+    this.status,
+    this.errNum,
+    this.msg,
+    this.dataUser,
+  });
 
   ProfileModel.fromJson(dynamic json) {
     status = json['status'];
     errNum = json['errNum'];
     msg = json['msg'];
-    dataUser = json['data_user'] != null ? DataUser.fromJson(json['data_user']) : null;
+    dataUser =
+        json['data_user'] != null ? DataUser.fromJson(json['data_user']) : null;
   }
   bool? status;
   String? errNum;
@@ -26,22 +28,22 @@ class ProfileModel {
     }
     return map;
   }
-
 }
 
 class DataUser {
   DataUser({
-      this.id, 
-      this.name, 
-      this.phone, 
-      this.stute, 
-      this.type, 
-      this.email, 
-      this.fire, 
-      this.numAds, 
-      this.emailVerifiedAt, 
-      this.createdAt, 
-      this.updatedAt,});
+    this.id,
+    this.name,
+    this.phone,
+    this.stute,
+    this.type,
+    this.email,
+    this.fire,
+    this.numAds,
+    this.emailVerifiedAt,
+    this.createdAt,
+    this.updatedAt,
+  });
 
   DataUser.fromJson(dynamic json) {
     id = json['id'];
@@ -83,5 +85,4 @@ class DataUser {
     map['updated_at'] = updatedAt;
     return map;
   }
-
 }

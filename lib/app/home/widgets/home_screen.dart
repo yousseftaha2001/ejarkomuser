@@ -21,9 +21,16 @@ class HomeScreen extends StatelessWidget {
             color: Colors.white,
             borderRadius: state.isDrawerOpen
                 ? BorderRadius.circular(40.sp)
-                : BorderRadius.circular(0),
+                : BorderRadius.circular(0.sp),
           ),
-          child: Obx(() => state.screens[state.cureentScreen.value]),
+          child: ClipRRect(
+            child: Obx(
+              () => state.screens[state.cureentScreen.value],
+            ),
+            borderRadius: state.isDrawerOpen
+                ? BorderRadius.circular(40.sp)
+                : BorderRadius.circular(0.sp),
+          ),
         );
       },
     );

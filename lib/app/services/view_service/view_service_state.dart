@@ -1,4 +1,5 @@
 import 'package:ejarkom/app/services/models/ServiceViewModel.dart';
+import 'package:ejarkom/app/services/models/service_section_model/ads_serve.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -9,10 +10,12 @@ class ViewServiceState {
   ViewServiceState() {
     servicesHttp = ServicesHttp();
     pageController = PageController();
+    sers = [];
   }
-  late ServiceAds serviceAds;
+  // late ServiceAds serviceAds;
   late ServicesHttp servicesHttp;
   RxBool getState = false.obs;
   late PageController pageController;
   RxInt currentIndex = 0.obs;
+  late List<AdsServe> sers;
 }

@@ -1,3 +1,4 @@
+import 'package:ejarkom/app/Ads/create_ads/create_ads_view.dart';
 import 'package:ejarkom/app/main/main_logic.dart';
 import 'package:ejarkom/app/main/models/PageOneModel.dart';
 import 'package:ejarkom/app/main/widgets/build_card.dart';
@@ -16,34 +17,64 @@ class MainCategory extends StatelessWidget {
     return ads.items!.isNotEmpty
         ? Column(
             mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Row(
-                children: [
-                  Text(
-                    ads.nameE!,
-                    style: Get.textTheme.bodyText1!.copyWith(
-                      fontSize: 20.sp,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
+              SizedBox(height: 20.h),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Get.to(() => CreateAdsView());
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(180.w, 30.h),
+                    primary: Colors.amber,
                   ),
-                  const Spacer(),
-                  TextButton(
-                    onPressed: () {
-                      // Get.to(() => AllBuildingsPage(id: ads.id.toString()));
-                      mainLogic.gotoAll(ads.id!.toString());
-                    },
-                    child: Text(
-                      'show all'.tr,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'create ADS'.tr,
+                        style: Get.textTheme.bodyText1!.copyWith(
+                          fontSize: 16.sp,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const Icon(Icons.add)
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                child: Row(
+                  children: [
+                    Text(
+                      ads.nameE!,
                       style: Get.textTheme.bodyText1!.copyWith(
                         fontSize: 20.sp,
-                        color: Colors.amber,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline,
                       ),
                     ),
-                  )
-                ],
+                    const Spacer(),
+                    TextButton(
+                      onPressed: () {
+                        // Get.to(() => AllBuildingsPage(id: ads.id.toString()));
+                        mainLogic.gotoAll(ads.id!.toString());
+                      },
+                      child: Text(
+                        'View all'.tr,
+                        style: Get.textTheme.bodyText1!.copyWith(
+                          fontSize: 20.sp,
+                          color: Colors.amber,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
               SizedBox(
                 height: 310.h,

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class BuildViewModel {
   BuildViewModel({
     this.status,
@@ -157,5 +159,25 @@ class Data {
     map['zones_E'] = zonesE;
     map['zones_A'] = zonesA;
     return map;
+  }
+
+  getPhoto() {
+    if (photos != null) {
+      List<dynamic> result = jsonDecode(photos!);
+      print(result.length);
+      return result.first;
+    } else {
+      return '';
+    }
+  }
+
+  List getAllPhoto() {
+    if (photos != null) {
+      List<dynamic> result = jsonDecode(photos!);
+      print(result.length);
+      return result;
+    } else {
+      return [];
+    }
   }
 }

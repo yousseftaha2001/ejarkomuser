@@ -41,6 +41,7 @@ class CreateAdsState {
     'Monthly'.tr,
     'Weekly'.tr,
     'Annually'.tr,
+    'Daily'.tr,
   ];
   String? selectedCostType;
   late List<City> cities;
@@ -49,6 +50,7 @@ class CreateAdsState {
   RxBool gettingZones = false.obs;
   RxBool gettingBuildTypes = false.obs;
   RxBool createAdsState = false.obs;
+  RxInt currentIndex = 0.obs;
 
   late List<TypeBuild> typeBuilds;
   late CreateAdHttp createAdHttp;

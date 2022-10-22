@@ -8,7 +8,7 @@ class AppTheme {
   static final lightTheme = ThemeData.light().copyWith(
     primaryColor: const Color(0xff102129),
     colorScheme: ThemeData().colorScheme.copyWith(
-          // secondary: Color(0xffFF800D),
+          secondary: Color(0xffffc818),
           primary: const Color(0xff102129),
         ),
     backgroundColor: const Color(0xffFFFFFF),

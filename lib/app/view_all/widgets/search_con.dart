@@ -16,7 +16,7 @@ class SearchCont extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  AlertDialog(
+    return AlertDialog(
       content: Container(
         height: 250.h,
         width: Get.width,
@@ -46,12 +46,11 @@ class SearchCont extends StatelessWidget {
                   SizedBox(height: 10.h),
                   GetBuilder<ViewAllLogic>(
                     id: 'z',
-
                     builder: (logic) {
                       return logic.state.selectedCity != null
                           ? Obx(() => logic.state.gettingZones.value
-                          ? const MyIndicator()
-                          : ZoneSelectorS())
+                              ? const MyIndicator()
+                              : ZoneSelectorS())
                           : Container();
                     },
                   ),
@@ -63,10 +62,12 @@ class SearchCont extends StatelessWidget {
                   id: 'z',
                   builder: (logic) {
                     return ElevatedButton(
-                      onPressed: logic.state.selectedZone == null ? null : () {
-                        logic.changeSearchMode();
-                        // Get.back();
-                      },
+                      onPressed: logic.state.selectedZone == null
+                          ? null
+                          : () {
+                              logic.changeSearchMode();
+                              // Get.back();
+                            },
                       child: Text(
                         'Filter'.tr,
                         style: Get.theme.textTheme.bodyText1!.copyWith(

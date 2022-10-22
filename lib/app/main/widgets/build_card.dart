@@ -47,11 +47,10 @@ class BuildingWidget extends StatelessWidget {
                     topLeft: Radius.circular(10.sp),
                     topRight: Radius.circular(10.sp),
                   ),
-                  image: const DecorationImage(
-                    // image: NetworkImage('$photoAPI${imagePath}'),
-                    image: NetworkImage(
-                        'https://images.pexels.com/photos/1662159/pexels-photo-1662159.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
-                    fit: BoxFit.cover,
+                  image: DecorationImage(
+                    image: NetworkImage('$photoAPI${ads.getPhoto()}'),
+                    // image: NetworkImage(
+                    //     'https://images.pexels.com/photos/1662159/pexels-photo-1662159.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
                   ),
                 ),
               ),

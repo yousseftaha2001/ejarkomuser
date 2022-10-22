@@ -89,6 +89,7 @@ class RentHttp {
       return Left(e.toString());
     }
   }
+
   Future<Either<String, MyDataModel>> getMyData() async {
     try {
       var token = MyDataBase.getToken();

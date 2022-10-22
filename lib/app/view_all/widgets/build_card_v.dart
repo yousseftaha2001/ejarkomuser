@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../utils/apis.dart';
+
 class BuildingWidgetV extends StatefulWidget {
   final BuildAds ads;
 
@@ -40,7 +42,7 @@ class _BuildingWidgetVState extends State<BuildingWidgetV> {
         ),
         child: Container(
           // color: Colors.black,
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+          padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 10.h),
           width: Get.width.w,
           height: 200.h,
           decoration: BoxDecoration(
@@ -50,16 +52,19 @@ class _BuildingWidgetVState extends State<BuildingWidgetV> {
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
-                width: Get.width / 2.5.w,
-                height: 150.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.sp),
-                  image: const DecorationImage(
-                    // image: NetworkImage('$photoAPI${imagePath}'),
-                    image: NetworkImage(
-                        'https://images.pexels.com/photos/1662159/pexels-photo-1662159.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
-                    fit: BoxFit.cover,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: Container(
+                  width: Get.width / 3.5.w,
+                  height: 150.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.sp),
+                    image: DecorationImage(
+                      image: NetworkImage('$photoAPI${widget.ads.getPhoto()}'),
+                      // image: NetworkImage(
+                      //     'https://images.pexels.com/photos/1662159/pexels-photo-1662159.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
@@ -83,32 +88,16 @@ class _BuildingWidgetVState extends State<BuildingWidgetV> {
                           ),
                         ),
                         const Spacer(),
-                        // GetBuilder<FavPref>(
-                        //   // init: FavPref(),
-                        //   builder: (logic) {
-                        //     return IconButton(
-                        //       onPressed: () {
-                        //         logic.addFav(id: id);
-                        //       },
-                        //       icon: Icon(
-                        //         logic.isFaved(id)
-                        //             ? FontAwesomeIcons.heartCircleCheck
-                        //             : FontAwesomeIcons.heart,
-                        //         color:
-                        //         logic.isFaved(id) ? Colors.red : Colors.grey,
-                        //       ),
-                        //     );
-                        //   },
-                        // )
                       ],
                     ),
                     SizedBox(height: 3.h),
                     Text(
                       widget.ads.descE!,
                       style: Get.textTheme.bodyText1!.copyWith(
-                        fontSize: 17.sp,
+                        fontSize: 15.sp,
                         color: Get.theme.primaryColor,
                       ),
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       softWrap: false,
                     ),

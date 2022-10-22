@@ -1,9 +1,10 @@
 class CheckupsRequestModel {
   CheckupsRequestModel({
-      this.status, 
-      this.errNum, 
-      this.msg, 
-      this.myData,});
+    this.status,
+    this.errNum,
+    this.msg,
+    this.myData,
+  });
 
   CheckupsRequestModel.fromJson(dynamic json) {
     status = json['status'];
@@ -31,19 +32,19 @@ class CheckupsRequestModel {
     }
     return map;
   }
-
 }
 
 class Check {
   Check({
-      this.id, 
-      this.userId, 
-      this.custmerId, 
-      this.mess, 
-      this.empId, 
-      this.stute, 
-      this.createdAt, 
-      this.updatedAt,});
+    this.id,
+    this.userId,
+    this.custmerId,
+    this.mess,
+    this.empId,
+    this.stute,
+    this.createdAt,
+    this.updatedAt,
+  });
 
   Check.fromJson(dynamic json) {
     id = json['id'];
@@ -76,5 +77,4 @@ class Check {
     map['updated_at'] = updatedAt;
     return map;
   }
-
 }

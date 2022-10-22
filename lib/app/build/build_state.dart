@@ -16,7 +16,7 @@ class BuildState {
   BuildViewModel? viewModel;
   late MainScreenHTTP mainScreenHTTP;
   late RentHttp rentHttp;
-  RxDouble containerH = (Get.height * 0.4).h.obs;
+  RxDouble containerH = (Get.height * 0.45).h.obs;
   RxBool containerIsOpened = false.obs;
   List<String> images = [
     'https://images.theconversation.com/files/121429/original/image-20160505-19851-1qywl91.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop',

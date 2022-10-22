@@ -40,6 +40,35 @@ class MainScreenHTTP {
     }
   }
 
+  Future<Either<String, String>> getHelp() async {
+    try {
+      var token = MyDataBase.getToken();
+
+      var request = http.Request('GET', Uri.parse(helpAPI));
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        // print(await response.stream.bytesToString());
+        var result = await response.stream.bytesToString();
+        var formattedResult = jsonDecode(result);
+        if (formattedResult['status'] == true) {
+          return Right(formattedResult['help']);
+        } else {
+          return formattedResult['msg'];
+        }
+      } else {
+        print(response.reasonPhrase);
+        return Left(response.reasonPhrase.toString());
+      }
+    } catch (e) {
+      print(e.toString());
+      return Left(
+        e.toString(),
+      );
+    }
+  }
+
   Future<Either<String, AllBuildingsModel>> viewAll(
       {required String id}) async {
     try {

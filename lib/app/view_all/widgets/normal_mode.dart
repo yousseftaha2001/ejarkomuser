@@ -19,29 +19,26 @@ class _NormalModeState extends State<NormalMode> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: state.allBuildingsModel!.ads!.isEmpty
-          ? Center(
-              child: Text(
-                'NO Ads yet'.tr,
-                style: Get.textTheme.bodyText1,
-              ),
-            )
-          : Wrap(
-              alignment: WrapAlignment.start,
+    return state.allBuildingsModel!.ads!.isEmpty
+        ? Center(
+            child: Text(
+              'NO Ads yet'.tr,
+              style: Get.textTheme.bodyText1,
+            ),
+          )
+        : Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
+            child: ListView(
               children: List.generate(
                 state.allBuildingsModel!.ads!.length,
                 (index) => Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 5.w,
-                    vertical: 10.h,
-                  ),
+                  padding: EdgeInsets.symmetric(vertical: 10.h),
                   child: BuildingWidgetV(
                     ads: state.allBuildingsModel!.ads![index],
                   ),
                 ),
               ),
             ),
-    );
+          );
   }
 }

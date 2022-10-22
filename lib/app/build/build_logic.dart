@@ -17,11 +17,11 @@ class BuildLogic extends GetxController {
   void changeGetState() => state.getState.value = !state.getState.value;
 
   void changeH() {
-    if (state.containerH.value == Get.height * 0.7.h) {
-      state.containerH.value = Get.height * 0.4.h;
+    if (state.containerH.value == Get.height * 0.95.h) {
+      state.containerH.value = Get.height * 0.45.h;
       state.containerIsOpened = false.obs;
     } else {
-      state.containerH.value = Get.height * 0.7.h;
+      state.containerH.value = Get.height * 0.95.h;
       state.containerIsOpened = true.obs;
     }
   }

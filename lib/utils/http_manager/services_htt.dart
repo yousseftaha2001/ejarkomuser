@@ -1,14 +1,17 @@
 import 'dart:convert';
 
-
 import 'package:ejarkom/app/services/models/ServiceViewModel.dart';
 import 'package:ejarkom/app/services/models/my_ser_model/my_ser_model.dart';
+import 'package:ejarkom/app/services/models/service_section_model/ads_serve.dart';
+import 'package:ejarkom/app/services/models/service_section_model/service_section_model.dart';
+import 'package:ejarkom/app/services/models/service_type_model/service_type_model.dart';
 import 'package:ejarkom/utils/apis.dart';
 import 'package:ejarkom/utils/my_database.dart';
 import 'package:http/http.dart' as http;
 import 'package:dartz/dartz.dart';
 
 import '../../app/services/models/services_pandles_ads_model/services_pandles_ads_model.dart';
+import '../../app/services/view_services/models/one_services/one_services.dart';
 
 class ServicesHttp {
   Future<Either<String, String>> cancelServices({required String id}) async {
@@ -41,12 +44,77 @@ class ServicesHttp {
       );
     }
   }
-  Future<Either<String, ServiceViewModel>> getService(
+
+  Future<Either<String, ServiceTypeModel>> getServicesTypes() async {
+    try {
+      var token = MyDataBase.getToken();
+      var headers = {'Authorization': 'Bearer $token'};
+      var request = http.Request('GET', Uri.parse(getServicesTypeAPI));
+
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        // print(await response.stream.bytesToString());
+        var result = await response.stream.bytesToString();
+        var formattedResult = jsonDecode(result);
+        // print(formattedResult);
+        if (jsonDecode(result)['status'] == true) {
+          return Right(ServiceTypeModel.fromJson(result));
+        } else {
+          return Left(formattedResult['msg']);
+        }
+      } else {
+        print(response.reasonPhrase);
+        return Left(response.reasonPhrase.toString());
+      }
+    } catch (e) {
+      print(e.toString());
+      return Left(
+        e.toString(),
+      );
+    }
+  }
+
+  Future<Either<String, OneServices>> getOneSer({required String id}) async {
+    try {
+      var token = MyDataBase.getToken();
+      var headers = {'Authorization': 'Bearer $token'};
+      var request = http.Request('GET', Uri.parse('$viewServicesAPI$id'));
+
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        // print(await response.stream.bytesToString());
+        var result = await response.stream.bytesToString();
+        var formattedResult = jsonDecode(result);
+        print(formattedResult);
+        if (jsonDecode(result)['status'] == true) {
+          return Right(OneServices.fromMap(formattedResult));
+        } else {
+          return Left(formattedResult['msg']);
+        }
+      } else {
+        print(response.reasonPhrase);
+        return Left(response.reasonPhrase.toString());
+      }
+    } catch (e) {
+      print(e.toString());
+      return Left(
+        e.toString(),
+      );
+    }
+  }
+
+  Future<Either<String, ServiceSectionModel>> getService(
       {required String id}) async {
     try {
       var token = MyDataBase.getToken();
       var headers = {'Authorization': 'Bearer $token'};
-      var request = http.Request('GET', Uri.parse('$viewOneServicesAPI$id'));
+      var request = http.Request('GET', Uri.parse('$viewAllServices$id'));
 
       request.headers.addAll(headers);
 
@@ -57,7 +125,7 @@ class ServicesHttp {
         var result = await response.stream.bytesToString();
         var formattedResult = jsonDecode(result);
         if (formattedResult['msg'] == 'succsess') {
-          return Right(ServiceViewModel.fromJson(formattedResult));
+          return Right(ServiceSectionModel.fromJson(result));
         } else {
           return Left(formattedResult['msg']);
         }

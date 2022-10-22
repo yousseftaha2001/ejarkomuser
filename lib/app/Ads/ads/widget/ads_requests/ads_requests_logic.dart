@@ -78,7 +78,7 @@ class AdsRequestsLogic extends GetxController {
       var result = await state.createAdHttp
           .actionOnRequest(id: id!, api: acceptRequestAPI);
       result.fold(
-            (l) {
+        (l) {
           changeActionState();
           Get.back();
           Get.snackbar(
@@ -92,7 +92,7 @@ class AdsRequestsLogic extends GetxController {
             ),
           );
         },
-            (r) {
+        (r) {
           changeCheckMethodState();
           Get.back();
           Get.snackbar(

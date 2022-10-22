@@ -1,7 +1,9 @@
 import 'package:ejarkom/app/home/view.dart';
 import 'package:ejarkom/app/sign_up/models/signup_requets.dart';
+import 'package:ejarkom/app/sign_up/widgets/veri_dialog.dart';
 import 'package:ejarkom/utils/http_manager/auth_manager.dart';
 import 'package:ejarkom/utils/my_database.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +11,13 @@ import 'sign_up_state.dart';
 
 class SignUpLogic extends GetxController {
   final SignUpState state = SignUpState();
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getFireBaseToken();
+  }
 
   @override
   void onReady() {
@@ -22,21 +31,67 @@ class SignUpLogic extends GetxController {
     super.onClose();
   }
 
+  void getFireBaseToken() async {
+    var token = await FirebaseMessaging.instance.getToken();
+    print(token);
+    if (token == null) {
+      state.firebaseToken = '';
+    } else {
+      state.firebaseToken = token;
+    }
+    // state.firebaseToken = token!;
+  }
+
   dynamic collectData() async {
     if (state.email.text.isEmail &&
         state.password.text.isNotEmpty &&
         state.fullName.text.isNotEmpty &&
-        state.rePassword.text == state.password.text) {
+        state.rePassword.text == state.password.text &&
+        state.firebaseToken.isNotEmpty) {
       // var firebaseToken = await FirebaseMessaging.instance.getToken();
       SignUpRequestModel signUpRequestModel = SignUpRequestModel(
-          email: state.email.text.trim(),
-          name: state.fullName.text.trim(),
-          password: state.password.text.trim(),
-          tokenMassage: 'fire',
-          phone: "1212");
+        email: state.email.text.trim(),
+        name: state.fullName.text.trim(),
+        password: state.password.text.trim(),
+        tokenMassage: state.firebaseToken,
+        phone: state.phone.text,
+      );
       return signUpRequestModel;
     } else {
       return '';
+    }
+  }
+
+  void changeSend() => state.sendMailState.value = !state.sendMailState.value;
+
+  Future<void> sendMail() async {
+    // var result = collectData();
+    if (state.email.text.isNotEmpty && state.password.text.length > 6) {
+      changeSend();
+      var mailResult =
+          await AuthManger.sendEmail(email: state.email.text.trim());
+      mailResult.fold(
+        (l) {
+          print(l.toString());
+          Get.snackbar('Error',
+              l.toString() == '' ? 'No Internet Connection'.tr : l.toString());
+        },
+        (r) async {
+          state.pinCode = r;
+          await Get.dialog(
+            VerificationDialog(),
+            barrierDismissible: false,
+          );
+        },
+      );
+      changeSend();
+    } else {
+      if (state.password.text.length < 6) {
+        Get.snackbar('Some thing want wrong'.tr, 'Weak Password'.tr);
+      } else {
+        Get.snackbar(
+            'Some thing want wrong'.tr, 'please complete your data'.tr);
+      }
     }
   }
 
@@ -50,18 +105,18 @@ class SignUpLogic extends GetxController {
   void signUpLogic() async {
     var data = await collectData();
     if (data is SignUpRequestModel) {
-      state.tryToSignUp.value = true;
+      changeSend();
       var requestResult = await AuthManger.signUp(requestModel: data);
       requestResult.fold(
         (l) {
           if (kDebugMode) {
             print(l);
           }
-          state.tryToSignUp.value = false;
+          changeSend();
           Get.snackbar('Error'.tr, l);
         },
         (r) {
-          state.tryToSignUp.value = false;
+          changeSend();
           MyDataBase.insertData(
             token: r.token!,
             id: r.user!.id!.toString(),

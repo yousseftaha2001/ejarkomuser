@@ -37,95 +37,119 @@ class _MyChecksViewState extends State<MyChecksView> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: Obx(
-        () => state.gettingState.value
-            ? MyIndicator()
-            : Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                child: ListView.builder(
-                  itemCount: state.checks.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.h),
-                      child: Container(
-                        // height: 200.h,
-                        width: Get.width.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.sp),
-                          border: Border.all(color: Colors.grey),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 10.w,
-                            vertical: 10.h,
-                          ),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  getState(s: state.checks[index].stute!),
-                                ],
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          image: DecorationImage(
+            image: AssetImage('assets/images/newb.png'),
+            fit: BoxFit.fitHeight,
+          ),
+        ),
+        height: Get.height,
+        child: Obx(
+          () => state.gettingState.value
+              ? MyIndicator()
+              : GetBuilder<MyChecksLogic>(builder: (logic) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.w),
+                    child: state.checks.isEmpty
+                        ? Center(
+                            child: Text(
+                              'you do not have any checks yet'.tr,
+                              style: Get.textTheme.bodyText1!.copyWith(
+                                fontSize: 19.sp,
                               ),
-                              SizedBox(height: 10.h),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Result:'.tr,
-                                    style: Get.textTheme.bodyText1!.copyWith(
-                                      fontSize: 19.sp,
+                            ),
+                          )
+                        : ListView.builder(
+                            itemCount: state.checks.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10.h),
+                                child: Container(
+                                  // height: 200.h,
+                                  width: Get.width.w,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5.sp),
+                                    border: Border.all(color: Colors.grey),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 10.w,
+                                      vertical: 10.h,
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            getState(
+                                                s: state.checks[index].stute!),
+                                          ],
+                                        ),
+                                        SizedBox(height: 10.h),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Result:'.tr,
+                                              style: Get.textTheme.bodyText1!
+                                                  .copyWith(
+                                                fontSize: 19.sp,
+                                              ),
+                                            ),
+                                            Text(
+                                              '{state.checks[index].mess!}',
+                                              style: Get.textTheme.bodyText1,
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 10.h),
+
+                                        // Row(
+                                        //   mainAxisAlignment:
+                                        //   MainAxisAlignment.spaceBetween,
+                                        //   children: [
+                                        //     ElevatedButton(
+                                        //       onPressed: () {
+                                        //         Get.dialog(
+                                        //           MyActionDialog(type: 'reject'),
+                                        //           barrierDismissible: false,
+                                        //         );
+                                        //       },
+                                        //       child: Text(
+                                        //         'Reject'.tr,
+                                        //       ),
+                                        //     ),
+                                        //     ElevatedButton(
+                                        //       onPressed: () {
+                                        //         // logic.actionDialog(type: 'Accept');
+                                        //         Get.dialog(
+                                        //           MyActionDialog(type: 'Accept'),
+                                        //           barrierDismissible: false,
+                                        //         );
+                                        //       },
+                                        //       child: Text(
+                                        //         'Accept'.tr,
+                                        //       ),
+                                        //     ),
+                                        //   ],
+                                        // )
+                                      ],
                                     ),
                                   ),
-                                  Text(
-                                    '{state.checks[index].mess!}',
-                                    style: Get.textTheme.bodyText1,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10.h),
-
-                              // Row(
-                              //   mainAxisAlignment:
-                              //   MainAxisAlignment.spaceBetween,
-                              //   children: [
-                              //     ElevatedButton(
-                              //       onPressed: () {
-                              //         Get.dialog(
-                              //           MyActionDialog(type: 'reject'),
-                              //           barrierDismissible: false,
-                              //         );
-                              //       },
-                              //       child: Text(
-                              //         'Reject'.tr,
-                              //       ),
-                              //     ),
-                              //     ElevatedButton(
-                              //       onPressed: () {
-                              //         // logic.actionDialog(type: 'Accept');
-                              //         Get.dialog(
-                              //           MyActionDialog(type: 'Accept'),
-                              //           barrierDismissible: false,
-                              //         );
-                              //       },
-                              //       child: Text(
-                              //         'Accept'.tr,
-                              //       ),
-                              //     ),
-                              //   ],
-                              // )
-                            ],
+                                ),
+                              );
+                            },
                           ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+                  );
+                }),
+        ),
       ),
     );
   }

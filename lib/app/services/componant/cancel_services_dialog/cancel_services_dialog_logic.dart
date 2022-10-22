@@ -12,10 +12,10 @@ class CancelServicesDialogLogic extends GetxController {
     changeCancelState();
     var result = await state.servicesHttp.cancelServices(id: id);
     result.fold(
-          (l) {
+      (l) {
         Get.snackbar('Error'.tr, l);
       },
-          (r) {
+      (r) {
         Get.back();
         Get.snackbar('Done'.tr, 'Request has been Canceled'.tr);
       },

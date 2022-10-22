@@ -36,15 +36,17 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ),
                 centerTitle: true,
-                backgroundColor: Colors.transparent,
+                backgroundColor: Colors.white,
                 elevation: 0,
               ),
               body: Container(
                 height: Get.height,
                 width: Get.width,
                 decoration: const BoxDecoration(
+                  color: Colors.white,
                   image: DecorationImage(
-                    image: AssetImage('assets/images/back2.png'),
+                    image: AssetImage('assets/images/newb.png'),
+                    fit: BoxFit.fitHeight,
                   ),
                 ),
                 child: LayoutBuilder(
@@ -61,15 +63,16 @@ class _MainPageState extends State<MainPage> {
                         //     ],
                         //   ),
                         // ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15.w),
-                          child: SizedBox(
-                            height: cons.maxHeight * 0.87,
-                            // color: Colors.red,
-                            child: SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  Row(
+                        SizedBox(
+                          height: cons.maxHeight * 0.87,
+                          // color: Colors.red,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 15.w),
+                                  child: Row(
                                     children: [
                                       Text(
                                         'Services'.tr,
@@ -86,15 +89,16 @@ class _MainPageState extends State<MainPage> {
                                           Get.to(() => CreateServicesAdPage());
                                         },
                                         style: ElevatedButton.styleFrom(
-                                          fixedSize: Size(150.w, 30.h),
-                                          primary: Colors.amber,
+                                          fixedSize: Size(180.w, 30.h),
+                                          primary:
+                                              Get.theme.colorScheme.secondary,
                                         ),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
                                             Text(
-                                              'create AD'.tr,
+                                              'create Service'.tr,
                                               style: Get.textTheme.bodyText1!
                                                   .copyWith(
                                                 fontSize: 16.sp,
@@ -107,34 +111,33 @@ class _MainPageState extends State<MainPage> {
                                       )
                                     ],
                                   ),
-                                  SizedBox(height: 10.h),
-                                  SizedBox(
-                                    height: 120.h,
-                                    width: Get.width,
-                                    // color: Colors.black,
-                                    child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount:
-                                          state.pageOneModel!.services!.length,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: EdgeInsets.only(right: 30.w),
-                                          child:
-                                              ServicesContainer(index: index),
-                                        );
-                                      },
+                                ),
+                                SizedBox(height: 10.h),
+                                SizedBox(
+                                  height: 120.h,
+                                  width: Get.width,
+                                  // color: Colors.black,
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount:
+                                        state.pageOneModel!.services!.length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: EdgeInsets.only(right: 30.w),
+                                        child: ServicesContainer(index: index),
+                                      );
+                                    },
+                                  ),
+                                ),
+                                Column(
+                                  children: List.generate(
+                                    state.pageOneModel!.ads!.length,
+                                    (index) => MainCategory(
+                                      ads: state.pageOneModel!.ads![index],
                                     ),
                                   ),
-                                  Column(
-                                    children: List.generate(
-                                      state.pageOneModel!.ads!.length,
-                                      (index) => MainCategory(
-                                        ads: state.pageOneModel!.ads![index],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                                )
+                              ],
                             ),
                           ),
                         ),

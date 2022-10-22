@@ -35,13 +35,22 @@ class _CompleteDataViewState extends State<CompleteDataView> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Get.theme.primaryColor,
-        title: Text('Informations'.tr),
-        leading:IconButton(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          'Informations'.tr,
+          style: Get.textTheme.bodyText1!.copyWith(
+            color: Get.theme.primaryColor,
+          ),
+        ),
+        leading: IconButton(
           onPressed: () {
             Get.back();
           },
-          icon: Icon(Icons.arrow_back_ios),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Get.theme.primaryColor,
+          ),
         ),
       ),
       body: Padding(
@@ -115,7 +124,10 @@ class _CompleteDataViewState extends State<CompleteDataView> {
               Container(
                 width: Get.width,
                 height: 200.h,
-                color: Colors.grey.withOpacity(0.5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.sp),
+                  border: Border.all(color: Colors.grey),
+                ),
                 child: GetBuilder<CompleteDataLogic>(
                   id: 'photo',
                   builder: (logic) {
@@ -144,7 +156,7 @@ class _CompleteDataViewState extends State<CompleteDataView> {
                                               },
                                               icon: Icon(
                                                 Icons.delete,
-                                                color: Colors.white,
+                                                color: Colors.black,
                                                 size: 30.sp,
                                               ),
                                             ),
@@ -181,7 +193,10 @@ class _CompleteDataViewState extends State<CompleteDataView> {
               Container(
                 width: Get.width,
                 height: 200.h,
-                color: Colors.grey.withOpacity(0.5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.sp),
+                  border: Border.all(color: Colors.grey),
+                ),
                 child: GetBuilder<CompleteDataLogic>(
                   id: 'Sphoto',
                   builder: (logic) {
@@ -210,7 +225,7 @@ class _CompleteDataViewState extends State<CompleteDataView> {
                                               },
                                               icon: Icon(
                                                 Icons.delete,
-                                                color: Colors.white,
+                                                color: Colors.black,
                                                 size: 30.sp,
                                               ),
                                             ),

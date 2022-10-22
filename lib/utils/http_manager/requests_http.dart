@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:ejarkom/app/my_checks/models/CheckupsRequestModel.dart';
 import 'package:ejarkom/app/requests/models/AllRequestsModel.dart';
 import 'package:ejarkom/app/requests/models/requests/requests.dart';
+import 'package:ejarkom/app/services/models/service_type_model/service_type_model.dart';
 import 'package:ejarkom/utils/apis.dart';
 import 'package:http/http.dart' as http;
 import 'package:dartz/dartz.dart';
@@ -41,6 +42,7 @@ class RequestsHttp {
       );
     }
   }
+
   Future<Either<String, CheckupsRequestModel>> getChecks() async {
     try {
       var token = MyDataBase.getToken();
@@ -103,5 +105,4 @@ class RequestsHttp {
       );
     }
   }
-
 }

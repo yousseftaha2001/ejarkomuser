@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:ejarkom/app/Ads/models/GetCityModel.dart';
 import 'package:ejarkom/app/Ads/models/Zone.dart';
 import 'package:ejarkom/app/complete_data/error_dialog.dart';
+import 'package:ejarkom/app/services/models/service_type_model/type_serve.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,8 @@ class CreateServicesAdLogic extends GetxController {
   final state = CreateServicesAdState();
 
   void changeGetState() => state.getPandels.value = !state.getPandels.value;
+  void changeGetTypesState() =>
+      state.gettingTypes.value = !state.gettingTypes.value;
 
   void changePublishState() =>
       state.publishState.value = !state.publishState.value;
@@ -29,7 +32,7 @@ class CreateServicesAdLogic extends GetxController {
       descriptionE: state.descriptionE.text,
       descriptionA: state.descriptionA.text,
       zoneId: state.selectedZone!.id!.toString(),
-      typeSer: '1',
+      typeSer: state.selectedType!.id!.toString(),
       pandleID: state.selectedPandle.value!.id.toString(),
       whats: state.whats.text,
       phone: state.phone.text,
@@ -65,6 +68,22 @@ class CreateServicesAdLogic extends GetxController {
       (r) {
         state.pandels = r.pandleServe!;
         changeGetState();
+      },
+    );
+  }
+
+  void getTypes() async {
+    changeGetTypesState();
+    var result = await state.servicesHttp.getServicesTypes();
+    result.fold(
+      (l) {
+        changeGetTypesState();
+        Get.back();
+        Get.snackbar('Error'.tr, l);
+      },
+      (r) {
+        state.typeServes = r.typeServes!;
+        changeGetTypesState();
       },
     );
   }
@@ -128,6 +147,9 @@ class CreateServicesAdLogic extends GetxController {
     if (state.selectedZone == null) {
       infoError.add('Please select Zone'.tr);
     }
+    if (state.selectedType == null) {
+      infoError.add('Please select Type'.tr);
+    }
     if (infoError.isEmpty) {
       state.pageController.animateToPage(
         2,
@@ -167,6 +189,11 @@ class CreateServicesAdLogic extends GetxController {
       );
     } else {
       Get.dialog(ErrorD(error: infoError));
+      // state.pageController.animateToPage(
+      //   1,
+      //   duration: Duration(milliseconds: 200),
+      //   curve: Curves.easeOut,
+      // );
     }
   }
 
@@ -188,6 +215,11 @@ class CreateServicesAdLogic extends GetxController {
     state.selectedCity = newValue;
     update(['ci']);
     getZones(state.selectedCity!.id!.toString());
+  }
+
+  void changeSelectedType(TypeServe newValue) {
+    state.selectedType = newValue;
+    update(['ty']);
   }
 
   void getZones(String id) async {
@@ -224,5 +256,6 @@ class CreateServicesAdLogic extends GetxController {
     super.onInit();
     getPandels();
     getCities();
+    getTypes();
   }
 }

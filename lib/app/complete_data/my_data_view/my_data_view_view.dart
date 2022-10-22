@@ -33,11 +33,14 @@ class _MyDataViewViewState extends State<MyDataViewView> {
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           elevation: 0,
-          title: Text('Informations'.tr,style: Get.theme.textTheme.bodyText1!.copyWith(
-            color: Get.theme.primaryColor,
-          ),),
+          title: Text(
+            'Informations'.tr,
+            style: Get.theme.textTheme.bodyText1!.copyWith(
+              color: Get.theme.primaryColor,
+            ),
+          ),
           leading: GetBuilder<HomeLogic>(
             builder: (logic) {
               return Container(
@@ -65,115 +68,142 @@ class _MyDataViewViewState extends State<MyDataViewView> {
           )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.to(()=>CompleteDataView());
+          Get.to(() => CompleteDataView());
         },
-        backgroundColor: Get.theme.primaryColor,
+        backgroundColor: Colors.amber,
         child: Icon(Icons.add),
       ),
-      body: Center(
-        child: Obx(
-          () => state.getState.value
-              ? MyIndicator()
-              : state.myData.isEmpty
-                  ? Text('No Data Yet'.tr)
-                  : Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 20.w, vertical: 10.h),
-                      child: ListView.builder(
-                        itemCount: state.myData.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10.h),
-                            child: Container(
-                              // height: 200.h,
-                              width: Get.width.w,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.sp),
-                                  border: Border.all(color: Colors.grey)),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 10.w, vertical: 10.h),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          image: DecorationImage(
+            image: AssetImage('assets/images/newb.png'),
+            fit: BoxFit.fitHeight,
+          ),
+        ),
+        height: Get.height,
+        child: Center(
+          child: Obx(
+            () => state.getState.value
+                ? MyIndicator()
+                : state.myData.isEmpty
+                    ? Text('No Data Yet'.tr)
+                    : GetBuilder<MyDataViewLogic>(builder: (logic) {
+                        return Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20.w,
+                            vertical: 10.h,
+                          ),
+                          child: ListView.builder(
+                            itemCount: state.myData.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10.h),
+                                child: Container(
+                                  // height: 200.h,
+                                  width: Get.width.w,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(10.sp),
+                                      border: Border.all(color: Colors.grey)),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10.w, vertical: 10.h),
+                                    child: Column(
                                       children: [
-                                        Image.network(
-                                          // '$photoAPI${state.myData[index].photo1!}',
-                                          'http://cdn.shopify.com/s/files/1/1060/0108/articles/POA_Card.png?v=1597336214',
-                                          height: 150.h,
-                                          width: 150.h,
-                                          scale: 1.sp,
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Image.network(
+                                              '$photoAPI${state.myData[index].photo1!}',
+                                              // 'http://cdn.shopify.com/s/files/1/1060/0108/articles/POA_Card.png?v=1597336214',
+                                              height: 150.h,
+                                              width: 150.h,
+                                              scale: 1.sp,
+                                            ),
+                                            Image.network(
+                                              '$photoAPI${state.myData[index].photo2!}',
+                                              // 'http://cdn.shopify.com/s/files/1/1060/0108/articles/POA_Card.png?v=1597336214',
+                                              height: 150.h,
+                                              width: 150.h,
+                                              scale: 1.sp,
+                                            ),
+                                          ],
                                         ),
-                                        Image.network(
-                                          // '$photoAPI${state.myData[index].photo1!}',
-                                          'http://cdn.shopify.com/s/files/1/1060/0108/articles/POA_Card.png?v=1597336214',
-                                          height: 150.h,
-                                          width: 150.h,
-                                          scale: 1.sp,
+                                        SizedBox(height: 10.h),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Date Of Birth:'.tr,
+                                              style: Get.textTheme.bodyText1!
+                                                  .copyWith(
+                                                fontSize: 19.sp,
+                                              ),
+                                            ),
+                                            Text(
+                                              state.myData[index].dob!,
+                                              style: Get.textTheme.bodyText1,
+                                            ),
+                                          ],
                                         ),
+                                        SizedBox(height: 10.h),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Address:'.tr,
+                                              style: Get.textTheme.bodyText1!
+                                                  .copyWith(
+                                                fontSize: 19.sp,
+                                              ),
+                                            ),
+                                            Text(
+                                              state.myData[index].address!,
+                                              style: Get.textTheme.bodyText1,
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 10.h),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              logic.dateParser(
+                                                state.myData[index].createdAt!,
+                                              ),
+                                              style: Get.textTheme.bodyText1!
+                                                  .copyWith(
+                                                fontSize: 16.sp,
+                                              ),
+                                            ),
+                                            getState(
+                                                s: state.myData[index].stute!),
+                                          ],
+                                        ),
+                                        SizedBox(height: 10.h),
                                       ],
                                     ),
-                                    SizedBox(height: 10.h),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Date Of Birth:'.tr,
-                                          style:
-                                              Get.textTheme.bodyText1!.copyWith(
-                                            fontSize: 19.sp,
-                                          ),
-                                        ),
-                                        Text(
-                                          state.myData[index].dob!,
-                                          style: Get.textTheme.bodyText1,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 10.h),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Address:'.tr,
-                                          style:
-                                              Get.textTheme.bodyText1!.copyWith(
-                                            fontSize: 19.sp,
-                                          ),
-                                        ),
-                                        Text(
-                                          state.myData[index].address!,
-                                          style: Get.textTheme.bodyText1,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 10.h),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        getState(s: state.myData[index].stute!),
-                                      ],
-                                    ),
-                                    SizedBox(height: 10.h),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
+                              );
+                            },
+                          ),
+                        );
+                      }),
+          ),
         ),
       ),
     );
   }
 
   Widget getState({required String s}) {
-    if (s == 'waiting') {
+    print(s);
+    if (s == 'Waiting') {
       return Container(
         height: 40.h,
         width: 150.h,
@@ -192,7 +222,37 @@ class _MyDataViewViewState extends State<MyDataViewView> {
                   fontSize: 19.sp,
                 ),
               ),
-              Icon(Icons.timer, color: Colors.black38,)
+              const Icon(
+                Icons.timer,
+                color: Colors.black38,
+              )
+            ],
+          ),
+        ),
+      );
+    } else if (s == 'Accepted') {
+      return Container(
+        height: 40.h,
+        width: 150.h,
+        decoration: BoxDecoration(
+            color: Colors.green.withOpacity(0.6),
+            borderRadius: BorderRadius.circular(8.sp)),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Accepted'.tr,
+                style: Get.theme.textTheme.bodyText1!.copyWith(
+                  color: Colors.white,
+                  fontSize: 19.sp,
+                ),
+              ),
+              Icon(
+                Icons.check,
+                color: Colors.white,
+              )
             ],
           ),
         ),
@@ -202,20 +262,26 @@ class _MyDataViewViewState extends State<MyDataViewView> {
         height: 40.h,
         width: 150.h,
         decoration: BoxDecoration(
-            color: Colors.yellowAccent.withOpacity(0.6),
-            borderRadius: BorderRadius.circular(20.sp)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Waiting'.tr,
-              style: Get.theme.textTheme.bodyText1!.copyWith(
-                color: Colors.black38,
-                fontSize: 19.sp,
+            color: Colors.red.withOpacity(0.6),
+            borderRadius: BorderRadius.circular(8.sp)),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Rejected'.tr,
+                style: Get.theme.textTheme.bodyText1!.copyWith(
+                  color: Colors.white,
+                  fontSize: 19.sp,
+                ),
               ),
-            ),
-            Icon(Icons.timer)
-          ],
+              Icon(
+                Icons.close,
+                color: Colors.white,
+              )
+            ],
+          ),
         ),
       );
     }

@@ -21,8 +21,11 @@ class InfoCollector extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Icon(Icons.home, size: 50.sp),
-          SizedBox(height: 60.h),
+          Image.asset(
+            'assets/images/logo.jpg',
+            height: 130.h,
+          ),
+          SizedBox(height: 20.h),
           DataInput(
             controller: state.nameE,
             hint: 'Name In English'.tr,
@@ -62,15 +65,34 @@ class InfoCollector extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              IconButton(
+              ElevatedButton(
                 onPressed: () {
                   logic.checkInfo();
                 },
-                icon: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 50.sp,
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.amber,
                 ),
-              ),
+                child: Row(
+                  children: [
+                    Text(
+                      'Next'.tr,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 25.sp,
+                    ),
+                  ],
+                ),
+              )
+              // IconButton(
+              //   onPressed: () {
+              //     logic.checkInfo();
+              //   },
+              //   icon: Icon(
+              //     Icons.arrow_forward_ios,
+              //     size: 50.sp,
+              //   ),
+              // ),
             ],
           ),
         ],

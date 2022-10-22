@@ -1,4 +1,5 @@
 import 'package:ejarkom/utils/widgets/auth_widgets.dart';
+import 'package:ejarkom/utils/widgets/my_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -60,6 +61,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   SizedBox(height: 30.h),
                   DataInput(
+                    icon: Icon(Icons.phone),
+                    controller: state.phone,
+                    hint: 'Phone'.tr,
+                  ),
+                  SizedBox(height: 30.h),
+                  DataInput(
                     icon: Icon(Icons.lock_open),
                     controller: state.password,
                     hint: 'Password'.tr,
@@ -72,14 +79,14 @@ class _SignUpPageState extends State<SignUpPage> {
                     hint: 're-password'.tr,
                     obs: true,
                   ),
-                  SizedBox(height: 120.h),
+                  SizedBox(height: 100.h),
                   Obx(
                     () {
-                      return state.tryToSignUp.value
-                          ? const CircularProgressIndicator()
+                      return state.sendMailState.value
+                          ? MyIndicator()
                           : ElevatedButton(
                               onPressed: () {
-                                logic.signUpLogic();
+                                logic.sendMail();
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Get.theme.primaryColor,

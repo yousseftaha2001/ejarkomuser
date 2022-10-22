@@ -47,7 +47,7 @@ class _AdsViewState extends State<AdsView> with TickerProviderStateMixin {
           Get.to(() => CreateAdsView());
         },
         child: Icon(Icons.add),
-        backgroundColor: Get.theme.primaryColor,
+        backgroundColor: Colors.amber,
       ),
       appBar: AppBar(
         leading: LeadingButton(),
@@ -60,7 +60,7 @@ class _AdsViewState extends State<AdsView> with TickerProviderStateMixin {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
         bottom: TabBar(
           controller: _tabController,
@@ -85,7 +85,8 @@ class _AdsViewState extends State<AdsView> with TickerProviderStateMixin {
           indicatorSize: TabBarIndicatorSize.tab,
           indicatorWeight: 4.sp,
           unselectedLabelColor: Colors.grey,
-          labelColor: Get.theme.primaryColor,
+          labelColor: Colors.amber,
+          indicatorColor: Colors.amber,
           unselectedLabelStyle: Get.textTheme.bodyText1!.copyWith(
             fontSize: 14.sp,
             color: Colors.grey,
@@ -98,14 +99,24 @@ class _AdsViewState extends State<AdsView> with TickerProviderStateMixin {
           ),
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          WaittingListPage(),
-          ReadyListPage(),
-          DoneListPage(),
-          CanceledListPage(),
-        ],
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          image: DecorationImage(
+            image: AssetImage('assets/images/newb.png'),
+            fit: BoxFit.fitHeight,
+          ),
+        ),
+        height: Get.height,
+        child: TabBarView(
+          controller: _tabController,
+          children: [
+            WaittingListPage(),
+            ReadyListPage(),
+            DoneListPage(),
+            CanceledListPage(),
+          ],
+        ),
       ),
     );
   }

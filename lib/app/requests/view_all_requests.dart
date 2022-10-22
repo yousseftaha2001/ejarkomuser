@@ -84,14 +84,24 @@ class _ViewAllRequestsState extends State<ViewAllRequests>
           ),
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          WaitingRequestsView(),
-          DoneRequestsView(),
-          RejectedRequestView(),
-          CanceledRequestsView(),
-        ],
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          image: DecorationImage(
+            image: AssetImage('assets/images/newb.png'),
+            fit: BoxFit.fitHeight,
+          ),
+        ),
+        height: Get.height,
+        child: TabBarView(
+          controller: _tabController,
+          children: [
+            WaitingRequestsView(),
+            DoneRequestsView(),
+            RejectedRequestView(),
+            CanceledRequestsView(),
+          ],
+        ),
       ),
     );
   }

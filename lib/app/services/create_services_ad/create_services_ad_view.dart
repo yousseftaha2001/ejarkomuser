@@ -2,6 +2,7 @@ import 'package:ejarkom/app/services/create_services_ad/widgets/data_colelctor.d
 import 'package:ejarkom/app/services/create_services_ad/widgets/info_collector.dart';
 import 'package:ejarkom/app/services/create_services_ad/widgets/pandle_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'create_services_ad_logic.dart';
@@ -32,7 +33,7 @@ class _CreateServicesAdPageState extends State<CreateServicesAdPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
@@ -41,7 +42,7 @@ class _CreateServicesAdPageState extends State<CreateServicesAdPage> {
             color: Get.theme.primaryColor,
           ),
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           onPressed: () {
@@ -53,15 +54,26 @@ class _CreateServicesAdPageState extends State<CreateServicesAdPage> {
           ),
         ),
       ),
-      body: PageView(
-        controller: state.pageController,
-        // pageSnapping: false,
-        physics: NeverScrollableScrollPhysics(),
-        children: [
-          InfoCollector(),
-          DataCollector(),
-          PandelSelector(),
-        ],
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            image: DecorationImage(
+                image: AssetImage('assets/images/newb.png'),
+                fit: BoxFit.fitHeight),
+          ),
+          height: Get.height.h,
+          child: PageView(
+            controller: state.pageController,
+            // pageSnapping: false,
+            physics: NeverScrollableScrollPhysics(),
+            children: [
+              InfoCollector(),
+              DataCollector(),
+              PandelSelector(),
+            ],
+          ),
+        ),
       ),
     );
   }

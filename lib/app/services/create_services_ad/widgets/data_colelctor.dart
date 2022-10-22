@@ -2,6 +2,7 @@ import 'package:ejarkom/app/Ads/create_ads/widgets/city_selector.dart';
 import 'package:ejarkom/app/services/create_services_ad/create_services_ad_logic.dart';
 import 'package:ejarkom/app/services/create_services_ad/create_services_ad_state.dart';
 import 'package:ejarkom/app/services/create_services_ad/widgets/city_selector.dart';
+import 'package:ejarkom/app/services/create_services_ad/widgets/type_selector.dart';
 import 'package:ejarkom/app/services/create_services_ad/widgets/zones_selector.dart';
 import 'package:ejarkom/utils/widgets/my_indicator.dart';
 import 'package:flutter/material.dart';
@@ -116,12 +117,13 @@ class DataCollector extends StatelessWidget {
               },
             ),
           ),
+          SizedBox(height: 30.h),
           Obx(
             () => state.gettingCities.value
                 ? MyIndicator()
                 : CitySelectorServices(),
           ),
-          SizedBox(height: 10.h),
+          SizedBox(height: 30.h),
           GetBuilder<CreateServicesAdLogic>(
             id: 'z',
             builder: (logic) {
@@ -132,11 +134,30 @@ class DataCollector extends StatelessWidget {
                   : Container();
             },
           ),
+          SizedBox(height: 30.h),
+          Obx(
+            () => state.gettingTypes.value
+                ? MyIndicator()
+                : TypeSelectorServices(),
+          ),
           Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(
+              // IconButton(
+              //   onPressed: () {
+              //     state.pageController.animateToPage(
+              //       0,
+              //       duration: Duration(milliseconds: 200),
+              //       curve: Curves.easeOut,
+              //     );
+              //   },
+              //   icon: Icon(
+              //     Icons.arrow_back_ios_new,
+              //     size: 50.sp,
+              //   ),
+              // ),
+              ElevatedButton(
                 onPressed: () {
                   state.pageController.animateToPage(
                     0,
@@ -144,20 +165,49 @@ class DataCollector extends StatelessWidget {
                     curve: Curves.easeOut,
                   );
                 },
-                icon: Icon(
-                  Icons.arrow_back_ios_new,
-                  size: 50.sp,
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.amber,
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_back_ios_new,
+                      size: 25.sp,
+                    ),
+                    Text(
+                      'Back'.tr,
+                    ),
+                  ],
                 ),
               ),
-              IconButton(
+              // IconButton(
+              //   onPressed: () {
+              //     logic.checkData();
+              //   },
+              //   icon: Icon(
+              //     Icons.arrow_forward_ios,
+              //     size: 50.sp,
+              //   ),
+              // ),
+              ElevatedButton(
                 onPressed: () {
                   logic.checkData();
                 },
-                icon: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 50.sp,
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.amber,
                 ),
-              ),
+                child: Row(
+                  children: [
+                    Text(
+                      'Next'.tr,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 25.sp,
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ],

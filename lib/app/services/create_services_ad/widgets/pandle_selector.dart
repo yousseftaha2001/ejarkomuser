@@ -81,7 +81,7 @@ class PandelSelector extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        IconButton(
+                        ElevatedButton(
                           onPressed: () {
                             state.pageController.animateToPage(
                               1,
@@ -89,20 +89,40 @@ class PandelSelector extends StatelessWidget {
                               curve: Curves.easeOut,
                             );
                           },
-                          icon: Icon(
-                            Icons.arrow_back_ios_new,
-                            size: 50.sp,
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.amber,
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.arrow_back_ios_new,
+                                size: 25.sp,
+                              ),
+                              Text(
+                                'Back'.tr,
+                              ),
+                            ],
                           ),
                         ),
-                        IconButton(
+                        ElevatedButton(
                           onPressed: () {
                             logic.checkPandle();
                           },
-                          icon: Icon(
-                            Icons.arrow_forward_ios,
-                            size: 50.sp,
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.amber,
                           ),
-                        ),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Next'.tr,
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                size: 25.sp,
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   ),

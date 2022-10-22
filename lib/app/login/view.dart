@@ -1,5 +1,6 @@
 import 'package:ejarkom/app/sign_up/sign_up_view.dart';
 import 'package:ejarkom/utils/widgets/auth_widgets.dart';
+import 'package:ejarkom/utils/widgets/my_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -56,12 +57,13 @@ class LoginPage extends StatelessWidget {
                     icon: Icon(Icons.lock_open_outlined),
                     controller: state.password,
                     hint: 'Password'.tr,
+                    obs: true,
                   ),
                   SizedBox(height: 140.h),
                   Obx(
                     () {
                       return state.loginState.value
-                          ? const CircularProgressIndicator()
+                          ? const MyIndicator()
                           : ElevatedButton(
                               onPressed: () {
                                 logic.loginButton();

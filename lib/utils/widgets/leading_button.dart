@@ -24,6 +24,11 @@ class LeadingButton extends StatelessWidget {
                 logic.state.isDrawerOpen
                     ? logic.closeDrawer()
                     : logic.openDrawer();
+                FocusScopeNode currentFocus = FocusScope.of(context);
+
+                if (!currentFocus.hasPrimaryFocus) {
+                  currentFocus.unfocus();
+                }
               },
             ),
           ],

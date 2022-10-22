@@ -28,7 +28,7 @@ class AddBuildManageState {
     typeBuilds = [];
     createAdHttp = CreateAdHttp();
   }
-  RxInt cureentIndex=0.obs;
+  RxInt cureentIndex = 0.obs;
 
   late TextEditingController nameE;
 

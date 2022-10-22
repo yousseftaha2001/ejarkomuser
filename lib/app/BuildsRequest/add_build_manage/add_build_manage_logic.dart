@@ -175,24 +175,24 @@ class AddBuildManageLogic extends GetxController {
         photos: state.photos,
       );
       result.fold(
-            (l) {
+        (l) {
           print(l);
 
           Get.snackbar('Error'.tr, l.toString());
         },
-            (r) {
-              Get.back();
+        (r) {
+          Get.back();
 
-              Get.snackbar(
-                'Done'.tr,
-                'This Request has been Sent'.tr,
-                duration: const Duration(seconds: 5),
-                icon: Icon(
-                  Icons.check,
-                  color: Colors.green,
-                  size: 45.sp,
-                ),
-              );
+          Get.snackbar(
+            'Done'.tr,
+            'This Request has been Sent'.tr,
+            duration: const Duration(seconds: 5),
+            icon: Icon(
+              Icons.check,
+              color: Colors.green,
+              size: 45.sp,
+            ),
+          );
         },
       );
       changeCreateState();

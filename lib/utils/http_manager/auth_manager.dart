@@ -10,14 +10,14 @@ import 'package:http/http.dart' as http;
 
 class AuthManger {
   static Future<Either<String, LoginResult>> login(
-      {required String email, required String password}) async {
+      {required String email, required String password,required String fire}) async {
     try {
       var request = http.MultipartRequest('POST', Uri.parse(loginAPI));
       request.fields.addAll(
         {
           'email': email,
           'pass': password,
-          'fire': 'fire',
+          'fire': fire,
         },
       );
 
@@ -37,6 +37,32 @@ class AuthManger {
       }
     } catch (e) {
       print(e.toString());
+      return left(e.toString());
+    }
+  }
+
+  static Future<Either<String, int>> sendEmail({required String email}) async {
+    try {
+      var request = http.Request('GET', Uri.parse('$sentMailAPI$email'));
+      // request.fields.addAll({'email': email});
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        // print(await response.stream.bytesToString());
+        var result = await response.stream.bytesToString();
+        var formattedResult = jsonDecode(result);
+        print(formattedResult);
+        if (formattedResult['msg'] == 'ss') {
+          return Right(formattedResult['num']);
+        } else {
+          return const Left('Some thing want wrong');
+        }
+      } else {
+        print(response.reasonPhrase);
+        return Left(response.reasonPhrase.toString());
+      }
+    } catch (e) {
       return left(e.toString());
     }
   }

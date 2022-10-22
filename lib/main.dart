@@ -6,16 +6,29 @@ import 'package:ejarkom/app/start_point/binding.dart';
 import 'package:ejarkom/app/start_point/view.dart';
 import 'package:ejarkom/utils/helper.dart';
 import 'package:ejarkom/utils/themes.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'utils/routes.dart';
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+}
+
 
 void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await GetStorage.init();
+  await Firebase.initializeApp();
+  // notificationInit();
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  FlutterNativeSplash.remove();
   runApp(MyApp());
 }
 
@@ -39,7 +52,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       builder: (context, child) {
         return GetMaterialApp(
-          title: 'Ejarkom Admin',
+          title: '',
 
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,

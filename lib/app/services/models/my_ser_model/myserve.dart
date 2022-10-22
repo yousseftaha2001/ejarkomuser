@@ -55,6 +55,26 @@ class Myserve {
     this.zonesA,
   });
 
+  getPhoto() {
+    if (photos != null) {
+      List<dynamic> result = jsonDecode(photos!);
+      print(result.length);
+      return result.first;
+    } else {
+      return '';
+    }
+  }
+
+  getAllPhoto() {
+    if (photos != null) {
+      List<dynamic> result = jsonDecode(photos!);
+      print(result.length);
+      return result;
+    } else {
+      return '';
+    }
+  }
+
   factory Myserve.fromMap(Map<String, dynamic> data) => Myserve(
         id: data['id'] as int?,
         userId: data['user_id'] as int?,

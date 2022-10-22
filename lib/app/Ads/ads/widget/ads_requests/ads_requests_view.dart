@@ -222,7 +222,7 @@ class _AdsRequestsViewState extends State<AdsRequestsView> {
           ),
         ),
       );
-    } else if(s=='Accept') {
+    } else if (s == 'Accept') {
       return Container(
         height: 40.h,
         width: 150.h,
@@ -241,12 +241,15 @@ class _AdsRequestsViewState extends State<AdsRequestsView> {
                   fontSize: 19.sp,
                 ),
               ),
-              Icon(Icons.check,color: Colors.white,)
+              Icon(
+                Icons.check,
+                color: Colors.white,
+              )
             ],
           ),
         ),
       );
-    }else{
+    } else {
       return Container(
         height: 40.h,
         width: 150.h,
@@ -265,7 +268,10 @@ class _AdsRequestsViewState extends State<AdsRequestsView> {
                   fontSize: 19.sp,
                 ),
               ),
-              Icon(Icons.close,color: Colors.white,)
+              Icon(
+                Icons.close,
+                color: Colors.white,
+              )
             ],
           ),
         ),

@@ -39,7 +39,7 @@ class CitySelectorS extends StatelessWidget {
                           child: Text(
                             state.cities[index].nameE!,
                             style: Get.textTheme.bodyText1!.copyWith(
-                             color: Colors.black,
+                              color: Colors.black,
                               fontSize: 17.sp,
                             ),
                           ),
@@ -52,7 +52,6 @@ class CitySelectorS extends StatelessWidget {
                     onChanged: (value) {
                       logic.changeSelectedCity(value!);
                     },
-
                     style: Get.textTheme.bodyText1!.copyWith(
                       color: Colors.white30,
                       fontSize: 15.sp,

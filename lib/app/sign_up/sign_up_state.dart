@@ -8,12 +8,16 @@ class SignUpState {
     fullName = TextEditingController();
 
     rePassword = TextEditingController();
+    phone = TextEditingController();
   }
 
   late TextEditingController email;
   late TextEditingController password;
   late TextEditingController fullName;
-
+  late TextEditingController phone;
   late TextEditingController rePassword;
+  int pinCode = 0;
+  late String firebaseToken;
+  RxBool sendMailState = false.obs;
   RxBool tryToSignUp = false.obs;
 }

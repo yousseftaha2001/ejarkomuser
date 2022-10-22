@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 class ManagementsRequestsAll {
   ManagementsRequestsAll({
-      this.status, 
-      this.errNum, 
-      this.msg, 
-      this.myData,});
+    this.status,
+    this.errNum,
+    this.msg,
+    this.myData,
+  });
 
   ManagementsRequestsAll.fromJson(dynamic json) {
     status = json['status'];
@@ -31,28 +34,28 @@ class ManagementsRequestsAll {
     }
     return map;
   }
-
 }
 
 class ManagementRequest {
   ManagementRequest({
-      this.id, 
-      this.userId, 
-      this.name, 
-      this.photos, 
-      this.vidoe, 
-      this.desc, 
-      this.cost, 
-      this.phone, 
-      this.address, 
-      this.stute, 
-      this.typeBuild, 
-      this.cityId, 
-      this.zoneId, 
-      this.empId, 
-      this.mess, 
-      this.createdAt, 
-      this.updatedAt,});
+    this.id,
+    this.userId,
+    this.name,
+    this.photos,
+    this.vidoe,
+    this.desc,
+    this.cost,
+    this.phone,
+    this.address,
+    this.stute,
+    this.typeBuild,
+    this.cityId,
+    this.zoneId,
+    this.empId,
+    this.mess,
+    this.createdAt,
+    this.updatedAt,
+  });
 
   ManagementRequest.fromJson(dynamic json) {
     id = json['id'];
@@ -113,4 +116,23 @@ class ManagementRequest {
     return map;
   }
 
+  getPhoto() {
+    if (photos != null) {
+      List<dynamic> result = jsonDecode(photos!);
+      print(result.length);
+      return result.first;
+    } else {
+      return '';
+    }
+  }
+
+  getAllPhoto() {
+    if (photos != null) {
+      List<dynamic> result = jsonDecode(photos!);
+      print(result.length);
+      return result;
+    } else {
+      return '';
+    }
+  }
 }

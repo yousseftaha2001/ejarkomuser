@@ -16,11 +16,11 @@ class ViewAllLogic extends GetxController {
 
   void changeGetState() => state.getState.value = !state.getState.value;
 
-  void changeSearchMode(){
+  void changeSearchMode() {
     // state.searchMode.value = true;
     // filter();
     Get.back();
-    state.searchMode.value=true;
+    state.searchMode.value = true;
   }
 
   void changeSelectedCity(City newValue) {
@@ -31,7 +31,7 @@ class ViewAllLogic extends GetxController {
 
   void filter() {
     state.searchedList = [];
-    state.searchMode.value=true;
+    state.searchMode.value = true;
     update();
 
     // for (int i = 0; i < state.allBuildingsModel!.ads!.length; i++) {
@@ -55,7 +55,7 @@ class ViewAllLogic extends GetxController {
         Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
       },
       (r) {
-        state.cities=[];
+        state.cities = [];
         state.cities = r.cities!;
         print(state.cities.length);
 

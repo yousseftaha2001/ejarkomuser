@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class CheckDialog extends StatelessWidget {
-   CheckDialog({Key? key}) : super(key: key);
+  CheckDialog({Key? key}) : super(key: key);
   final AdsRequestsLogic logic = Get.find<AdsRequestsLogic>();
   final AdsRequestsState state = Get.find<AdsRequestsLogic>().state;
 
@@ -17,9 +17,11 @@ class CheckDialog extends StatelessWidget {
         title: Row(
           children: [
             IconButton(
-              onPressed:state.checkMethodState.value?null: () {
-                Get.back();
-              },
+              onPressed: state.checkMethodState.value
+                  ? null
+                  : () {
+                      Get.back();
+                    },
               icon: Icon(Icons.close),
             )
           ],
@@ -30,17 +32,21 @@ class CheckDialog extends StatelessWidget {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            state.checkMethodState.value?MyIndicator(): Text(
-              'You want to check this user?'.tr,
-              style: Get.textTheme.bodyText1,
-            ),
+            state.checkMethodState.value
+                ? MyIndicator()
+                : Text(
+                    'You want to check this user?'.tr,
+                    style: Get.textTheme.bodyText1,
+                  ),
           ],
         ),
         actions: [
           TextButton(
-            onPressed:state.checkMethodState.value?null: () {
-              logic.checkMethod(userId: logic.id!);
-            },
+            onPressed: state.checkMethodState.value
+                ? null
+                : () {
+                    logic.checkMethod(userId: logic.id!);
+                  },
             child: Text(
               'Yes',
               style: Get.textTheme.bodyText1!.copyWith(

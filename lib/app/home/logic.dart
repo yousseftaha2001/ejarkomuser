@@ -1,5 +1,6 @@
 import 'package:ejarkom/app/build/widgets/rend_indicator.dart';
 import 'package:ejarkom/app/login/view.dart';
+import 'package:ejarkom/app/profile/models/ProfileModel.dart';
 import 'package:ejarkom/app/start_point/view.dart';
 import 'package:ejarkom/utils/http_manager/auth_manager.dart';
 import 'package:ejarkom/utils/my_database.dart';
@@ -13,6 +14,13 @@ class HomeLogic extends GetxController {
   final HomeState state = HomeState();
 
   @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getPage();
+  }
+
+  @override
   void onReady() {
     // TODO: implement onReady
     super.onReady();
@@ -20,6 +28,23 @@ class HomeLogic extends GetxController {
 
   void changeLogoutState() =>
       state.logoutState.value = !state.logoutState.value;
+  void changePageState() =>
+      state.gettingState.value = !state.gettingState.value;
+
+  void getPage() async {
+    changePageState();
+    var result = await state.profileHttp.getProfile();
+    result.fold((l) => pageError(l), (r) => pageDone(r));
+    changePageState();
+  }
+
+  void pageDone(ProfileModel profileModel) {
+    state.userData = profileModel.dataUser!;
+  }
+
+  void pageError(String e) {
+    Get.snackbar('Error'.tr, e.toString());
+  }
 
   void logoutMethod() async {
     Get.dialog(

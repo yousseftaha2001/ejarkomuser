@@ -38,39 +38,49 @@ class _AllPacksViewState extends State<AllPacksView> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
       ),
-      body: LayoutBuilder(
-        builder: (context, cons) {
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: cons.maxHeight,
-                  child: Obx(
-                    () => state.pageIsHere.value
-                        ? MyIndicator()
-                        : ListView.builder(
-                            itemCount: state.pandles.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding: EdgeInsets.symmetric(vertical: 10.h),
-                                child: PackWidget(
-                                  photo: 'assets/images/pack.png',
-                                  package: state.pandles[index],
-                                ),
-                              );
-                            },
-                          ),
-                  ),
-                )
-              ],
-            ),
-          );
-        },
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          image: DecorationImage(
+            image: AssetImage('assets/images/newb.png'),
+            fit: BoxFit.fitHeight,
+          ),
+        ),
+        height: Get.height,
+        child: LayoutBuilder(
+          builder: (context, cons) {
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: cons.maxHeight,
+                    child: Obx(
+                      () => state.pageIsHere.value
+                          ? MyIndicator()
+                          : ListView.builder(
+                              itemCount: state.pandles.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 10.h),
+                                  child: PackWidget(
+                                    photo: 'assets/images/pack.png',
+                                    package: state.pandles[index],
+                                  ),
+                                );
+                              },
+                            ),
+                    ),
+                  )
+                ],
+              ),
+            );
+          },
+        ),
       ),
       // body: Padding(
       //   padding:  EdgeInsets.symmetric(horizontal: 20.w,vertical: 20.h),
