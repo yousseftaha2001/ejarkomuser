@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1088429704308",
+    "project_id": "ejarkom-6de7f",
+    "storage_bucket": "ejarkom-6de7f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1088429704308:android:8def441f5f831c338f3d21",
+        "android_client_info": {
+          "package_name": "anubis.ejarkom.ejarkom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1088429704308-cualltdocoq8lddspsd3rir4r0g22o1e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_frQDyGEXOdHKZDVf3tLQBMj4gTBIQXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1088429704308-cualltdocoq8lddspsd3rir4r0g22o1e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
