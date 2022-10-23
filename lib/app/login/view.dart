@@ -25,8 +25,8 @@ class LoginPage extends StatelessWidget {
           width: Get.width,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/back.png'),
-            ),
+                image: AssetImage('assets/images/back.png'),
+                fit: BoxFit.fitHeight),
           ),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -35,8 +35,11 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 30.h),
-                  SvgPicture.asset('assets/images/mainlogo.svg'),
+                  SizedBox(height: 60.h),
+                  Image.asset(
+                    'assets/images/logo.jpg',
+                    height: 200.h,
+                  ),
                   Text(
                     'Login to your account'.tr,
                     style: Get.textTheme.bodyText1!.copyWith(

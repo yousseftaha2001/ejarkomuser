@@ -183,7 +183,7 @@ class _MyChecksViewState extends State<MyChecksView> {
           ),
         ),
       );
-    } else if (s == 'Accept') {
+    } else if (s == 'Accepted') {
       return Container(
         height: 40.h,
         width: 150.h,

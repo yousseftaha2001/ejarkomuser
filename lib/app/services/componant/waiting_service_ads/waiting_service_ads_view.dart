@@ -103,7 +103,7 @@ class _WaitingServiceAdsViewState extends State<WaitingServiceAdsView> {
                                               ),
                                               SizedBox(width: 6.w),
                                               Text(
-                                                state.services[index].id
+                                                state.services[index].whats
                                                     .toString(),
                                                 style: Get.textTheme.bodyText1!
                                                     .copyWith(

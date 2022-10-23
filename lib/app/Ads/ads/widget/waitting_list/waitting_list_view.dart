@@ -90,7 +90,7 @@ class _WaittingListPageState extends State<WaittingListPage> {
                                               ),
                                               SizedBox(width: 6.w),
                                               Text(
-                                                state.ads[index].id!.toString(),
+                                                state.ads[index].numRoom!.toString(),
                                                 style: Get.textTheme.bodyText1!
                                                     .copyWith(
                                                   color: Get.theme.primaryColor,

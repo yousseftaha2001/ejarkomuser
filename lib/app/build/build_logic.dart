@@ -53,6 +53,9 @@ class BuildLogic extends GetxController {
           DataErrorDialog(),
           barrierDismissible: false,
         );
+      } else {
+        Get.back();
+        Get.snackbar('Message'.tr, l, duration: Duration(seconds: 10));
       }
     }, (r) {
       Get.back();
