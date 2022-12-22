@@ -18,7 +18,7 @@ class SearchCont extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       content: Container(
-        height: 250.h,
+        height: 700.h,
         width: Get.width,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -49,7 +49,7 @@ class SearchCont extends StatelessWidget {
                     builder: (logic) {
                       return logic.state.selectedCity != null
                           ? Obx(() => logic.state.gettingZones.value
-                              ? const MyIndicator()
+                              ? SizedBox(child: const MyIndicator(),height: 350.h)
                               : ZoneSelectorS())
                           : Container();
                     },
@@ -57,6 +57,7 @@ class SearchCont extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 30.h),
+              Spacer(),
               Center(
                 child: GetBuilder<ViewAllLogic>(
                   id: 'z',

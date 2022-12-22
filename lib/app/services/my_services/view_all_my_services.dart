@@ -42,7 +42,7 @@ class _ViewAllMyServicesState extends State<ViewAllMyServices>
         title: Text(
           'My Services ADs'.tr,
           style: Get.textTheme.bodyText1!.copyWith(
-            fontSize: 20.sp,
+            fontSize: 40.sp,
             color: Get.theme.primaryColor,
             fontWeight: FontWeight.bold,
           ),
@@ -73,12 +73,12 @@ class _ViewAllMyServicesState extends State<ViewAllMyServices>
           labelColor: Get.theme.primaryColor,
           unselectedLabelColor: Colors.grey,
           unselectedLabelStyle: Get.textTheme.bodyText1!.copyWith(
-            fontSize: 14.sp,
+            fontSize: 25.sp,
             color: Colors.grey,
             fontWeight: FontWeight.normal,
           ),
           labelStyle: Get.textTheme.bodyText1!.copyWith(
-            fontSize: 16.sp,
+            fontSize: 28.sp,
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),

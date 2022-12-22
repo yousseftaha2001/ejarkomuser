@@ -34,6 +34,7 @@ class ErrorD extends StatelessWidget {
                 child: Text(
                   error[index],
                   style: Get.textTheme.bodyText1!,
+                  
                   textAlign: TextAlign.center,
                 ),
               ),

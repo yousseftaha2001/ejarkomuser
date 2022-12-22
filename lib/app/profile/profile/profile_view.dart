@@ -34,7 +34,7 @@ class _ProfileViewState extends State<ProfileView> {
         title: Text(
           'Update Profile'.tr,
           style: Get.textTheme.bodyText1!.copyWith(
-            fontSize: 20.sp,
+            fontSize: 40.sp,
             color: Get.theme.primaryColor,
             fontWeight: FontWeight.bold,
           ),
@@ -99,34 +99,36 @@ class _ProfileViewState extends State<ProfileView> {
                         },
                       ),
                       Spacer(),
-                      Obx(
-                        () {
-                          return state.updateState.value
-                              ? const MyIndicator()
-                              : Obx(() => ElevatedButton(
-                                    onPressed: state.isChanged.value
-                                        ? () {
-                                            logic.updatePro();
-                                          }
-                                        : null,
-                                    style: ElevatedButton.styleFrom(
-                                      primary: Get.theme.primaryColor,
-                                      fixedSize: Size(Get.width.w, 45.h),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8.sp),
+                      Center(
+                        child: Obx(
+                          () {
+                            return state.updateState.value
+                                ? const MyIndicator()
+                                : Obx(() => ElevatedButton(
+                                      onPressed: state.isChanged.value
+                                          ? () {
+                                              logic.updatePro();
+                                            }
+                                          : null,
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Get.theme.primaryColor,
+                                        fixedSize: Size(Get.width/1.5, 70.h),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.sp),
+                                        ),
                                       ),
-                                    ),
-                                    child: Text(
-                                      'Update Profile'.tr,
-                                      style: Get.textTheme.bodyText1!.copyWith(
-                                        color: Colors.white,
-                                        fontSize: 22.sp,
-                                        fontWeight: FontWeight.bold,
+                                      child: Text(
+                                        'Update Profile'.tr,
+                                        style: Get.textTheme.bodyText1!.copyWith(
+                                          color: Colors.white,
+                                          fontSize: 30.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                  ));
-                        },
+                                    ));
+                          },
+                        ),
                       ),
                     ],
                   ),

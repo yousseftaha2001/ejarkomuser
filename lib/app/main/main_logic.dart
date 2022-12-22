@@ -1,13 +1,15 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:ejarkom/app/home/logic.dart';
 import 'package:ejarkom/app/home/state.dart';
+import 'package:ejarkom/app/login/view.dart';
 import 'package:ejarkom/app/main/models/PageOneModel.dart';
 import 'package:ejarkom/app/view_all/view_all_logic.dart';
 import 'package:ejarkom/app/view_all/view_all_view.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:ejarkom/utils/my_database.dart';
 import 'package:ejarkom/utils/push.dart';
-import 'package:ejarkom/utils/widgets/notificarion_snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +20,7 @@ import 'main_state.dart';
 
 class MainLogic extends GetxController {
   final MainState state = MainState();
+
   void changePageState() => state.pageIsHere.value = !state.pageIsHere.value;
 
   void getPage() async {
@@ -29,10 +32,34 @@ class MainLogic extends GetxController {
 
   void pageDone(PageOneModel pageOneModel) {
     state.pageOneModel = pageOneModel;
+    if (state.pageOneModel!.ads1!.isNotEmpty) {
+      Timer.periodic(Duration(seconds: 2), (timer) {
+        if (state.adsIndex.value == state.pageOneModel!.ads1!.length) {
+          state.controller.animateToPage(
+            0,
+            duration: Duration(milliseconds: 100),
+            curve: Curves.easeIn,
+          );
+        } else {
+          state.controller.animateToPage(
+            state.adsIndex.value++,
+            duration: Duration(milliseconds: 100),
+            curve: Curves.easeIn,
+          );
+        }
+      });
+    }
   }
 
   void pageError(String e) {
-    Get.snackbar('Error'.tr, e.toString());
+    // Get.snackbar('Error'.tr, e.toString());
+    mySnackBar(title: 'Error'.tr, body: e.toString());
+    print(e.toString()+'d');
+    if(e=='L'){
+        MyDataBase.removeDate();
+        Get.back();
+        Get.offAll(() => LoginPage());
+    }
   }
 
   void gotoAll(String id) {
@@ -97,9 +124,6 @@ class MainLogic extends GetxController {
       print("ERROR: $e");
     }
   }
-
-
-
 
   @override
   void onReady() {
@@ -227,9 +251,10 @@ class MainLogic extends GetxController {
     print('te');
     HomeState homeState = Get.find<HomeLogic>().state;
     HomeLogic logic = Get.find();
+    logic.getPage();
     Get.snackbar(
       'Message'.tr,
-      'Your Request is now $state2'.tr,
+      '${'Your Request is now'.tr} $state2'.tr,
       backgroundColor: Colors.black.withOpacity(0.3),
       barBlur: 40.sp,
       duration: Duration(seconds: 10),
@@ -256,7 +281,7 @@ class MainLogic extends GetxController {
     HomeLogic logic = Get.find();
     Get.snackbar(
       'Message'.tr,
-      'Your Ads is now $state2'.tr,
+      '${'Your Ads is now'.tr} $state2'.tr,
       backgroundColor: Colors.black.withOpacity(0.3),
       barBlur: 40.sp,
       duration: Duration(seconds: 10),

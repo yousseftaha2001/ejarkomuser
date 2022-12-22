@@ -3,6 +3,7 @@ import 'package:ejarkom/app/login/view.dart';
 import 'package:ejarkom/app/profile/models/ProfileModel.dart';
 import 'package:ejarkom/app/start_point/view.dart';
 import 'package:ejarkom/utils/http_manager/auth_manager.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:ejarkom/utils/my_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +13,23 @@ import 'state.dart';
 
 class HomeLogic extends GetxController {
   final HomeState state = HomeState();
+
+  // void li(){
+  //   StreamSubscription? _sub;
+
+  // Future<void> initUniLinks() async {
+  //   // ... check initialUri
+
+  //   // Attach a listener to the stream
+  //   _sub = uriLinkStream.listen((Uri? uri) {
+  //     // Use the uri and warn the user, if it is not correct
+  //   }, onError: (err) {
+  //     // Handle exception by warning the user their action did not succeed
+  //   });
+
+  //   // NOTE: Don't forget to call _sub.cancel() in dispose()
+  // }
+  // }
 
   @override
   void onInit() {
@@ -65,6 +83,26 @@ class HomeLogic extends GetxController {
       },
     );
   }
+  void deleteMyAcocount() async {
+    Get.dialog(
+      CircularDialog(),
+      barrierDismissible: false,
+      barrierColor: Colors.black87,
+    );
+    print(state.userData.id!.toString());
+    var result = await AuthManger.deleteAccount(state.userData.id!.toString());
+    result.fold(
+      (l) {
+        Get.back();
+        Get.snackbar('Error', 'Check your internet Connection');
+      },
+      (r) {
+        MyDataBase.removeDate();
+        Get.back();
+        Get.offAll(() => LoginPage());
+      },
+    );
+  }
 
   @override
   void onClose() {
@@ -80,8 +118,8 @@ class HomeLogic extends GetxController {
   }
 
   void openDrawer() {
-    state.xOffset = 290.w;
-    state.yOffset = 80.h;
+    state.xOffset =isEnglish()? 490.w:-480.w;
+    state.yOffset = 180.h;
     state.isDrawerOpen = true;
     update();
   }

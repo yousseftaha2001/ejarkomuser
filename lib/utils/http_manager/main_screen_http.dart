@@ -23,14 +23,16 @@ class MainScreenHTTP {
         // print(await response.stream.bytesToString());
         var result = await response.stream.bytesToString();
         var formattedResult = jsonDecode(result);
+        print(formattedResult);
         if (formattedResult['status'] == true) {
           return Right(PageOneModel.fromJson(formattedResult));
         } else {
           return formattedResult['msg'];
         }
       } else {
-        print(response.reasonPhrase);
-        return Left(response.reasonPhrase.toString());
+        // print(response.reasonPhrase);
+        // return Left(response.reasonPhrase.toString());
+        return Left('L');
       }
     } catch (e) {
       print(e.toString());

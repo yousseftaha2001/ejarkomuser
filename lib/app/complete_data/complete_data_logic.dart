@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:ejarkom/app/build/widgets/rend_indicator.dart';
 import 'package:ejarkom/app/complete_data/error_dialog.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 
@@ -72,7 +73,7 @@ class CompleteDataLogic extends GetxController {
     if (check.isNotEmpty) {
       Get.dialog(ErrorD(error: check));
     } else {
-      Get.dialog(CircularDialog());
+      Get.dialog(CircularDialog(), barrierDismissible: false);
       var result = await state.rentHttp.addInfo(
         address: state.address.text,
         dob: state.dob.text,
@@ -82,12 +83,14 @@ class CompleteDataLogic extends GetxController {
       result.fold(
         (l) {
           Get.back();
-          Get.snackbar('Error'.tr, l);
+          // Get.snackbar('Error'.tr, l);
+          mySnackBar(title: 'Error'.tr,body: l);
         },
         (r) {
           Get.back();
           Get.back();
-          Get.snackbar('Done'.tr, 'You info has been added'.tr);
+          // Get.snackbar('Done'.tr, 'You info has been added'.tr);
+          mySnackBar(title: 'Done'.tr,body: 'You info has been added'.tr);
         },
       );
     }

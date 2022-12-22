@@ -7,7 +7,9 @@ import 'package:ejarkom/app/Ads/models/CreateAdModel.dart';
 import 'package:ejarkom/app/Ads/models/GetBuildTypeModel.dart';
 import 'package:ejarkom/app/Ads/models/Zone.dart';
 import 'package:ejarkom/utils/http_manager/create_ad_http.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 
 import '../models/GetCityModel.dart';
@@ -15,6 +17,64 @@ import 'create_ads_state.dart';
 
 class CreateAdsLogic extends GetxController {
   final state = CreateAdsState();
+
+  void changePageStat(int state1) {
+    if (state1 == 1) {
+      if (state.images.isEmpty) {
+      } else {
+        state.currentPageState.value = state1;
+        state.mainPage.animateToPage(
+          1,
+          duration: Duration(milliseconds: 200),
+          curve: Curves.easeOut,
+        );
+      }
+    } else if (state1 == 2) {
+      if (nameCheck() && addressCheck() && desCheck()) {
+        state.currentPageState.value = state1;
+        state.mainPage.animateToPage(
+          state1,
+          duration: Duration(milliseconds: 200),
+          curve: Curves.easeOut,
+        );
+      }
+    } else {
+      state.currentPageState.value = state1;
+      state.mainPage.animateToPage(
+        state1,
+        duration: Duration(milliseconds: 200),
+        curve: Curves.easeOut,
+      );
+    }
+  }
+
+  bool nameCheck() {
+    return state.nameA.text.isNotEmpty || state.nameE.text.isNotEmpty;
+  }
+
+  bool addressCheck() {
+    return state.addressA.text.isNotEmpty || state.addressE.text.isNotEmpty;
+  }
+
+  bool desCheck() {
+    return state.descriptionE.text.isNotEmpty ||
+        state.descriptionA.text.isNotEmpty;
+  }
+
+  bool videoCheck() {
+    return state.video.text.isNotEmpty;
+  }
+
+  bool costCheck() {
+    return state.cost.text.isNotEmpty ;
+  }
+
+  bool numOfRooms() {
+    return state.numOfRooms.text.isNotEmpty ;
+  }
+  bool numOfBathRooms() {
+    return state.numOfBath.text.isNotEmpty ;
+  }
 
   void changeSelectedCostType(String newValue) {
     state.selectedCostType = newValue;
@@ -56,7 +116,8 @@ class CreateAdsLogic extends GetxController {
       (l) {
         state.cities = [];
         update(['ci']);
-        Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        // Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        mySnackBar(title: 'Error'.tr,body: 'please check your internet connection'.tr);
       },
       (r) {
         state.cities = r.cities!;
@@ -75,7 +136,8 @@ class CreateAdsLogic extends GetxController {
       (l) {
         state.cities = [];
         update(['b']);
-        Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        // Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        mySnackBar(title: 'Error'.tr,body: 'please check your internet connection'.tr);
       },
       (r) {
         state.typeBuilds = r.typeBuild!;
@@ -96,9 +158,11 @@ class CreateAdsLogic extends GetxController {
       (l) {
         state.zones = [];
         update(['z']);
-        Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        // Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        mySnackBar(title: 'Error'.tr,body: 'please check your internet connection'.tr);
       },
       (r) {
+        state.selectedZone=null;
         if (r.zones!.isNotEmpty) {
           state.zones = r.zones!;
           print(state.zones.length);
@@ -116,8 +180,8 @@ class CreateAdsLogic extends GetxController {
   }
 
   void getImages() async {
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(allowMultiple: true);
+    FilePickerResult? result = await FilePicker.platform
+        .pickFiles(allowMultiple: true, type: FileType.image);
 
     if (result != null) {
       List<File> files = result.paths.map((path) => File(path!)).toList();
@@ -140,22 +204,22 @@ class CreateAdsLogic extends GetxController {
   }
 
   collectData() {
-    if (state.formKey.currentState!.validate()) {
+    if (nameCheck()&&desCheck()&&addressCheck()&&costCheck()&&numOfBathRooms()&&numOfRooms()) {
       if (state.images.isNotEmpty &&
           state.selectedCostType!.isNotEmpty &&
           state.selectedZone != null &&
           state.selectedCity != null &&
           state.selectedBuildType != null) {
         return CreateAdModel(
-          nameA: state.nameA.text,
-          nameE: state.nameE.text,
-          video: state.video.text,
-          descE: state.descriptionE.text,
-          descA: state.descriptionA.text,
+          nameA:state.langOption.value==0? state.nameE.text:state.nameA.text,
+          nameE:state.langOption.value==1?state.nameA.text: state.nameE.text,
+          video: state.video.text.isEmpty?'':state.video.text,
+          descE:state.langOption.value==1? state.descriptionA.text:state.descriptionE.text,
+          descA:state.langOption.value==0?state.descriptionE.text :state.descriptionA.text,
           cost: state.cost.text,
           costType: state.selectedCostType,
-          addressE: state.addressE.text,
-          addressA: state.addressA.text,
+          addressE:state.langOption.value==1?state.addressA.text: state.addressE.text,
+          addressA: state.langOption.value==0? state.addressE.text:state.addressA.text,
           zoneId: state.selectedZone!.id!.toString(),
           typeBuild: state.selectedBuildType!.id!.toString(),
           numRoom: state.numOfRooms.text,
@@ -188,12 +252,14 @@ class CreateAdsLogic extends GetxController {
           } else if (l == 'please Complate Your Date') {
             Get.dialog(DataDialog());
           } else {
-            Get.snackbar('Error'.tr, l.toString());
+            // Get.snackbar('Error'.tr, l.toString().tr);
+            mySnackBar(title: 'Error'.tr,body: l.toString().tr);
           }
         },
         (r) {
           Get.back();
-          Get.snackbar('Done'.tr, 'Ads has been sent'.tr);
+          // Get.snackbar('Done'.tr, 'Ads has been sent'.tr);
+          mySnackBar(title: 'Done'.tr,body: 'Ads has been sent'.tr);
         },
       );
       changeCreateState();

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:ejarkom/app/requests/models/AllRequestsModel.dart';
 import 'package:ejarkom/app/requests/models/requests/requests.dart';
 import 'package:ejarkom/utils/apis.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:ejarkom/utils/my_database.dart';
 import 'package:get/get.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
@@ -29,7 +30,8 @@ class WaitingRequestsLogic extends GetxController {
   }
 
   void pageError(String e) {
-    Get.snackbar('Error'.tr, e.toString());
+    // Get.snackbar('Error'.tr, e.toString());
+    mySnackBar(title: 'Error'.tr, body: e.toString());
   }
 
   void updatePage()async{

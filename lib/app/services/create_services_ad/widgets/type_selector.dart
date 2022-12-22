@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ejarkom/app/services/create_services_ad/create_services_ad_logic.dart';
 import 'package:ejarkom/app/services/create_services_ad/create_services_ad_state.dart';
 import 'package:ejarkom/app/services/models/service_type_model/type_serve.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,7 @@ class TypeSelectorServices extends StatelessWidget {
                     hint: Text(
                       'Select Service Type'.tr,
                       style: TextStyle(
-                        fontSize: 20.sp,
+                        fontSize: 40.sp,
                         color: Theme.of(context).hintColor,
                       ),
                     ),
@@ -35,19 +36,24 @@ class TypeSelectorServices extends StatelessWidget {
                         return DropdownMenuItem<TypeServe>(
                           value: state.typeServes[index],
                           child: Text(
-                            state.typeServes[index].nameE!,
+                            isEnglish()
+                                ? state.typeServes[index].nameE!
+                                : state.typeServes[index].nameA!,
+                                 style: Get.textTheme.bodyText1!.copyWith(
+                                  fontSize: 40.sp,
+                                ),
                           ),
                         );
                       },
                     ),
                     customItemsHeights: List.generate(
-                        state.typeServes.length, (index) => 50.sp),
+                        state.typeServes.length, (index) => 90.sp),
                     value: state.selectedType,
                     onChanged: (value) {
                       logic.changeSelectedType(value!);
                     },
                     style: Get.textTheme.bodyText1,
-                    buttonHeight: 50.h,
+                    buttonHeight: 90.h,
                     dropdownMaxHeight: 400.h,
                     buttonWidth: Get.width,
                     itemPadding: EdgeInsets.symmetric(horizontal: 8.0.w),

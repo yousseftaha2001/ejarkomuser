@@ -2,6 +2,7 @@ import 'package:ejarkom/app/build/build_logic.dart';
 import 'package:ejarkom/app/build/build_view.dart';
 import 'package:ejarkom/app/main/models/PageOneModel.dart';
 import 'package:ejarkom/app/view_all/view_all_logic.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -44,19 +45,20 @@ class _BuildingWidgetVState extends State<BuildingWidgetV> {
           // color: Colors.black,
           padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 10.h),
           width: Get.width.w,
-          height: 200.h,
+          height: 350.h,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10.sp),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.max,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Container(
-                  width: Get.width / 3.5.w,
-                  height: 150.h,
+                  width: Get.width / 3,
+                  height: 250.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.sp),
                     image: DecorationImage(
@@ -68,104 +70,114 @@ class _BuildingWidgetVState extends State<BuildingWidgetV> {
                   ),
                 ),
               ),
-              SizedBox(width: 20.w),
-              Container(
-                width: Get.width / 2.5.w,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 3.h),
-                    Row(
+              SizedBox(width: 15.w),
+              Expanded(
+                child: Container(
+                  // width: Get.width / 2.5,
+                  child: Padding(
+                    padding:  EdgeInsets.only(right: 30.w),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          widget.ads.nameE!,
-                          style: Get.textTheme.bodyText1!.copyWith(
-                            color: Get.theme.primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.sp,
-                          ),
-                        ),
-                        const Spacer(),
-                      ],
-                    ),
-                    SizedBox(height: 3.h),
-                    Text(
-                      widget.ads.descE!,
-                      style: Get.textTheme.bodyText1!.copyWith(
-                        fontSize: 15.sp,
-                        color: Get.theme.primaryColor,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      softWrap: false,
-                    ),
-                    SizedBox(height: 3.h),
-                    Text(
-                      widget.ads.addressE!,
-                      style: Get.textTheme.bodyText1!.copyWith(
-                        fontSize: 17.sp,
-                        color: Get.theme.primaryColor,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      softWrap: false,
-                    ),
-                    SizedBox(height: 20.h),
-                    // Spacer(),
-                    Row(
-                      children: [
+                        SizedBox(height: 3.h),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.meeting_room_outlined,
-                                  color: Get.theme.primaryColor,
-                                ),
-                                SizedBox(width: 6.w),
-                                Text(
-                                  widget.ads.numRoom!.toString(),
-                                  style: Get.textTheme.bodyText1!.copyWith(
-                                    color: Get.theme.primaryColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20.sp,
-                                  ),
-                                ),
-                              ],
+                            Text(
+                            isEnglish() ? widget.ads.nameE!:widget.ads.nameA!,
+                              style: Get.textTheme.bodyText1!.copyWith(
+                                color: Get.theme.primaryColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 45.sp,
+                              ),
                             ),
-                            SizedBox(width: 10.w),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.bathroom_outlined,
-                                  color: Get.theme.primaryColor,
-                                ),
-                                SizedBox(width: 6.w),
-                                Text(
-                                  widget.ads.numBathroom!.toString(),
-                                  style: Get.textTheme.bodyText1!.copyWith(
-                                    color: Get.theme.primaryColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
+                            // const Spacer(),
                           ],
                         ),
-                        const Spacer(),
-                        Text(
-                          '${widget.ads.cost}\$',
-                          style: Get.textTheme.bodyText1!.copyWith(
-                            color: Colors.amber,
-                            fontSize: 20.sp,
+                        SizedBox(height: 3.h),
+                        SizedBox(
+                          // width: 400.h,
+                          child: Text(
+                           isEnglish() ?  widget.ads.descE!:widget.ads.descA!,
+                            style: Get.textTheme.bodyText1!.copyWith(
+                              fontSize: 35.sp,
+                              color: Get.theme.primaryColor,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
                           ),
-                        )
+                        ),
+                        SizedBox(height: 3.h),
+                        Text(
+                         isEnglish() ? widget.ads.addressE!:widget.ads.addressA!,
+                          style: Get.textTheme.bodyText1!.copyWith(
+                            fontSize: 35.sp,
+                            color: Get.theme.primaryColor,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: false,
+                        ),
+                        SizedBox(height: 20.h),
+                        // Spacer(),
+                        Row(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.meeting_room_outlined,
+                                      color: Get.theme.primaryColor,
+                                      size: 50.sp,
+                                    ),
+                                    SizedBox(width: 6.w),
+                                    Text(
+                                      widget.ads.numRoom!.toString(),
+                                      style: Get.textTheme.bodyText1!.copyWith(
+                                        color: Get.theme.primaryColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 35.sp,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(width: 10.w),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.bathroom_outlined,
+                                      color: Get.theme.primaryColor,
+                                       size: 50.sp,
+                                    ),
+                                    SizedBox(width: 6.w),
+                                    Text(
+                                      widget.ads.numBathroom!.toString(),
+                                      style: Get.textTheme.bodyText1!.copyWith(
+                                        color: Get.theme.primaryColor,
+                                        fontWeight: FontWeight.bold,
+                                       fontSize: 35.sp,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            Text(
+                              '${widget.ads.cost}\$',
+                              style: Get.textTheme.bodyText1!.copyWith(
+                                color: Colors.amber,
+                                fontSize: 35.sp,
+                              ),
+                            )
+                          ],
+                        ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ],

@@ -3,6 +3,7 @@ import 'package:ejarkom/app/Ads/create_ads/create_ads_logic.dart';
 import 'package:ejarkom/app/Ads/create_ads/create_ads_state.dart';
 import 'package:ejarkom/app/Ads/models/GetCityModel.dart';
 import 'package:ejarkom/app/Ads/models/Zone.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -26,7 +27,7 @@ class ZoneSelector extends StatelessWidget {
                     hint: Text(
                       'Select Zone'.tr,
                       style: TextStyle(
-                        fontSize: 20.sp,
+                        fontSize: 40.sp,
                         color: Theme.of(context).hintColor,
                       ),
                     ),
@@ -36,19 +37,20 @@ class ZoneSelector extends StatelessWidget {
                         return DropdownMenuItem<Zone>(
                           value: state.zones[index],
                           child: Text(
-                            state.zones[index].nameE!,
+                           isEnglish()? state.zones[index].nameE!:state.zones[index].nameA!,
+                            style: Get.textTheme.bodyText1,
                           ),
                         );
                       },
                     ),
                     customItemsHeights:
-                        List.generate(state.zones.length, (index) => 50.sp),
+                        List.generate(state.zones.length, (index) => 90.sp),
                     value: state.selectedZone,
                     onChanged: (value) {
                       logic.changeSelectedZone(value!);
                     },
                     style: Get.textTheme.bodyText1,
-                    buttonHeight: 50.h,
+                    buttonHeight: 90.h,
                     dropdownMaxHeight: 400.h,
                     buttonWidth: Get.width,
                     itemPadding: EdgeInsets.symmetric(horizontal: 8.0.w),

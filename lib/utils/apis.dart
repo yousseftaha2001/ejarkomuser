@@ -1,6 +1,9 @@
+import 'package:get/get.dart';
 const base = 'https://eajarcom.com/api/';
 const loginAPI = '${base}loginuser';
 const logoutAPI = '${base}logout_user';
+const googlaSignAPI = '${base}loginuser2';
+const forgetAPi = '${base}forget';
 const signUpAPI = '${base}signup';
 const pageOneAPI = '${base}page1';
 const viewAllAPI = '${base}view_all/';
@@ -44,5 +47,15 @@ const profileAPI = '${base}profile';
 const updateProfileAPI = '${base}updateinfo';
 const manageBuildRequestAPI = '${base}my_mange_orders';
 const getServicesTypeAPI = '${base}type_serves_U';
+const deleteMyData='${base}block_U';
 const helpAPI = '${base}help';
-const photoAPI = 'http://abdo1572001-003-site13.atempurl.com/storage/app/';
+const sendSmsAPI = '${base}send_sms';
+const sendWhatsAppAPI = '${base}send_whatsapp';
+const findUserAPI = '${base}find_user';
+const googleAPI = '${base}google';
+const photoAPI = 'https://eajarcom.com/storage/app/';
+const constWidth=428;
+const constH=926;
+
+//padding= number/mockupwideth*width
+// text=wideth/mWidth

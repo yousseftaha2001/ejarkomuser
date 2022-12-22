@@ -52,9 +52,9 @@ class _AdsViewState extends State<AdsView> with TickerProviderStateMixin {
       appBar: AppBar(
         leading: LeadingButton(),
         title: Text(
-          'My ADS',
+          'My ADS'.tr,
           style: Get.textTheme.bodyText1!.copyWith(
-            fontSize: 20.sp,
+            fontSize: 40.sp,
             color: Get.theme.primaryColor,
             fontWeight: FontWeight.bold,
           ),
@@ -88,12 +88,12 @@ class _AdsViewState extends State<AdsView> with TickerProviderStateMixin {
           labelColor: Colors.amber,
           indicatorColor: Colors.amber,
           unselectedLabelStyle: Get.textTheme.bodyText1!.copyWith(
-            fontSize: 14.sp,
+            fontSize: 25.sp,
             color: Colors.grey,
             fontWeight: FontWeight.normal,
           ),
           labelStyle: Get.textTheme.bodyText1!.copyWith(
-            fontSize: 16.sp,
+            fontSize: 30.sp,
             color: Get.theme.primaryColor,
             fontWeight: FontWeight.bold,
           ),

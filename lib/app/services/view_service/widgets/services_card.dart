@@ -3,6 +3,7 @@ import 'package:ejarkom/app/services/view_service/view_service_logic.dart';
 import 'package:ejarkom/app/services/view_services/view_services_logic.dart';
 import 'package:ejarkom/app/services/view_services/view_services_view.dart';
 import 'package:ejarkom/utils/apis.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -83,7 +84,7 @@ class _BuildingWidgetVState extends State<ServiceCard> {
                     Row(
                       children: [
                         Text(
-                          widget.ads.nameE!,
+                         isEnglish()? widget.ads.nameE!:widget.ads.nameA!,
                           style: Get.textTheme.bodyText1!.copyWith(
                             color: Get.theme.primaryColor,
                             fontWeight: FontWeight.bold,
@@ -95,7 +96,7 @@ class _BuildingWidgetVState extends State<ServiceCard> {
                     ),
                     SizedBox(height: 3.h),
                     Text(
-                      widget.ads.textE!,
+                      isEnglish()?widget.ads.textE!:widget.ads.textA!,
                       style: Get.textTheme.bodyText1!.copyWith(
                         fontSize: 17.sp,
                         color: Get.theme.primaryColor,

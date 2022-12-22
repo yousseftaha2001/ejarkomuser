@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:ejarkom/app/my_checks/models/CheckupsRequestModel.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:ejarkom/utils/my_database.dart';
 import 'package:get/get.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
@@ -73,7 +74,8 @@ class MyChecksLogic extends GetxController {
   }
 
   void pageError(String e) {
-    Get.snackbar('Error'.tr, e.toString());
+    // Get.snackbar('Error'.tr, e.toString());
+    mySnackBar(title: 'Error'.tr, body: e.toString());
   }
 
   @override

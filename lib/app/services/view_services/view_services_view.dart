@@ -1,3 +1,4 @@
+import 'package:ejarkom/utils/method.dart';
 import 'package:ejarkom/utils/my_database.dart';
 import 'package:ejarkom/utils/widgets/my_indicator.dart';
 import 'package:flutter/material.dart';
@@ -107,7 +108,7 @@ class _ViewServicesPageState extends State<ViewServicesPage> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            state.serve.data!.nameE!,
+                                           isEnglish()? state.serve.data!.nameE!:state.serve.data!.nameA!,
                                             style: Get.textTheme.bodyText1!
                                                 .copyWith(
                                               color: Colors.white,
@@ -133,7 +134,7 @@ class _ViewServicesPageState extends State<ViewServicesPage> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Text(
-                                        state.serve.data!.cityE!,
+                                       isEnglish()? state.serve.data!.cityE!:state.serve.data!.cityA!,
                                         style:
                                             Get.textTheme.bodyText1!.copyWith(
                                           color: Colors.white,
@@ -237,11 +238,11 @@ class _ViewServicesPageState extends State<ViewServicesPage> {
                                       Obx(() {
                                         return SizedBox(
                                           height: state.containerIsOpened.value
-                                              ? Get.height * 0.7.h.h
+                                              ? Get.height * 0.5.h.h
                                               : 60.h,
                                           child: SingleChildScrollView(
                                             child: Text(
-                                              state.serve.data!.textE!,
+                                           isEnglish()?   state.serve.data!.textE!: state.serve.data!.textA!,
                                               maxLines:
                                                   state.containerIsOpened.value
                                                       ? null
@@ -284,7 +285,7 @@ class _ViewServicesPageState extends State<ViewServicesPage> {
                                       )
                                     ],
                                   ),
-                                  const Spacer(),
+                                  // const Spacer(),
                                   // state.serve!.userId!.toString() ==
                                   //         MyDataBase.getId()
                                   //     ? ElevatedButton(

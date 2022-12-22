@@ -24,7 +24,7 @@ class VerificationDialog extends StatelessWidget {
           Text(
             'Email Verification'.tr,
             style: Get.textTheme.bodyText1!.copyWith(
-              fontSize: 15.sp,
+              fontSize: 30.sp,
             ),
           ),
         ],
@@ -40,7 +40,7 @@ class VerificationDialog extends StatelessWidget {
               child: Text(
                 "Enter the code sent to".tr,
                 style: Get.textTheme.bodyText1!.copyWith(
-                  fontSize: 18.sp,
+                  fontSize: 30.sp,
                   fontWeight: FontWeight.normal,
                 ),
               ),
@@ -50,7 +50,7 @@ class VerificationDialog extends StatelessWidget {
               child: Text(
                 state.email.text,
                 style: Get.textTheme.bodyText1!.copyWith(
-                  fontSize: 15.sp,
+                  fontSize: 35.sp,
                 ),
               ),
             ),
@@ -60,7 +60,7 @@ class VerificationDialog extends StatelessWidget {
               length: 6,
               textStyle: Get.textTheme.bodyText1!.copyWith(
                 fontWeight: FontWeight.normal,
-                fontSize: 13.sp,
+                fontSize: 30.sp,
               ),
               obscureText: false,
               cursorColor: Get.theme.primaryColor,

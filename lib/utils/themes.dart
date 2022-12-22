@@ -20,19 +20,21 @@ class AppTheme {
     textTheme: TextTheme(
       bodyText1: TextStyle(
         color: Color(0xff4A4B4D),
-        fontSize: 22.sp,
+        fontSize: 40.sp,
         fontWeight: FontWeight.bold,
       ),
       button: TextStyle(
-          color: Colors.black87,
-          fontSize: 20.sp,
-          fontWeight: FontWeight.normal,
-          fontFamily: 'AM'),
+        color: Colors.black87,
+        fontSize: 35.sp,
+        fontWeight: FontWeight.normal,
+        fontFamily: 'AM',
+      ),
       labelMedium: TextStyle(
-          color: Colors.black87,
-          fontSize: 3.sp,
-          fontWeight: FontWeight.normal,
-          fontFamily: 'AM'),
+        color: Colors.black87,
+        fontSize: 3.sp,
+        fontWeight: FontWeight.normal,
+        fontFamily: 'AM',
+      ),
     ),
     // colorScheme: ColorScheme.fromSwatch().copyWith(
     //   secondary:  Colors.white,

@@ -1,4 +1,5 @@
 import 'package:ejarkom/app/Ads/ads/widget/cancel_dialog/cancel_dialog_view.dart';
+import 'package:ejarkom/utils/method.dart';
 
 import 'package:ejarkom/utils/widgets/my_indicator.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,7 @@ class _WaittingListPageState extends State<WaittingListPage> {
                               children: [
                                 Container(
                                   width: Get.width,
-                                  height: 200.h,
+                                  height: 400.h,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(10.sp),
@@ -87,6 +88,7 @@ class _WaittingListPageState extends State<WaittingListPage> {
                                               Icon(
                                                 Icons.meeting_room_outlined,
                                                 color: Get.theme.primaryColor,
+                                                size: 60.sp,
                                               ),
                                               SizedBox(width: 6.w),
                                               Text(
@@ -95,7 +97,7 @@ class _WaittingListPageState extends State<WaittingListPage> {
                                                     .copyWith(
                                                   color: Get.theme.primaryColor,
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 20.sp,
+                                                  fontSize: 35.sp,
                                                 ),
                                               ),
                                             ],
@@ -105,6 +107,7 @@ class _WaittingListPageState extends State<WaittingListPage> {
                                               Icon(
                                                 Icons.bathroom_outlined,
                                                 color: Get.theme.primaryColor,
+                                                 size: 60.sp,
                                               ),
                                               SizedBox(width: 6.w),
                                               Text(
@@ -114,7 +117,7 @@ class _WaittingListPageState extends State<WaittingListPage> {
                                                     .copyWith(
                                                   color: Get.theme.primaryColor,
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 20.sp,
+                                                  fontSize: 30.sp,
                                                 ),
                                               ),
                                             ],
@@ -125,12 +128,12 @@ class _WaittingListPageState extends State<WaittingListPage> {
                                       Row(
                                         children: [
                                           Text(
-                                            state.ads[index].nameE!,
+                                           isEnglish()? state.ads[index].nameE!:state.ads[index].nameA!,
                                             style: Get.textTheme.bodyText1!
                                                 .copyWith(
                                               color: Get.theme.primaryColor,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 20.sp,
+                                              fontSize: 40.sp,
                                             ),
                                           ),
                                           const Spacer(),
@@ -138,10 +141,10 @@ class _WaittingListPageState extends State<WaittingListPage> {
                                       ),
                                       SizedBox(height: 3.h),
                                       Text(
-                                        state.ads[index].descE!,
+                                       isEnglish()? state.ads[index].descE!:state.ads[index].descA!,
                                         style:
                                             Get.textTheme.bodyText1!.copyWith(
-                                          fontSize: 17.sp,
+                                          fontSize: 35.sp,
                                           color: Get.theme.primaryColor,
                                         ),
                                         overflow: TextOverflow.ellipsis,
@@ -149,10 +152,11 @@ class _WaittingListPageState extends State<WaittingListPage> {
                                       ),
                                       SizedBox(height: 3.h),
                                       Text(
-                                        state.ads[index].addressE!,
+                                       isEnglish()? state.ads[index].addressE!:state.ads[index].addressA!,
                                         style:
                                             Get.textTheme.bodyText1!.copyWith(
-                                          fontSize: 17.sp,
+                                          fontSize: 
+                                          35.sp,
                                           color: Get.theme.primaryColor,
                                         ),
                                       ),
@@ -165,7 +169,7 @@ class _WaittingListPageState extends State<WaittingListPage> {
                                             style: Get.textTheme.bodyText1!
                                                 .copyWith(
                                               color: Colors.amber,
-                                              fontSize: 20.sp,
+                                              fontSize: 35.sp,
                                             ),
                                           ),
                                           const Spacer(),
@@ -174,7 +178,7 @@ class _WaittingListPageState extends State<WaittingListPage> {
                                             style: Get.textTheme.bodyText1!
                                                 .copyWith(
                                               color: Colors.amber,
-                                              fontSize: 20.sp,
+                                              fontSize: 40.sp,
                                             ),
                                           )
                                         ],

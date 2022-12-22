@@ -41,11 +41,11 @@ class ViewServicesLogic extends GetxController {
   }
 
   void changeH() {
-    if (state.containerH.value == Get.height * 0.95.h) {
+    if (state.containerH.value == Get.height * 0.9.h) {
       state.containerH.value = Get.height * 0.5.h;
       state.containerIsOpened = false.obs;
     } else {
-      state.containerH.value = Get.height * 0.95.h;
+      state.containerH.value = Get.height * 0.9.h;
       state.containerIsOpened = true.obs;
     }
   }

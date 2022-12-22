@@ -1,6 +1,7 @@
 import 'package:ejarkom/app/services/create_services_ad/widgets/data_colelctor.dart';
 import 'package:ejarkom/app/services/create_services_ad/widgets/info_collector.dart';
 import 'package:ejarkom/app/services/create_services_ad/widgets/pandle_selector.dart';
+import 'package:ejarkom/utils/langs/lang_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -40,10 +41,34 @@ class _CreateServicesAdPageState extends State<CreateServicesAdPage> {
           'Create Services ad'.tr,
           style: Get.textTheme.bodyText1!.copyWith(
             color: Get.theme.primaryColor,
+            fontSize: 40.sp,
           ),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
+        actions: [
+          GetBuilder<LanguageController>(
+            init: LanguageController(),
+            builder: (controller) {
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: GestureDetector(
+                  onTap: () {
+                    controller.appLang == 'ar'
+                        ? controller.changeLang(langCode: 'en')
+                        : controller.changeLang(langCode: 'ar');
+                  },
+                  child: const Center(
+                    child: Icon(
+                      Icons.language,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
         leading: IconButton(
           onPressed: () {
             Get.back();
@@ -54,19 +79,21 @@ class _CreateServicesAdPageState extends State<CreateServicesAdPage> {
           ),
         ),
       ),
+      // 
       body: SingleChildScrollView(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
             image: DecorationImage(
-                image: AssetImage('assets/images/newb.png'),
-                fit: BoxFit.fitHeight),
+              image: AssetImage('assets/images/newb.png'),
+              fit: BoxFit.fitHeight,
+            ),
           ),
-          height: Get.height.h,
+          height: Get.height,
           child: PageView(
             controller: state.pageController,
             // pageSnapping: false,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             children: [
               InfoCollector(),
               DataCollector(),

@@ -23,7 +23,7 @@ class CostTypeSelector extends StatelessWidget {
               hint: Text(
                 'Select Cost Type'.tr,
                 style: TextStyle(
-                  fontSize: 20.sp,
+                  fontSize: 40.sp,
                   color: Theme.of(context).hintColor,
                 ),
               ),
@@ -34,18 +34,19 @@ class CostTypeSelector extends StatelessWidget {
                     value: state.costTypes[index].tr,
                     child: Text(
                       state.costTypes[index].tr,
+                      style: Get.textTheme.bodyText1,
                     ),
                   );
                 },
               ),
               customItemsHeights:
-                  List.generate(state.costTypes.length, (index) => 50.sp),
+                  List.generate(state.costTypes.length, (index) => 90.sp),
               value: state.selectedCostType,
               onChanged: (value) {
                 logic.changeSelectedCostType(value!);
               },
               style: Get.textTheme.bodyText1,
-              buttonHeight: 50.h,
+              buttonHeight: 90.h,
               dropdownMaxHeight: 400.h,
               buttonWidth: Get.width,
               itemPadding: EdgeInsets.symmetric(horizontal: 8.0.w),

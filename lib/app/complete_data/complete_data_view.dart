@@ -53,221 +53,232 @@ class _CompleteDataViewState extends State<CompleteDataView> {
           ),
         ),
       ),
-      body: Padding(
-        padding:
-            EdgeInsets.only(left: 20.w, right: 20.w, top: 10.h, bottom: 40.h),
-        child: GestureDetector(
-          onTap: () {
-            print('object');
-            // FocusScope.of(context).unfocus();
-            FocusScopeNode currentFocus = FocusScope.of(context);
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: Get.height,
+          child: Padding(
+            padding: EdgeInsets.only(
+                left: 20.w, right: 20.w, top: 10.h, bottom: 40.h),
+            child: GestureDetector(
+              onTap: () {
+                print('object');
+                // FocusScope.of(context).unfocus();
+                FocusScopeNode currentFocus = FocusScope.of(context);
 
-            if (!currentFocus.hasPrimaryFocus) {
-              currentFocus.unfocus();
-            }
-          },
-          child: Column(
-            children: [
-              DataInput(
-                icon: Icon(FontAwesomeIcons.addressCard),
-                controller: state.address,
-                hint: 'Address'.tr,
-              ),
-              SizedBox(height: 10.h),
-              const Divider(color: Colors.black54),
-              SizedBox(height: 10.h),
-              Row(
+                if (!currentFocus.hasPrimaryFocus) {
+                  currentFocus.unfocus();
+                }
+              },
+              child: Column(
                 children: [
-                  Flexible(
-                    flex: 8,
-                    child: DataInput(
-                      icon: Icon(FontAwesomeIcons.birthdayCake),
-                      controller: state.dob,
-                      hint: 'Date Of Birth "9-8-1990"'.tr,
-                      type: 1,
-                    ),
+                  DataInput(
+                    icon: Icon(FontAwesomeIcons.addressCard),
+                    controller: state.address,
+                    hint: 'Address'.tr,
                   ),
-                  Spacer(),
-                  Flexible(
-                    child: IconButton(
-                      onPressed: () {
-                        showCupertinoModalPopup(
-                          context: context,
-                          builder: (context) {
-                            return Container(
-                              height: 300.h,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20.sp),
-                              ),
-                              child: CupertinoDatePicker(
-                                onDateTimeChanged: (DateTime date) {
-                                  print(date);
-                                  state.dob.text =
-                                      '${date.year}-${date.month}-${date.day}';
-                                },
-                                mode: CupertinoDatePickerMode.date,
-                                maximumYear: 2022,
-                              ),
+                  SizedBox(height: 10.h),
+                  const Divider(color: Colors.black54),
+                  SizedBox(height: 10.h),
+                  Row(
+                    children: [
+                      Flexible(
+                        flex: 8,
+                        child: DataInput(
+                          icon: Icon(FontAwesomeIcons.birthdayCake),
+                          controller: state.dob,
+                          hint: 'Date Of Birth "9-8-1990"'.tr,
+                          type: 1,
+                        ),
+                      ),
+                      Spacer(),
+                      Flexible(
+                        child: IconButton(
+                          onPressed: () {
+                            showCupertinoModalPopup(
+                              context: context,
+                              builder: (context) {
+                                return Container(
+                                  height: 500.h,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20.sp),
+                                  ),
+                                  child: CupertinoDatePicker(
+                                    onDateTimeChanged: (DateTime date) {
+                                      print(date);
+                                      state.dob.text =
+                                          '${date.year}-${date.month}-${date.day}';
+                                    },
+                                    mode: CupertinoDatePickerMode.date,
+                                    maximumYear: 2022,
+                                  ),
+                                );
+                              },
                             );
                           },
-                        );
+                          icon: Icon(Icons.add),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 10.h),
+                  const Divider(color: Colors.black54),
+                  SizedBox(height: 10.h),
+                  Container(
+                    width: Get.width,
+                    height: 500.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.sp),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: GetBuilder<CompleteDataLogic>(
+                      id: 'photo',
+                      builder: (logic) {
+                        return state.image != null
+                            ? Stack(
+                                children: [
+                                  Center(
+                                    child: SizedBox(
+                                      height: 500.h,
+                                      width: Get.width,
+                                      child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          Image.file(
+                                            state.image!,
+                                          ),
+                                          SizedBox(
+                                            width: Get.width,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                IconButton(
+                                                  onPressed: () {
+                                                    logic.deleteImage(w: 'i');
+                                                  },
+                                                  icon: Icon(
+                                                    Icons.delete,
+                                                    color: Colors.black,
+                                                    size: 30.sp,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(Icons.add),
+                                    onPressed: () {
+                                      logic.getImages(w: 'i');
+                                    },
+                                  ),
+                                  Text(
+                                    'Your ID(Front)'.tr,
+                                    style: Get.textTheme.bodyText1,
+                                  )
+                                ],
+                              );
                       },
-                      icon: Icon(Icons.add),
+                    ),
+                  ),
+                  SizedBox(height: 10.h),
+                  const Divider(color: Colors.black54),
+                  SizedBox(height: 10.h),
+                  Container(
+                    width: Get.width,
+                    height: 500.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.sp),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: GetBuilder<CompleteDataLogic>(
+                      id: 'Sphoto',
+                      builder: (logic) {
+                        return state.image != null
+                            ? Stack(
+                                children: [
+                                  Center(
+                                    child: SizedBox(
+                                      height: 500.h,
+                                      width: Get.width,
+                                      child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          Image.file(
+                                            state.signatureImage!,
+                                          ),
+                                          SizedBox(
+                                            width: Get.width,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                IconButton(
+                                                  onPressed: () {
+                                                    logic.deleteImage(w: 's');
+                                                  },
+                                                  icon: Icon(
+                                                    Icons.delete,
+                                                    color: Colors.black,
+                                                    size: 30.sp,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(Icons.add),
+                                    onPressed: () {
+                                      logic.getImages(w: 's');
+                                    },
+                                  ),
+                                  Text(
+                                    'Your Id(Back)'.tr,
+                                    style: Get.textTheme.bodyText1,
+                                  )
+                                ],
+                              );
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 50.h),
+                  // Spacer(),
+                  ElevatedButton(
+                    onPressed: () {
+                      logic.addMethod();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: Size(Get.width, 120.h),
+                    ),
+                    child: Text(
+                      'Complete'.tr,
+                      style: Get.textTheme.button!.copyWith(
+                        color: Colors.white,
+                        fontSize: 40.sp,
+                      ),
                     ),
                   )
                 ],
               ),
-              SizedBox(height: 10.h),
-              const Divider(color: Colors.black54),
-              SizedBox(height: 10.h),
-              Container(
-                width: Get.width,
-                height: 200.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.sp),
-                  border: Border.all(color: Colors.grey),
-                ),
-                child: GetBuilder<CompleteDataLogic>(
-                  id: 'photo',
-                  builder: (logic) {
-                    return state.image != null
-                        ? Stack(
-                            children: [
-                              Center(
-                                child: SizedBox(
-                                  height: 300.h,
-                                  width: Get.width,
-                                  child: Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Image.file(
-                                        state.image!,
-                                      ),
-                                      SizedBox(
-                                        width: Get.width,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            IconButton(
-                                              onPressed: () {
-                                                logic.deleteImage(w: 'i');
-                                              },
-                                              icon: Icon(
-                                                Icons.delete,
-                                                color: Colors.black,
-                                                size: 30.sp,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        : Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                icon: Icon(Icons.add),
-                                onPressed: () {
-                                  logic.getImages(w: 'i');
-                                },
-                              ),
-                              Text(
-                                'Your ID'.tr,
-                                style: Get.textTheme.bodyText1,
-                              )
-                            ],
-                          );
-                  },
-                ),
-              ),
-              SizedBox(height: 10.h),
-              const Divider(color: Colors.black54),
-              SizedBox(height: 10.h),
-              Container(
-                width: Get.width,
-                height: 200.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.sp),
-                  border: Border.all(color: Colors.grey),
-                ),
-                child: GetBuilder<CompleteDataLogic>(
-                  id: 'Sphoto',
-                  builder: (logic) {
-                    return state.image != null
-                        ? Stack(
-                            children: [
-                              Center(
-                                child: SizedBox(
-                                  height: 300.h,
-                                  width: Get.width,
-                                  child: Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Image.file(
-                                        state.signatureImage!,
-                                      ),
-                                      SizedBox(
-                                        width: Get.width,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            IconButton(
-                                              onPressed: () {
-                                                logic.deleteImage(w: 's');
-                                              },
-                                              icon: Icon(
-                                                Icons.delete,
-                                                color: Colors.black,
-                                                size: 30.sp,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        : Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                icon: Icon(Icons.add),
-                                onPressed: () {
-                                  logic.getImages(w: 's');
-                                },
-                              ),
-                              Text(
-                                'Your Signature'.tr,
-                                style: Get.textTheme.bodyText1,
-                              )
-                            ],
-                          );
-                  },
-                ),
-              ),
-              SizedBox(height: 10.h),
-              Spacer(),
-              ElevatedButton(
-                onPressed: () {
-                  logic.addMethod();
-                },
-                style: ElevatedButton.styleFrom(
-                  fixedSize: Size(Get.width, 50.h),
-                ),
-                child: Text('Complete'.tr),
-              )
-            ],
+            ),
           ),
         ),
       ),

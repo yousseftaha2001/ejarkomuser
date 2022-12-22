@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ejarkom/app/Ads/models/all_ads_request/all_ads_request.dart';
 import 'package:ejarkom/utils/apis.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:ejarkom/utils/my_database.dart';
 import 'package:ejarkom/utils/push.dart';
 import 'package:get/get.dart';
@@ -30,7 +31,8 @@ class ReadyListLogic extends GetxController {
   }
 
   void pageError(String e) {
-    Get.snackbar('Error'.tr, e.toString());
+    // Get.snackbar('Error'.tr, e.toString());
+    mySnackBar(title: 'Error'.tr,body: e.toString());
   }
 
   void updatePage()async{

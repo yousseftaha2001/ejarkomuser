@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:ejarkom/app/requests/models/AllRequestsModel.dart';
 import 'package:ejarkom/app/requests/models/requests/requests.dart';
 import 'package:ejarkom/utils/apis.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:ejarkom/utils/my_database.dart';
 import 'package:ejarkom/utils/push.dart';
 import 'package:get/get.dart';
@@ -74,7 +75,8 @@ class DoneRequestsLogic extends GetxController {
   }
 
   void pageError(String e) {
-    Get.snackbar('Error'.tr, e.toString());
+    // Get.snackbar('Error'.tr, e.toString());
+    mySnackBar(title: 'Error'.tr, body: e.toString());
   }
 
   @override

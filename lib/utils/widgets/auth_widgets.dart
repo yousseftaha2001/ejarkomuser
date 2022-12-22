@@ -9,53 +9,55 @@ class DataInput extends StatelessWidget {
       required this.icon,
       required this.controller,
       required this.hint,
+      this.keyboardType,
+      this.maxL,
       this.type,
       this.onC,
       this.obs})
       : super(key: key);
   final TextEditingController controller;
   final String hint;
-  final Icon icon;
+  var keyboardType;
+  final Widget icon;
   final onC;
   bool? obs;
+  int? maxL;
   int? type;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50.h,
-      child: TextField(
-        keyboardType: TextInputType.emailAddress,
-        onChanged: onC,
-        inputFormatters: type == 1
-            ? <TextInputFormatter>[
-                FilteringTextInputFormatter.allow(RegExp(r'[0-9--]')),
-              ]
-            : null,
-        controller: controller,
-        readOnly: type == 1,
-        enabled: type != 1,
-        style: const TextStyle(color: Colors.black),
-        cursorColor: Get.theme.primaryColor,
-        obscureText: obs ?? false,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.white,
-          prefixIcon: icon,
-          label: Text(hint.tr),
-          // hintText: hint.tr,
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.sp),
-            borderSide: const BorderSide(color: Colors.black12),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.sp),
-            borderSide: const BorderSide(color: Colors.black12),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.sp),
-            borderSide: BorderSide(color: Get.theme.primaryColor),
-          ),
+    return TextField(
+      keyboardType:keyboardType?? TextInputType.emailAddress,
+      onChanged: onC,
+      inputFormatters: type == 1
+          ? <TextInputFormatter>[
+              FilteringTextInputFormatter.allow(RegExp(r'[0-9--]')),
+            ]
+          : null,
+      controller: controller,
+      readOnly: type == 1,
+      maxLines: maxL,
+      enabled: type != 1,
+      style: const TextStyle(color: Colors.black),
+      cursorColor: Get.theme.primaryColor,
+      obscureText: obs ?? false,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        prefixIcon: icon,
+        label: Text(hint.tr),
+        // hintText: hint.tr,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.sp),
+          borderSide: const BorderSide(color: Colors.black12),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.sp),
+          borderSide: const BorderSide(color: Colors.black12),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.sp),
+          borderSide: BorderSide(color: Get.theme.primaryColor),
         ),
       ),
     );

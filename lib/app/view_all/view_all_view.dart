@@ -46,7 +46,7 @@ class _ViewAllViewState extends State<ViewAllView> {
           title: Text(
             'All Ads'.tr,
             style: Get.textTheme.bodyText1!.copyWith(
-              fontSize: 20.sp,
+              fontSize: 40.sp,
               color: Get.theme.primaryColor,
               fontWeight: FontWeight.bold,
             ),
@@ -64,32 +64,56 @@ class _ViewAllViewState extends State<ViewAllView> {
                 Icons.filter_list,
                 color: Get.theme.primaryColor,
               ),
+            ),
+            Obx(
+              () => state.searchMode.value
+                  ? IconButton(
+                      onPressed: () {
+                        logic.closeSearch();
+                        // logic.changeSearchMode();
+                      },
+                      icon: Icon(
+                        Icons.close,
+                        color: Get.theme.primaryColor,
+                      ),
+                    )
+                  : Container(),
             )
           ],
         ),
         body: state.getState.value
             ? MyIndicator()
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/newb.png'),
-                        fit: BoxFit.fitHeight,
+            : SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/newb.png'),
+                          fit: BoxFit.fitHeight,
+                        ),
                       ),
+                      height: (Get.height) - (AppBar().preferredSize.height),
+                      child: Obx(() {
+                        return state.searchMode.value
+                            ? SearchMode()
+                            : NormalMode();
+                      }),
                     ),
-                    height: Get.height.h,
-                    child: Obx(() {
-                      return state.searchMode.value
-                          ? SearchMode()
-                          : NormalMode();
-                    }),
-                  ),
-                ],
+                  ],
+                ),
               ),
       );
     });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    state.searchMode.value = false;
   }
 }

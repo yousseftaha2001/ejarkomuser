@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:ejarkom/app/Ads/create_ads/modes/data_selector.dart';
+import 'package:ejarkom/app/Ads/create_ads/modes/info_selector.dart';
+import 'package:ejarkom/app/Ads/create_ads/modes/photo_selector.dart';
 import 'package:ejarkom/app/Ads/models/GetBuildTypeModel.dart';
 import 'package:ejarkom/app/Ads/models/GetCityModel.dart';
 import 'package:ejarkom/app/Ads/models/Zone.dart';
@@ -46,13 +49,16 @@ class CreateAdsState {
   String? selectedCostType;
   late List<City> cities;
   late List<Zone> zones;
+  late List<TypeBuild> typeBuilds;
   RxBool gettingCities = false.obs;
   RxBool gettingZones = false.obs;
   RxBool gettingBuildTypes = false.obs;
   RxBool createAdsState = false.obs;
   RxInt currentIndex = 0.obs;
 
-  late List<TypeBuild> typeBuilds;
+  RxInt langOption=0.obs;
+
+  // late List<TypeBuild> typeBuilds;
   late CreateAdHttp createAdHttp;
   City? selectedCity;
   Zone? selectedZone;
@@ -60,6 +66,16 @@ class CreateAdsState {
   List<File> images = [];
   List<Uint8List> photos = [];
   PageController pageController = PageController();
+
+  PageController mainPage=PageController();
+
+
+  List<Widget>states=[
+    PhotosSelector(),
+    InfoSelector(),
+    DataSelector(),
+  ];
+  RxInt currentPageState=0.obs;
 
   late final formKey;
 }

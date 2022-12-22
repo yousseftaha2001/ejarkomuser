@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ejarkom/app/Ads/models/all_ads_request/all_ads_request.dart';
 import 'package:ejarkom/utils/apis.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:ejarkom/utils/push.dart';
 import 'package:get/get.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
@@ -29,7 +30,8 @@ class CanceledListLogic extends GetxController {
   }
 
   void pageError(String e) {
-    Get.snackbar('Error'.tr, e.toString());
+    // Get.snackbar('Error'.tr, e.toString());
+    mySnackBar(title: 'Error'.tr,body: e.toString());
   }
 
   void updatePage()async{

@@ -44,7 +44,9 @@ class CancelDialogView extends StatelessWidget {
                 children: [
                   Text(
                     'Are you sure to cancel this AD?'.tr,
-                    style: Get.textTheme.bodyText1,
+                    style: Get.textTheme.bodyText1!.copyWith(
+                      fontSize: 30.sp,
+                    ),
                   ),
                   SizedBox(height: 15.h),
                   ElevatedButton(
@@ -52,7 +54,7 @@ class CancelDialogView extends StatelessWidget {
                       logic.cancelAd(id: id!);
                     },
                     style: ElevatedButton.styleFrom(
-                        fixedSize: Size(Get.width / 2.w, 40.h)),
+                        fixedSize: Size(Get.width / 2, 40.h)),
                     child: Text(
                       'Yes'.tr,
                       style: Get.textTheme.bodyText1!.copyWith(

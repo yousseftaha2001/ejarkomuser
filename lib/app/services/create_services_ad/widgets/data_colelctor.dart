@@ -1,4 +1,3 @@
-import 'package:ejarkom/app/Ads/create_ads/widgets/city_selector.dart';
 import 'package:ejarkom/app/services/create_services_ad/create_services_ad_logic.dart';
 import 'package:ejarkom/app/services/create_services_ad/create_services_ad_state.dart';
 import 'package:ejarkom/app/services/create_services_ad/widgets/city_selector.dart';
@@ -24,7 +23,7 @@ class DataCollector extends StatelessWidget {
         children: [
           Container(
             width: Get.width,
-            height: 300.h,
+            height: 500.h,
             color: Colors.white.withOpacity(0.5),
             child: GetBuilder<CreateServicesAdLogic>(
               id: 'photo',
@@ -36,7 +35,7 @@ class DataCollector extends StatelessWidget {
                             child: Column(
                               children: [
                                 SizedBox(
-                                  height: 260.h,
+                                  height: 360.h,
                                   width: Get.width,
                                   child: PageView.builder(
                                     itemBuilder: (context, index) {
@@ -85,13 +84,13 @@ class DataCollector extends StatelessWidget {
                             ),
                           ),
                           Positioned(
-                            top: 250.h,
+                            top: 360.h,
                             left: 350.w,
                             child: IconButton(
                               onPressed: () {
                                 logic.getImages();
                               },
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.add,
                                 color: Colors.black,
                               ),
@@ -103,7 +102,7 @@ class DataCollector extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           IconButton(
-                            icon: Icon(Icons.add),
+                            icon: const Icon(Icons.add),
                             onPressed: () {
                               logic.getImages();
                             },
@@ -120,7 +119,7 @@ class DataCollector extends StatelessWidget {
           SizedBox(height: 30.h),
           Obx(
             () => state.gettingCities.value
-                ? MyIndicator()
+                ? const MyIndicator()
                 : CitySelectorServices(),
           ),
           SizedBox(height: 30.h),
@@ -137,10 +136,11 @@ class DataCollector extends StatelessWidget {
           SizedBox(height: 30.h),
           Obx(
             () => state.gettingTypes.value
-                ? MyIndicator()
+                ? const MyIndicator()
                 : TypeSelectorServices(),
           ),
-          Spacer(),
+          // const Spacer(),
+          SizedBox(height: 100.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -161,7 +161,7 @@ class DataCollector extends StatelessWidget {
                 onPressed: () {
                   state.pageController.animateToPage(
                     0,
-                    duration: Duration(milliseconds: 200),
+                    duration: const Duration(milliseconds: 200),
                     curve: Curves.easeOut,
                   );
                 },
@@ -171,7 +171,7 @@ class DataCollector extends StatelessWidget {
                 child: Row(
                   children: [
                     Icon(
-                      Icons.arrow_back_ios_new,
+                      Icons.arrow_back_ios,
                       size: 25.sp,
                     ),
                     Text(

@@ -1,5 +1,6 @@
 import 'package:ejarkom/packs/add_pack/add_pack_view.dart';
 import 'package:ejarkom/packs/models/AllPacksModel.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -26,8 +27,9 @@ class PackWidget extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 5.w),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            SizedBox(width: 20.w),
             Center(
               child: Container(
                 decoration: BoxDecoration(
@@ -37,21 +39,21 @@ class PackWidget extends StatelessWidget {
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Image.asset(photo, width: 40.w),
+                    child: Image.asset(photo,),
                   ),
                 ),
               ),
             ),
-            SizedBox(width: 2.5.w),
+            SizedBox(width: 20.w),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
                 Text(
-                  package.nameE!,
+                isEnglish()?  package.nameE!:package.nameA!,
                   style: Get.textTheme.bodyText1!.copyWith(
                     fontWeight: FontWeight.bold,
-                    fontSize: 18.sp,
+                    fontSize: 35.sp,
                     color: Get.theme.primaryColor,
                   ),
                 ),
@@ -59,18 +61,18 @@ class PackWidget extends StatelessWidget {
                 SizedBox(
                   width: 180.w,
                   child: Text(
-                    'Number of Ads:${package.numAds}',
+                    '${'Number of Ads:'.tr}${package.numAds}',
                     softWrap: true,
                     style: Get.textTheme.bodyText1!.copyWith(
                       fontWeight: FontWeight.normal,
-                      fontSize: 15.sp,
+                      fontSize: 30.sp,
                       color: Get.theme.primaryColor,
                     ),
                   ),
                 ),
                 SizedBox(height: 10.h),
                 Text(
-                  '${package.cost!} \$ ',
+                  '${package.cost!} ${'JOD'.tr} ',
                   style: Get.textTheme.bodyText1!.copyWith(
                     fontWeight: FontWeight.bold,
                     color: Get.theme.primaryColor,
@@ -78,18 +80,21 @@ class PackWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 5.h),
                 SizedBox(
-                  width: 200.w,
+                  width: 450.w,
+                  height: 100.h,
                   child: Text(
-                    '${package.textE!} \$ ',
+                    isEnglish()? package.textE!:package.textA!,
                     style: Get.textTheme.bodyText1!.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Get.theme.primaryColor,
+                      fontSize: 30.sp,
                     ),
                     softWrap: true,
                   ),
                 ),
               ],
             ),
+            Spacer(),
             OutlinedButton(
               onPressed: () {
                 // logic.addPackMethod(id: package.id!.toString());
@@ -99,7 +104,8 @@ class PackWidget extends StatelessWidget {
                 );
               },
               child: Text('Buy'.tr),
-            )
+            ),
+            // SizedBox(width: 10.w),
           ],
         ),
       ),

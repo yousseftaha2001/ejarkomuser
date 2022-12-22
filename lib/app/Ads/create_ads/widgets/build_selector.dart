@@ -4,6 +4,7 @@ import 'package:ejarkom/app/Ads/create_ads/create_ads_state.dart';
 import 'package:ejarkom/app/Ads/models/GetBuildTypeModel.dart';
 import 'package:ejarkom/app/Ads/models/GetCityModel.dart';
 import 'package:ejarkom/app/Ads/models/Zone.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -27,7 +28,7 @@ class BuildSelector extends StatelessWidget {
                     hint: Text(
                       'Select your building Type'.tr,
                       style: TextStyle(
-                        fontSize: 20.sp,
+                        fontSize: 40.sp,
                         color: Theme.of(context).hintColor,
                       ),
                     ),
@@ -37,19 +38,20 @@ class BuildSelector extends StatelessWidget {
                         return DropdownMenuItem<TypeBuild>(
                           value: state.typeBuilds[index],
                           child: Text(
-                            state.typeBuilds[index].nameE!,
+                           isEnglish()? state.typeBuilds[index].nameE!:state.typeBuilds[index].nameA!,
+                            style: Get.textTheme.bodyText1,
                           ),
                         );
                       },
                     ),
                     customItemsHeights: List.generate(
-                        state.typeBuilds.length, (index) => 50.sp),
+                        state.typeBuilds.length, (index) => 90.sp),
                     value: state.selectedBuildType,
                     onChanged: (value) {
                       logic.changeSelectedType(value!);
                     },
                     style: Get.textTheme.bodyText1,
-                    buttonHeight: 50.h,
+                    buttonHeight: 90.h,
                     dropdownMaxHeight: 400.h,
                     buttonWidth: Get.width,
                     itemPadding: EdgeInsets.symmetric(horizontal: 8.0.w),

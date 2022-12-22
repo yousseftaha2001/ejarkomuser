@@ -2,6 +2,7 @@ import 'package:ejarkom/app/main/main_logic.dart';
 import 'package:ejarkom/app/services/view_service/view_service_logic.dart';
 import 'package:ejarkom/app/services/view_service/view_service_view.dart';
 import 'package:ejarkom/utils/apis.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -44,19 +45,22 @@ class ServicesContainer extends StatelessWidget {
                       )
                     : Image.network(
                         '$photoAPI${state.pageOneModel!.services![index].photo!}',
-                        height: 70.h,
-                        width: 120.w,
+                        height: 130.h,
+                        width: 200.w,
                       ),
               ),
             ),
           ),
           SizedBox(height: 5.h),
           Text(
-            state.pageOneModel!.services![index].nameE!,
+            isEnglish()
+                ? state.pageOneModel!.services![index].nameE!
+                : state.pageOneModel!.services![index].nameA!,
             style: Get.textTheme.bodyText1!.copyWith(
-                color: Colors.grey,
-                fontWeight: FontWeight.bold,
-                fontSize: 18.sp),
+              color: Colors.grey,
+              fontWeight: FontWeight.bold,
+              fontSize: 30.sp,
+            ),
           )
         ],
       ),

@@ -63,13 +63,60 @@ class PandelSelector extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                    flex: 10,
+                    // height: Get.height,
+                    // flex: 10,
                     child: ListView.builder(
-                      itemCount: state.pandels.length,
+                      itemCount: state.pandels.length+1,
                       itemBuilder: (context, index) {
-                        return Padding(
+                        return  Padding(
                           padding: EdgeInsets.symmetric(vertical: 10.h),
-                          child: PandleCard(
+                          child:index==state.pandels.length?Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              state.pageController.animateToPage(
+                                1,
+                                duration: Duration(milliseconds: 200),
+                                curve: Curves.easeOut,
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.amber,
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.arrow_back_ios_new,
+                                  size: 25.sp,
+                                ),
+                                Text(
+                                  'Back'.tr,
+                                ),
+                              ],
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              logic.checkPandle();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.amber,
+                            ),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Next'.tr,
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 25.sp,
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ): PandleCard(
                             package: state.pandels[index],
                             photo: 'assets/images/pack.png',
                           ),
@@ -77,55 +124,11 @@ class PandelSelector extends StatelessWidget {
                       },
                     ),
                   ),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            state.pageController.animateToPage(
-                              1,
-                              duration: Duration(milliseconds: 200),
-                              curve: Curves.easeOut,
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.amber,
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_back_ios_new,
-                                size: 25.sp,
-                              ),
-                              Text(
-                                'Back'.tr,
-                              ),
-                            ],
-                          ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            logic.checkPandle();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.amber,
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                'Next'.tr,
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 25.sp,
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                  
+                  
+                  // Expanded(
+                  //   child: 
+                  // ),
                 ],
               ),
             );

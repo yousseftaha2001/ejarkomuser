@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/apis.dart';
+import '../../../utils/method.dart';
 import '../../Ads/ads/widget/cancel_dialog/cancel_dialog_view.dart';
 import 'rejected_request_logic.dart';
 import 'rejected_request_state.dart';
@@ -44,7 +45,7 @@ class _RejectedRequestViewState extends State<RejectedRequestView> {
                               children: [
                                 Container(
                                   width: Get.width,
-                                  height: 200.h,
+                                  height: 400.h,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(10.sp),
@@ -80,6 +81,7 @@ class _RejectedRequestViewState extends State<RejectedRequestView> {
                                               Icon(
                                                 Icons.meeting_room_outlined,
                                                 color: Get.theme.primaryColor,
+                                                size: 65.sp,
                                               ),
                                               SizedBox(width: 6.w),
                                               Text(
@@ -89,7 +91,7 @@ class _RejectedRequestViewState extends State<RejectedRequestView> {
                                                     .copyWith(
                                                   color: Get.theme.primaryColor,
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 20.sp,
+                                                  fontSize: 35.sp,
                                                 ),
                                               ),
                                             ],
@@ -99,6 +101,7 @@ class _RejectedRequestViewState extends State<RejectedRequestView> {
                                               Icon(
                                                 Icons.bathroom_outlined,
                                                 color: Get.theme.primaryColor,
+                                                size: 65.sp,
                                               ),
                                               SizedBox(width: 6.w),
                                               Text(
@@ -108,7 +111,7 @@ class _RejectedRequestViewState extends State<RejectedRequestView> {
                                                     .copyWith(
                                                   color: Get.theme.primaryColor,
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 20.sp,
+                                                  fontSize: 30.sp,
                                                 ),
                                               ),
                                             ],
@@ -119,12 +122,12 @@ class _RejectedRequestViewState extends State<RejectedRequestView> {
                                       Row(
                                         children: [
                                           Text(
-                                            state.ads[index].nameE!,
+                                          isEnglish()?  state.ads[index].nameE!:state.ads[index].nameA!,
                                             style: Get.textTheme.bodyText1!
                                                 .copyWith(
                                               color: Get.theme.primaryColor,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 20.sp,
+                                              fontSize: 35.sp,
                                             ),
                                           ),
                                           const Spacer(),
@@ -132,10 +135,10 @@ class _RejectedRequestViewState extends State<RejectedRequestView> {
                                       ),
                                       SizedBox(height: 3.h),
                                       Text(
-                                        state.ads[index].descE!,
+                                        isEnglish()?  state.ads[index].descE!:state.ads[index].descA!,
                                         style:
                                             Get.textTheme.bodyText1!.copyWith(
-                                          fontSize: 17.sp,
+                                          fontSize: 35.sp,
                                           color: Get.theme.primaryColor,
                                         ),
                                         overflow: TextOverflow.ellipsis,
@@ -143,10 +146,10 @@ class _RejectedRequestViewState extends State<RejectedRequestView> {
                                       ),
                                       SizedBox(height: 3.h),
                                       Text(
-                                        state.ads[index].addressE!,
+                                        isEnglish()?  state.ads[index].addressE!:state.ads[index].addressA!,
                                         style:
                                             Get.textTheme.bodyText1!.copyWith(
-                                          fontSize: 17.sp,
+                                          fontSize: 35.sp,
                                           color: Get.theme.primaryColor,
                                         ),
                                       ),
@@ -159,7 +162,7 @@ class _RejectedRequestViewState extends State<RejectedRequestView> {
                                             style: Get.textTheme.bodyText1!
                                                 .copyWith(
                                               color: Colors.amber,
-                                              fontSize: 20.sp,
+                                              fontSize: 35.sp,
                                             ),
                                           ),
                                           const Spacer(),
@@ -168,12 +171,13 @@ class _RejectedRequestViewState extends State<RejectedRequestView> {
                                             style: Get.textTheme.bodyText1!
                                                 .copyWith(
                                               color: Colors.amber,
-                                              fontSize: 20.sp,
+                                              fontSize: 35.sp,
                                             ),
                                           )
                                         ],
                                       ),
                                       SizedBox(height: 10.h),
+                                      
                                     ],
                                   ),
                                 ),

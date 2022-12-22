@@ -46,7 +46,7 @@ class _AddBuildManageViewState extends State<AddBuildManageView> {
         title: Text(
           'Management Request'.tr,
           style: Get.textTheme.bodyText1!.copyWith(
-            fontSize: 20.sp,
+            fontSize: 40.sp,
             color: Get.theme.primaryColor,
             fontWeight: FontWeight.bold,
           ),
@@ -287,7 +287,7 @@ class _AddBuildManageViewState extends State<AddBuildManageView> {
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Get.theme.primaryColor,
-                                    fixedSize: Size(Get.width.w, 45.h),
+                                    fixedSize: Size(Get.width/1.5, 80.h),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8.sp),
                                     ),
@@ -296,7 +296,7 @@ class _AddBuildManageViewState extends State<AddBuildManageView> {
                                     'Create AD'.tr,
                                     style: Get.textTheme.bodyText1!.copyWith(
                                       color: Colors.white,
-                                      fontSize: 22.sp,
+                                      fontSize: 35.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),

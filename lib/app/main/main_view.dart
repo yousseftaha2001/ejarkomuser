@@ -1,12 +1,16 @@
+import 'package:ejarkom/app/Ads/create_ads/create_ads_view.dart';
 import 'package:ejarkom/app/main/widgets/main_cate.dart';
-import 'package:ejarkom/app/main/widgets/search_bar.dart';
 import 'package:ejarkom/app/main/widgets/services_card.dart';
 import 'package:ejarkom/app/services/create_services_ad/create_services_ad_view.dart';
+import 'package:ejarkom/utils/apis.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:ejarkom/utils/widgets/my_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:loop_page_view/loop_page_view.dart';
 
+import '../../utils/langs/lang_controller.dart';
 import '../../utils/widgets/leading_button.dart';
 import 'main_logic.dart';
 
@@ -21,20 +25,45 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    // return Center(child: MyIndicator());
     return Obx(
       () => state.pageIsHere.value
-          ? Center(child: MyIndicator())
+          ? const Center(child: MyIndicator())
           : Scaffold(
               appBar: AppBar(
-                leading: LeadingButton(),
+                leading: const LeadingButton(),
                 title: Text(
                   'Home'.tr,
                   style: Get.textTheme.bodyText1!.copyWith(
-                    fontSize: 20.sp,
+                    fontSize: 40.sp,
                     color: Get.theme.primaryColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                actions: [
+                  GetBuilder<LanguageController>(
+                    init: LanguageController(),
+                    builder: (controller) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10.w),
+                        child: GestureDetector(
+                          onTap: () {
+                            controller.appLang == 'ar'
+                                ? controller.changeLang(langCode: 'en')
+                                : controller.changeLang(langCode: 'ar');
+                            // mySnackBar(title: 'Error', body: 'body');
+                          },
+                          child: const Center(
+                            child: Icon(
+                              Icons.language,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
                 centerTitle: true,
                 backgroundColor: Colors.white,
                 elevation: 0,
@@ -64,14 +93,35 @@ class _MainPageState extends State<MainPage> {
                         //   ),
                         // ),
                         SizedBox(
-                          height: cons.maxHeight * 0.87,
+                          height: cons.maxHeight,
                           // color: Colors.red,
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
+                                state.pageOneModel!.ads1!.isNotEmpty
+                                    ? SizedBox(
+                                        height: 200.h,
+                                        child: LoopPageView.builder(
+                                          controller: state.controller,
+                                          itemCount:
+                                              state.pageOneModel!.ads!.length,
+                                          onPageChanged: (int? val) {
+                                            state.adsIndex.value = val!;
+                                          },
+                                          itemBuilder: (_, index) {
+                                            return Card(
+                                              child: Image.network(
+                                                '$photoAPI${state.pageOneModel!.ads1![index]}',
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      )
+                                    : Container(),
                                 Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 15.w),
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: Get.width / 90.w,
+                                  ),
                                   child: Row(
                                     children: [
                                       Text(
@@ -80,7 +130,7 @@ class _MainPageState extends State<MainPage> {
                                             Get.textTheme.bodyText1!.copyWith(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 20.sp,
+                                          fontSize: 30.sp,
                                         ),
                                       ),
                                       const Spacer(),
@@ -89,7 +139,8 @@ class _MainPageState extends State<MainPage> {
                                           Get.to(() => CreateServicesAdPage());
                                         },
                                         style: ElevatedButton.styleFrom(
-                                          fixedSize: Size(180.w, 30.h),
+                                          fixedSize:
+                                              Size(Get.width / 2, 40.h),
                                           primary:
                                               Get.theme.colorScheme.secondary,
                                         ),
@@ -101,7 +152,7 @@ class _MainPageState extends State<MainPage> {
                                               'create Service'.tr,
                                               style: Get.textTheme.bodyText1!
                                                   .copyWith(
-                                                fontSize: 16.sp,
+                                                fontSize: 30.sp,
                                                 color: Colors.white,
                                               ),
                                             ),
@@ -114,7 +165,7 @@ class _MainPageState extends State<MainPage> {
                                 ),
                                 SizedBox(height: 10.h),
                                 SizedBox(
-                                  height: 120.h,
+                                  height: 250.h,
                                   width: Get.width,
                                   // color: Colors.black,
                                   child: ListView.builder(
@@ -129,7 +180,41 @@ class _MainPageState extends State<MainPage> {
                                     },
                                   ),
                                 ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 15.w),
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          Get.to(() => CreateAdsView());
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          fixedSize:  Size(Get.width / 2, 40.h),
+                                          primary: Colors.amber,
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'create ADS'.tr,
+                                              style: Get.textTheme.bodyText1!
+                                                  .copyWith(
+                                                fontSize: 30.sp,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            const Icon(Icons.add)
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                                 Column(
+                                  mainAxisSize: MainAxisSize.max,
                                   children: List.generate(
                                     state.pageOneModel!.ads!.length,
                                     (index) => MainCategory(

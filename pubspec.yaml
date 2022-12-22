@@ -17,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 1.0.0+9
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
@@ -36,28 +36,43 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  get: ^4.6.5
-  dartz: ^0.10.1
-  http: ^0.13.5
-  get_storage: ^2.0.3
-  flutter_screenutil: ^5.5.3+2
-  flutter_svg: ^1.0.3
-  font_awesome_flutter: ^10.2.1
-  curved_navigation_bar: ^1.0.3
-  flutter_spinkit: ^5.1.0
-  dropdown_button2: ^1.8.5
-  file_picker: ^5.2.1
-  path_provider: ^2.0.11
-  webview_flutter: ^3.0.4
-  smooth_page_indicator: ^1.0.0+2
-  flutter_launcher_icons: ^0.10.0
-  url_launcher: ^6.1.6
-  flutter_cached_pdfview: ^0.4.1
-  pin_code_fields: ^7.4.0
-  pusher_channels_flutter: ^2.0.2
-  firebase_messaging: ^13.0.0
-  firebase_core: ^1.21.0
-  flutter_native_splash: ^2.2.11
+  
+  get:
+  dartz:
+  http:
+  get_storage:
+  flutter_screenutil:
+  flutter_svg:
+  font_awesome_flutter:
+  curved_navigation_bar:
+  flutter_spinkit:
+  dropdown_button2:
+  file_picker:
+  path_provider:
+  webview_flutter:
+  smooth_page_indicator:
+  flutter_launcher_icons:
+  url_launcher:
+  flutter_cached_pdfview:
+  pin_code_fields:
+  pusher_channels_flutter:
+  firebase_messaging:
+#  firebase_core:
+  flutter_native_splash:
+  avatar_glow:
+  change_app_package_name:
+  loop_page_view:
+  uni_links:
+  # intl: 
+#  firebase_dynamic_links:
+  pixel_perfect: ^1.1.1
+  sizer: ^2.0.15
+  device_preview: ^1.1.0
+  flutter_countdown_timer: ^4.1.0
+  google_sign_in: ^5.4.2
+  flutter_signin_button: ^2.0.0
+  
+
   intl:
 flutter_icons:
   android: "launcher_icon"
@@ -69,6 +84,11 @@ flutter_native_splash:
   background_image: assets\images\splash.png
   android_12:
     background_image: assets\images\splash.png
+
+avatar_glow:
+    git:
+      url: https://github.com/apgapg/avatar_glow
+      ref: master
 dev_dependencies:
   flutter_test:
     sdk: flutter

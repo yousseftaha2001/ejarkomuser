@@ -10,11 +10,13 @@ class MyCustomFormField extends StatelessWidget {
     required this.icon,
     required this.validator,
     required this.formK,
+    this.max,
   }) : super(key: key);
   final TextEditingController controller;
   final String hint;
   final Icon icon;
   var validator;
+  int? max;
   GlobalKey formK;
 
   @override
@@ -23,6 +25,8 @@ class MyCustomFormField extends StatelessWidget {
       validator: validator,
       key: key,
       controller: controller,
+      maxLines:null ,
+      
       style: TextStyle(color: Get.theme.primaryColor),
       decoration: InputDecoration(
           filled: true,

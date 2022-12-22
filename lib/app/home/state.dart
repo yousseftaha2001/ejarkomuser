@@ -36,7 +36,8 @@ class HomeState {
     MyChecksView(),
     AllBuildsRequestsView(),
     ProfileView(),
-    PdfViewPage(),
+    PdfViewPage(title: 'Help'),
+    PdfViewPage(title: 'privacy policy'),
   ];
   double xOffset = 0;
   double yOffset = 0;

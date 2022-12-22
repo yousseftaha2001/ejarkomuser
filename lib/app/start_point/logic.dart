@@ -40,6 +40,7 @@ class StartPointLogic extends GetxController {
 
 
   checkToken() async {
+    // MyDataBase.removeDate();
     var result = MyDataBase.getToken();
     printInfo(info: result);
 

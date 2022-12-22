@@ -4,6 +4,7 @@ import 'package:ejarkom/app/Ads/models/GetCityModel.dart';
 import 'package:ejarkom/app/Ads/models/Zone.dart';
 import 'package:ejarkom/app/complete_data/error_dialog.dart';
 import 'package:ejarkom/app/services/models/service_type_model/type_serve.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,10 +28,14 @@ class CreateServicesAdLogic extends GetxController {
   void publishAd() async {
     changePublishState();
     var result = await state.servicesHttp.createAd(
-      nameE: state.nameE.text,
-      nameA: state.nameA.text,
-      descriptionE: state.descriptionE.text,
-      descriptionA: state.descriptionA.text,
+      nameE: state.langOption.value == 1 ? state.nameA.text : state.nameE.text,
+      nameA: state.langOption.value == 0 ? state.nameE.text : state.nameA.text,
+      descriptionE: state.langOption.value == 1
+          ? state.descriptionA.text
+          : state.descriptionE.text,
+      descriptionA: state.langOption.value == 0
+          ? state.descriptionE.text
+          : state.descriptionA.text,
       zoneId: state.selectedZone!.id!.toString(),
       typeSer: state.selectedType!.id!.toString(),
       pandleID: state.selectedPandle.value!.id.toString(),
@@ -42,16 +47,19 @@ class CreateServicesAdLogic extends GetxController {
       (l) {
         changePublishState();
         Get.back();
-        Get.snackbar('Error'.tr, l);
+        // Get.snackbar('Error'.tr, l);
+        mySnackBar(title: 'Error'.tr, body: l);
       },
       (r) {
         changePublishState();
         Get.back();
         Get.back();
-        Get.snackbar(
-          'Done',
-          'Service Ad Has been published'.tr,
-        );
+        // Get.snackbar(
+        //   'Done'.tr,
+        //   'Service Ad Has been published'.tr,
+        //   duration: Duration(seconds: 3)
+        // );
+        mySnackBar(title: 'Done'.tr, body: 'Service Ad Has been published'.tr,);
       },
     );
   }
@@ -63,7 +71,8 @@ class CreateServicesAdLogic extends GetxController {
       (l) {
         changeGetState();
         Get.back();
-        Get.snackbar('Error'.tr, l);
+        // Get.snackbar('Error'.tr, l);
+        mySnackBar(title: 'Error'.tr, body: l);
       },
       (r) {
         state.pandels = r.pandleServe!;
@@ -79,7 +88,8 @@ class CreateServicesAdLogic extends GetxController {
       (l) {
         changeGetTypesState();
         Get.back();
-        Get.snackbar('Error'.tr, l);
+        // Get.snackbar('Error'.tr, l);
+        mySnackBar(title: 'Error'.tr, body: l);
       },
       (r) {
         state.typeServes = r.typeServes!;
@@ -89,8 +99,8 @@ class CreateServicesAdLogic extends GetxController {
   }
 
   void getImages() async {
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(allowMultiple: true);
+    FilePickerResult? result = await FilePicker.platform
+        .pickFiles(allowMultiple: true, type: FileType.image);
 
     if (result != null) {
       List<File> files = result.paths.map((path) => File(path!)).toList();
@@ -124,7 +134,8 @@ class CreateServicesAdLogic extends GetxController {
       (l) {
         state.cities = [];
         update(['ci']);
-        Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        // Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        mySnackBar(title: 'Error'.tr, body: 'please check your internet connection'.tr);
       },
       (r) {
         state.cities = r.cities!;
@@ -163,17 +174,17 @@ class CreateServicesAdLogic extends GetxController {
 
   void checkInfo() {
     List<String> infoError = [];
-    if (state.nameE.text.isEmpty) {
+    if (state.nameE.text.isEmpty && state.langOption.value == 0) {
       infoError.add('Please enter name In English'.tr);
     }
-    if (state.nameA.text.isEmpty) {
+    if (state.nameA.text.isEmpty && state.langOption.value == 1) {
       infoError.add('Please enter name In Arabic'.tr);
     }
-    if (state.descriptionE.text.isEmpty) {
+    if (state.descriptionE.text.isEmpty && state.langOption.value == 0) {
       infoError.add('Please enter Description In English'.tr);
     }
-    if (state.descriptionA.text.isEmpty) {
-      infoError.add('Please enter Description In English'.tr);
+    if (state.descriptionA.text.isEmpty && state.langOption.value == 1) {
+      infoError.add('Please enter Description In Arabic'.tr);
     }
     if (state.phone.text.isEmpty) {
       infoError.add('Please enter Phone'.tr);
@@ -231,9 +242,12 @@ class CreateServicesAdLogic extends GetxController {
       (l) {
         state.zones = [];
         update(['z']);
-        Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        // Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        mySnackBar(title: 'Error'.tr, body: 'please check your internet connection'.tr);
+
       },
       (r) {
+        state.selectedZone=null;
         if (r.zones!.isNotEmpty) {
           state.zones = r.zones!;
           print(state.zones.length);

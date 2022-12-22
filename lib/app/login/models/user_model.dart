@@ -5,6 +5,7 @@ class User {
   String? name;
   String? email;
   String? phone;
+  String? photo;
   String? type;
   String? fire;
   String? stute;
@@ -23,6 +24,7 @@ class User {
     this.emailVerifiedAt,
     this.createdAt,
     this.updatedAt,
+    this.photo,
   });
 
   factory User.fromMap(Map<String, dynamic> data) => User(
@@ -33,6 +35,7 @@ class User {
         type: data['type'] as String?,
         fire: data['fire'] as String?,
         stute: data['stute'] as String?,
+        photo: data['photo']??'',
         emailVerifiedAt: data['email_verified_at'] as dynamic,
         createdAt: data['created_at'] == null
             ? null

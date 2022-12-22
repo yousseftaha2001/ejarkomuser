@@ -28,7 +28,7 @@ class ZoneSelectorS extends StatelessWidget {
                     hint: Text(
                       'Select Zone'.tr,
                       style: TextStyle(
-                        fontSize: 18.sp,
+                        fontSize: 30.sp,
                         color: Theme.of(context).hintColor,
                       ),
                     ),
@@ -40,20 +40,20 @@ class ZoneSelectorS extends StatelessWidget {
                           child: Text(
                             state.zones[index].nameE!,
                             style: Get.textTheme.bodyText1!.copyWith(
-                              fontSize: 17.sp,
+                              fontSize: 30.sp,
                             ),
                           ),
                         );
                       },
                     ),
                     customItemsHeights:
-                        List.generate(state.zones.length, (index) => 50.sp),
+                        List.generate(state.zones.length, (index) => 80.sp),
                     value: state.selectedZone,
                     onChanged: (value) {
                       logic.changeSelectedZone(value!);
                     },
                     style: Get.textTheme.bodyText1,
-                    buttonHeight: 50.h,
+                    buttonHeight: 80.h,
                     dropdownMaxHeight: 400.h,
                     buttonWidth: Get.width,
                     itemPadding: EdgeInsets.symmetric(horizontal: 8.0.w),

@@ -27,7 +27,7 @@ class CitySelectorM extends StatelessWidget {
                     hint: Text(
                       'Select City'.tr,
                       style: TextStyle(
-                        fontSize: 20.sp,
+                        fontSize: 30.sp,
                         color: Theme.of(context).hintColor,
                       ),
                     ),
@@ -43,13 +43,13 @@ class CitySelectorM extends StatelessWidget {
                       },
                     ),
                     customItemsHeights:
-                        List.generate(state.cities.length, (index) => 50.sp),
+                        List.generate(state.cities.length, (index) => 80.sp),
                     value: state.selectedCity,
                     onChanged: (value) {
                       logic.changeSelectedCity(value!);
                     },
                     style: Get.textTheme.bodyText1,
-                    buttonHeight: 50.h,
+                    buttonHeight: 80.h,
                     dropdownMaxHeight: 400.h,
                     buttonWidth: Get.width,
                     itemPadding: EdgeInsets.symmetric(horizontal: 8.0.w),

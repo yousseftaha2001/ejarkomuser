@@ -42,7 +42,7 @@ class _ViewAllRequestsState extends State<ViewAllRequests>
         title: Text(
           'My Requests'.tr,
           style: Get.textTheme.bodyText1!.copyWith(
-            fontSize: 20.sp,
+            fontSize: 40.sp,
             color: Get.theme.primaryColor,
             fontWeight: FontWeight.bold,
           ),
@@ -57,7 +57,7 @@ class _ViewAllRequestsState extends State<ViewAllRequests>
             ),
             Tab(
               icon: Icon(Icons.done_all),
-              text: 'Finished'.tr,
+              text: 'Accepted'.tr,
             ),
             Tab(
               icon: Icon(Icons.cancel),
@@ -73,12 +73,12 @@ class _ViewAllRequestsState extends State<ViewAllRequests>
           labelColor: Get.theme.primaryColor,
           unselectedLabelColor: Colors.grey,
           unselectedLabelStyle: Get.textTheme.bodyText1!.copyWith(
-            fontSize: 14.sp,
+            fontSize: 25.sp,
             color: Colors.grey,
             fontWeight: FontWeight.normal,
           ),
           labelStyle: Get.textTheme.bodyText1!.copyWith(
-            fontSize: 16.sp,
+            fontSize: 28.sp,
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),

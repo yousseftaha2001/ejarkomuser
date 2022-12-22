@@ -27,7 +27,7 @@ class CitySelectorS extends StatelessWidget {
                     hint: Text(
                       'Select City'.tr,
                       style: TextStyle(
-                        fontSize: 18.sp,
+                        fontSize: 30.sp,
                         color: Theme.of(context).hintColor,
                       ),
                     ),
@@ -40,14 +40,14 @@ class CitySelectorS extends StatelessWidget {
                             state.cities[index].nameE!,
                             style: Get.textTheme.bodyText1!.copyWith(
                               color: Colors.black,
-                              fontSize: 17.sp,
+                              fontSize: 30.sp,
                             ),
                           ),
                         );
                       },
                     ),
                     customItemsHeights:
-                        List.generate(state.cities.length, (index) => 50.sp),
+                        List.generate(state.cities.length, (index) => 80.sp),
                     value: state.selectedCity,
                     onChanged: (value) {
                       logic.changeSelectedCity(value!);
@@ -57,7 +57,7 @@ class CitySelectorS extends StatelessWidget {
                       fontSize: 15.sp,
                     ),
                     iconEnabledColor: Get.theme.primaryColor,
-                    buttonHeight: 50.h,
+                    buttonHeight: 80.h,
                     dropdownMaxHeight: 400.h,
                     buttonWidth: Get.width,
                     itemPadding: EdgeInsets.symmetric(horizontal: 8.0.w),

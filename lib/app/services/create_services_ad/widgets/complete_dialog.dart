@@ -23,7 +23,7 @@ class CompleteDialog extends StatelessWidget {
             state.publishState.value
                 ? MyIndicator()
                 : Text(
-                    'Start yo publish this service AD?'.tr,
+                    'Start to publish this service AD?'.tr,
                     style: Get.theme.textTheme.bodyText1!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),

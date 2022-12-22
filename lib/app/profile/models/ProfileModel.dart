@@ -43,12 +43,14 @@ class DataUser {
     this.emailVerifiedAt,
     this.createdAt,
     this.updatedAt,
+    this.photo,
   });
 
   DataUser.fromJson(dynamic json) {
     id = json['id'];
     name = json['name'];
     phone = json['phone'];
+    photo = json['photo'];
     stute = json['stute'];
     type = json['type'];
     email = json['email'];
@@ -61,6 +63,7 @@ class DataUser {
   num? id;
   String? name;
   String? phone;
+  String? photo;
   String? stute;
   String? type;
   String? email;

@@ -1,7 +1,7 @@
-import 'package:ejarkom/app/Ads/create_ads/create_ads_view.dart';
 import 'package:ejarkom/app/main/main_logic.dart';
 import 'package:ejarkom/app/main/models/PageOneModel.dart';
 import 'package:ejarkom/app/main/widgets/build_card.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -19,40 +19,15 @@ class MainCategory extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              SizedBox(height: 20.h),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.w),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Get.to(() => CreateAdsView());
-                  },
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: Size(180.w, 30.h),
-                    primary: Colors.amber,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'create ADS'.tr,
-                        style: Get.textTheme.bodyText1!.copyWith(
-                          fontSize: 16.sp,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const Icon(Icons.add)
-                    ],
-                  ),
-                ),
-              ),
+              // SizedBox(height: 20.h),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15.w),
                 child: Row(
                   children: [
                     Text(
-                      ads.nameE!,
+                      isEnglish() ? ads.nameE! : ads.nameA!,
                       style: Get.textTheme.bodyText1!.copyWith(
-                        fontSize: 20.sp,
+                        fontSize: 35.sp,
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
@@ -66,7 +41,7 @@ class MainCategory extends StatelessWidget {
                       child: Text(
                         'View all'.tr,
                         style: Get.textTheme.bodyText1!.copyWith(
-                          fontSize: 20.sp,
+                          fontSize: 35.sp,
                           color: Colors.amber,
                           fontWeight: FontWeight.bold,
                           decoration: TextDecoration.underline,
@@ -77,7 +52,7 @@ class MainCategory extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 310.h,
+                height: 500.h,
                 child: ListView.builder(
                   // shrinkWrap: true,
                   itemCount: ads.items!.length,
@@ -95,6 +70,42 @@ class MainCategory extends StatelessWidget {
               ),
             ],
           )
-        : Container();
+        : Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
+            child: Row(
+              children: [
+                // Text(
+                //   'ADS'.tr,
+                //   style: Get.textTheme.bodyText1,
+                // ),
+                // Spacer(),
+                // Padding(
+                //   padding: EdgeInsets.symmetric(horizontal: 15.w),
+                //   child: ElevatedButton(
+                //     onPressed: () {
+                //       Get.to(() => CreateAdsView());
+                //     },
+                //     style: ElevatedButton.styleFrom(
+                //       fixedSize: Size(180.w, 30.h),
+                //       primary: Colors.amber,
+                //     ),
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.center,
+                //       children: [
+                //         Text(
+                //           'create ADS'.tr,
+                //           style: Get.textTheme.bodyText1!.copyWith(
+                //             fontSize: 16.sp,
+                //             color: Colors.white,
+                //           ),
+                //         ),
+                //         const Icon(Icons.add)
+                //       ],
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
+          );
   }
 }

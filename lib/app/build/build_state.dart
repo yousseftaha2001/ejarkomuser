@@ -16,8 +16,13 @@ class BuildState {
   BuildViewModel? viewModel;
   late MainScreenHTTP mainScreenHTTP;
   late RentHttp rentHttp;
-  RxDouble containerH = (Get.height * 0.45).h.obs;
-  RxBool containerIsOpened = false.obs;
+  RxDouble containerH = (Get.height * 0.5).obs;
+  RxInt containerIsOpened = 1.obs;
+  RxInt currentIndex = 0.obs;
+
+  //1 normal
+  //2 full desc
+  //3 photo view
   List<String> images = [
     'https://images.theconversation.com/files/121429/original/image-20160505-19851-1qywl91.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop',
     'https://s3.amazonaws.com/architecture-org/files/buildings/sqr_lrg_tall_chicago-river-angie-mcmonigal-810.jpg',

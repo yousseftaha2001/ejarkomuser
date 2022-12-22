@@ -3,9 +3,9 @@ import 'package:ejarkom/app/build/build_view.dart';
 import 'package:ejarkom/utils/apis.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../../../utils/method.dart';
 import '../models/PageOneModel.dart';
 
 class BuildingWidget extends StatelessWidget {
@@ -30,8 +30,8 @@ class BuildingWidget extends StatelessWidget {
         ),
         child: Container(
           // color: Colors.black,
-          width: Get.width / 2.w,
-          height: 310.h,
+          width: Get.width / 2,
+          height: 500.h,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10.sp),
@@ -40,8 +40,8 @@ class BuildingWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               Container(
-                width: Get.width / 1.8.w,
-                height: 150.h,
+                width: Get.width / 2,
+                height: 200.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10.sp),
@@ -65,48 +65,30 @@ class BuildingWidget extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          ads.nameE!,
+                          isEnglish() ? ads.nameE! : ads.nameA!,
                           style: Get.textTheme.bodyText1!.copyWith(
                             color: Get.theme.primaryColor,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20.sp,
+                            fontSize: 40.sp,
                           ),
                         ),
-                        const Spacer(),
-                        // GetBuilder<FavPref>(
-                        //   // init: FavPref(),
-                        //   builder: (logic) {
-                        //     return IconButton(
-                        //       onPressed: () {
-                        //         logic.addFav(id: id);
-                        //       },
-                        //       icon: Icon(
-                        //         logic.isFaved(id)
-                        //             ? FontAwesomeIcons.heartCircleCheck
-                        //             : FontAwesomeIcons.heart,
-                        //         color:
-                        //         logic.isFaved(id) ? Colors.red : Colors.grey,
-                        //       ),
-                        //     );
-                        //   },
-                        // )
                       ],
                     ),
-                    SizedBox(height: 3.h),
+                    SizedBox(height: 10.h),
                     Text(
-                      ads.descE!,
+                      isEnglish() ? ads.descE! : ads.descA!,
                       style: Get.textTheme.bodyText1!.copyWith(
-                        fontSize: 17.sp,
+                        fontSize: 30.sp,
                         color: Get.theme.primaryColor,
                       ),
                       overflow: TextOverflow.ellipsis,
                       softWrap: false,
                     ),
-                    SizedBox(height: 3.h),
+                    SizedBox(height: 10.h),
                     Text(
-                      ads.addressE!,
+                      isEnglish() ? ads.addressE! : ads.addressA!,
                       style: Get.textTheme.bodyText1!.copyWith(
-                        fontSize: 17.sp,
+                        fontSize: 30.sp,
                         color: Get.theme.primaryColor,
                       ),
                       overflow: TextOverflow.ellipsis,
@@ -131,7 +113,7 @@ class BuildingWidget extends StatelessWidget {
                                   style: Get.textTheme.bodyText1!.copyWith(
                                     color: Get.theme.primaryColor,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 20.sp,
+                                    fontSize: 30.sp,
                                   ),
                                 ),
                               ],
@@ -149,7 +131,7 @@ class BuildingWidget extends StatelessWidget {
                                   style: Get.textTheme.bodyText1!.copyWith(
                                     color: Get.theme.primaryColor,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 20.sp,
+                                    fontSize: 30.sp,
                                   ),
                                 ),
                               ],
@@ -161,7 +143,7 @@ class BuildingWidget extends StatelessWidget {
                           '${ads.cost}\$',
                           style: Get.textTheme.bodyText1!.copyWith(
                             color: Colors.amber,
-                            fontSize: 20.sp,
+                            fontSize: 40.sp,
                           ),
                         )
                       ],

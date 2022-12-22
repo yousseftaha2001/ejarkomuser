@@ -64,7 +64,7 @@ class _CancelRequestDialogViewState extends State<CancelRequestDialogView> {
                       logic.cancelAd(id: widget.id!);
                     },
                     style: ElevatedButton.styleFrom(
-                        fixedSize: Size(Get.width / 2.w, 40.h)),
+                        fixedSize: Size(Get.width / 2, 80.h)),
                     child: Text(
                       'Yes'.tr,
                       style: Get.textTheme.bodyText1!.copyWith(

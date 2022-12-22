@@ -47,10 +47,16 @@ android {
         applicationId "anubis.ejarkom.ejarkom"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 27
+        minSdkVersion 22
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+//        multiDexEnabled true
+//        minifyEnabled true
+//        useProguard true
+//        ndk {
+//            abiFilters 'x86', 'armeabi-v7a'
+//        }
     }
 
     buildTypes {

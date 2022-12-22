@@ -19,29 +19,30 @@ class _SearchModeState extends State<SearchMode> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: state.searchedList.isEmpty
-          ? Center(
-              child: Text(
-                'NO Ads yet'.tr,
-                style: Get.textTheme.bodyText1,
-              ),
-            )
-          : Wrap(
-              alignment: WrapAlignment.start,
-              children: List.generate(
-                state.searchedList.length,
-                (index) => Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 5.w,
-                    vertical: 10.h,
-                  ),
-                  child: BuildingWidgetV(
-                    ads: state.searchedList[index],
+    return GetBuilder<ViewAllLogic>(
+      builder: (controller) {
+        return state.searchedList.isEmpty
+            ? Center(
+                child: Text(
+                  'No Ads Yet'.tr,
+                  style: Get.textTheme.bodyText1,
+                ),
+              )
+            : Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: ListView(
+                children: List.generate(
+                  state.allBuildingsModel!.ads!.length,
+                  (index) => Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10.h),
+                    child: BuildingWidgetV(
+                      ads: state.searchedList[index],
+                    ),
                   ),
                 ),
               ),
-            ),
+            );
+      },
     );
   }
 }

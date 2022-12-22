@@ -22,7 +22,7 @@ class _NormalModeState extends State<NormalMode> {
     return state.allBuildingsModel!.ads!.isEmpty
         ? Center(
             child: Text(
-              'NO Ads yet'.tr,
+              'No Ads yet'.tr,
               style: Get.textTheme.bodyText1,
             ),
           )

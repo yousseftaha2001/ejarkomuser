@@ -13,7 +13,9 @@ import 'pdf_view_state.dart';
 /// @author
 /// @date: 2022-10-21 01:52:20
 class PdfViewPage extends StatefulWidget {
-  PdfViewPage({Key? key}) : super(key: key);
+  PdfViewPage({Key? key,required this.title}) : super(key: key);
+  late String title;
+
 
   @override
   State<PdfViewPage> createState() => _PdfViewPageState();
@@ -47,7 +49,7 @@ class _PdfViewPageState extends State<PdfViewPage> {
       appBar: AppBar(
         leading: const LeadingButton(),
         title: Text(
-          'Help'.tr,
+          '${widget.title}'.tr,
           style: Get.textTheme.bodyText1!.copyWith(
             fontSize: 20.sp,
             color: Get.theme.primaryColor,

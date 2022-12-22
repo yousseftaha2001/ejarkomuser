@@ -33,7 +33,7 @@ class _AllBuildsRequestsViewState extends State<AllBuildsRequestsView> {
         title: Text(
           'Management Requests'.tr,
           style: Get.textTheme.bodyText1!.copyWith(
-            fontSize: 20.sp,
+            fontSize: 40.sp,
             color: Get.theme.primaryColor,
             fontWeight: FontWeight.bold,
           ),
@@ -78,7 +78,7 @@ class _AllBuildsRequestsViewState extends State<AllBuildsRequestsView> {
                                     children: [
                                       Container(
                                         width: Get.width,
-                                        height: 200.h,
+                                        height: 400.h,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.only(
                                             topLeft: Radius.circular(10.sp),
@@ -161,7 +161,7 @@ class _AllBuildsRequestsViewState extends State<AllBuildsRequestsView> {
                                                     color:
                                                         Get.theme.primaryColor,
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 20.sp,
+                                                    fontSize: 35.sp,
                                                   ),
                                                 ),
                                                 const Spacer(),
@@ -172,7 +172,7 @@ class _AllBuildsRequestsViewState extends State<AllBuildsRequestsView> {
                                               state.ads[index].desc!,
                                               style: Get.textTheme.bodyText1!
                                                   .copyWith(
-                                                fontSize: 17.sp,
+                                                fontSize: 35.sp,
                                                 color: Get.theme.primaryColor,
                                               ),
                                               overflow: TextOverflow.ellipsis,
@@ -183,7 +183,7 @@ class _AllBuildsRequestsViewState extends State<AllBuildsRequestsView> {
                                               state.ads[index].address!,
                                               style: Get.textTheme.bodyText1!
                                                   .copyWith(
-                                                fontSize: 17.sp,
+                                                fontSize: 35.sp,
                                                 color: Get.theme.primaryColor,
                                               ),
                                             ),
@@ -192,7 +192,7 @@ class _AllBuildsRequestsViewState extends State<AllBuildsRequestsView> {
                                               state.ads[index].phone!,
                                               style: Get.textTheme.bodyText1!
                                                   .copyWith(
-                                                fontSize: 17.sp,
+                                                fontSize: 35.sp,
                                                 color: Get.theme.primaryColor,
                                               ),
                                             ),
@@ -217,7 +217,7 @@ class _AllBuildsRequestsViewState extends State<AllBuildsRequestsView> {
                                                       .textTheme.bodyText1!
                                                       .copyWith(
                                                     color: Colors.amber,
-                                                    fontSize: 20.sp,
+                                                    fontSize: 35.sp,
                                                   ),
                                                 )
                                               ],
@@ -268,13 +268,12 @@ class _AllBuildsRequestsViewState extends State<AllBuildsRequestsView> {
       ),
     );
   }
-
   Widget getState({required String s}) {
     print(s);
     if (s == 'Waiting') {
       return Container(
-        height: 30.h,
-        width: 150.h,
+         height: 80.h,
+        width: 250.w,
         decoration: BoxDecoration(
             color: Colors.amber.withOpacity(0.6),
             borderRadius: BorderRadius.circular(8.sp)),
@@ -287,7 +286,7 @@ class _AllBuildsRequestsViewState extends State<AllBuildsRequestsView> {
                 'Waiting....'.tr,
                 style: Get.theme.textTheme.bodyText1!.copyWith(
                   color: Colors.black38,
-                  fontSize: 19.sp,
+                  fontSize: 30.sp,
                 ),
               ),
               const Icon(
@@ -298,10 +297,10 @@ class _AllBuildsRequestsViewState extends State<AllBuildsRequestsView> {
           ),
         ),
       );
-    } else if (s == 'Accept') {
+    } else if (s == 'Accepted') {
       return Container(
-        height: 30.h,
-        width: 150.h,
+        height: 80.h,
+        width: 250.w,
         decoration: BoxDecoration(
             color: Colors.green.withOpacity(0.6),
             borderRadius: BorderRadius.circular(8.sp)),
@@ -314,7 +313,7 @@ class _AllBuildsRequestsViewState extends State<AllBuildsRequestsView> {
                 'Accepted'.tr,
                 style: Get.theme.textTheme.bodyText1!.copyWith(
                   color: Colors.white,
-                  fontSize: 19.sp,
+                  fontSize: 30.sp,
                 ),
               ),
               Icon(
@@ -327,8 +326,8 @@ class _AllBuildsRequestsViewState extends State<AllBuildsRequestsView> {
       );
     } else {
       return Container(
-        height: 30.h,
-        width: 150.h,
+         height: 80.h,
+        width: 250.w,
         decoration: BoxDecoration(
             color: Colors.red.withOpacity(0.6),
             borderRadius: BorderRadius.circular(8.sp)),
@@ -341,7 +340,7 @@ class _AllBuildsRequestsViewState extends State<AllBuildsRequestsView> {
                 'Rejected'.tr,
                 style: Get.theme.textTheme.bodyText1!.copyWith(
                   color: Colors.white,
-                  fontSize: 19.sp,
+                  fontSize: 30.sp,
                 ),
               ),
               Icon(
@@ -354,4 +353,6 @@ class _AllBuildsRequestsViewState extends State<AllBuildsRequestsView> {
       );
     }
   }
+
+  
 }

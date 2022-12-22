@@ -10,6 +10,7 @@ class MyDataBase {
     required String name,
     required String email,
     required String phone,
+    required String photo,
   }) async {
     await box.write('token', token);
     await box.write('pass', pass);
@@ -17,6 +18,7 @@ class MyDataBase {
     await box.write('name', name);
     await box.write('email', email);
     await box.write('phone', phone);
+    await box.write('photo', photo);
   }
 
   static void removeDate() async {
@@ -26,6 +28,7 @@ class MyDataBase {
     await box.remove('name');
     await box.remove('email');
     await box.remove('phone');
+    await box.remove('photo');
   }
 
   static void updatePassword(String newPass) {
@@ -40,4 +43,5 @@ class MyDataBase {
   static String getName() => box.read('name') ?? '';
   static String getEmail() => box.read('email') ?? '';
   static String getPhone() => box.read('phone') ?? '';
+  static String getPhoto() => box.read('photo') ?? '';
 }

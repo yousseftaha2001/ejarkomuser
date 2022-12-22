@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:ejarkom/app/build/models/BuildViewModel.dart';
 import 'package:ejarkom/app/complete_data/models/MyDataModel.dart';
 import 'package:ejarkom/utils/apis.dart';
 import 'package:ejarkom/utils/my_database.dart';
@@ -59,7 +58,8 @@ class RentHttp {
       );
       print('h2');
       request.files.add(
-        http.MultipartFile.fromBytes('photo2', idPhoto, filename: 'photo2.png'),
+        http.MultipartFile.fromBytes('photo2', sigPhoto,
+            filename: 'photo2.png'),
       );
       print('h');
 

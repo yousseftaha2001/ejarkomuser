@@ -5,6 +5,7 @@ import 'package:ejarkom/app/Ads/models/GetBuildTypeModel.dart';
 import 'package:ejarkom/app/Ads/models/GetCityModel.dart';
 import 'package:ejarkom/app/Ads/models/Zone.dart';
 import 'package:ejarkom/app/BuildsRequest/models/manage_req_model.dart';
+import 'package:ejarkom/utils/method.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,7 +56,8 @@ class AddBuildManageLogic extends GetxController {
       (l) {
         state.cities = [];
         update(['ci']);
-        Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        // Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        mySnackBar(title: 'Error'.tr,body: 'please check your internet connection'.tr);
       },
       (r) {
         state.cities = r.cities!;
@@ -74,7 +76,8 @@ class AddBuildManageLogic extends GetxController {
       (l) {
         state.cities = [];
         update(['b']);
-        Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        // Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        mySnackBar(title: 'Error'.tr,body: 'please check your internet connection'.tr);
       },
       (r) {
         state.typeBuilds = r.typeBuild!;
@@ -94,7 +97,8 @@ class AddBuildManageLogic extends GetxController {
       (l) {
         state.zones = [];
         update(['z']);
-        Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        // Get.snackbar('Error'.tr, 'please check your internet connection'.tr);
+        mySnackBar(title: 'Error'.tr,body: 'please check your internet connection'.tr);
       },
       (r) {
         if (r.zones!.isNotEmpty) {
@@ -178,20 +182,26 @@ class AddBuildManageLogic extends GetxController {
         (l) {
           print(l);
 
-          Get.snackbar('Error'.tr, l.toString());
+          // Get.snackbar('Error'.tr, l.toString());
+          mySnackBar(title: 'Error'.tr,body: l.toString());
         },
         (r) {
           Get.back();
 
-          Get.snackbar(
-            'Done'.tr,
-            'This Request has been Sent'.tr,
-            duration: const Duration(seconds: 5),
-            icon: Icon(
-              Icons.check,
-              color: Colors.green,
-              size: 45.sp,
-            ),
+          // Get.snackbar(
+          //   'Done'.tr,
+          //   'This Request has been Sent'.tr,
+          //   duration: const Duration(seconds: 5),
+          //   icon: Icon(
+          //     Icons.check,
+          //     color: Colors.green,
+          //     size: 45.sp,
+          //   ),
+          // );
+          mySnackBar(
+           title: 'Done'.tr,
+           body: 'This Request has been Sent'.tr,
+           
           );
         },
       );

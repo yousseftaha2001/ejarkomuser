@@ -1,3 +1,4 @@
+import 'package:ejarkom/utils/method.dart';
 import 'package:get/get.dart';
 
 import 'pdf_view_state.dart';
@@ -27,6 +28,7 @@ class PdfViewLogic extends GetxController {
 
   void pageError(String e) {
     Get.snackbar('Error'.tr, e.toString());
+    mySnackBar(title: 'Error'.tr, body: e.toString());
   }
 
   @override

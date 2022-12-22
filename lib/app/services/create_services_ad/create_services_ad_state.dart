@@ -30,6 +30,8 @@ class CreateServicesAdState {
     typeServes = [];
   }
 
+  RxInt langOption=0.obs;
+
   late ServicesPandlesAdsModel servicesPandlesAdsModel;
   List<PandleServe> pandels = [];
   Rxn<PandleServe> selectedPandle = Rxn(PandleServe(id: 100000));
