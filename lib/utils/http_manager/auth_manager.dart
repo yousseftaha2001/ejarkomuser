@@ -11,6 +11,63 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class AuthManger {
+  static Future<Either<String, dynamic>> postRequestHelperNoToken({
+    required String api,
+    required Map<String, String> data,
+    var photo,
+    var photo2,
+    var photo3,
+    var video,
+  }) async {
+    try {
+      var request = http.MultipartRequest('POST', Uri.parse(api));
+
+      request.fields.addAll(data);
+      if (photo != null) {
+        request.files.add(
+          http.MultipartFile.fromBytes('photo1', photo, filename: 'name.png'),
+        );
+      }
+      if (photo2 != null) {
+        request.files.add(
+          http.MultipartFile.fromBytes('photo2', photo2, filename: 'name.png'),
+        );
+      }
+      if (photo3 != null) {
+        request.files.add(
+          http.MultipartFile.fromBytes('photo3', photo3, filename: 'name.png'),
+        );
+      }
+      if (video != null) {
+        request.files.add(
+          http.MultipartFile.fromBytes('video', video, filename: 'name.png'),
+        );
+      }
+      print('1');
+      http.StreamedResponse response = await request.send();
+       print('2');
+      if (response.statusCode == 200) {
+        var result = await response.stream.bytesToString();
+        if (jsonDecode(result)['status']) {
+          print(jsonDecode(result));
+           print('3');
+          return Right(jsonDecode(result));
+        } else {
+           print('4');
+          return Left(jsonDecode(result)['msg'].toString());
+        }
+      } else {
+        // print(jsonDecode(result)['status']);
+         print('5');
+        print(response.reasonPhrase.toString());
+        return Left(response.reasonPhrase.toString());
+      }
+    } catch (e) {
+       print('6');
+      print(e.toString());
+      return Left(e.toString());
+    }
+  }
   static Future<Either<String, LoginResult>> login(
       {required String email,
       required String password,

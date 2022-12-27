@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 const base = 'https://eajarcom.com/api/';
+
 const loginAPI = '${base}loginuser';
 const logoutAPI = '${base}logout_user';
 const googlaSignAPI = '${base}loginuser2';
@@ -56,6 +57,9 @@ const googleAPI = '${base}google';
 const photoAPI = 'https://eajarcom.com/storage/app/';
 const constWidth=428;
 const constH=926;
-
+//----------///
+const loginCompanyAPI = '${base}login_company';
+const logoutCompanyAPI = '${base}logout_company';
+const reqCompanyAPI = '${base}req_company';
 //padding= number/mockupwideth*width
 // text=wideth/mWidth

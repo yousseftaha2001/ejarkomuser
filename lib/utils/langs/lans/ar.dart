@@ -1,5 +1,6 @@
 const Map<String, String> ar = {
   // "Forget Password?":'نسيب كلمة المرور؟'
+  'As A Company?':'كـ شركة؟',
   'Login to your account': 'تسجيل الدخول الى حسابك',
   'E-Mail': 'الحساب الالكترونى',
   'Password': 'كلمة المرور',

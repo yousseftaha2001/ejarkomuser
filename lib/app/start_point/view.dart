@@ -24,8 +24,9 @@ class _StartPointPageState extends State<StartPointPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return logic.token.value == '' ? LoginPage() : HomePage();
-    });
+    // return Obx(() {
+    //   return logic.token.value == '' ? LoginPage() : HomePage();
+    // });
+    return LoginPage();
   }
 }

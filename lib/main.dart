@@ -34,11 +34,11 @@ void main() async {
   // notificationInit();
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   FlutterNativeSplash.remove();
-  runApp( DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (context) => MyApp(), // Wrap your app
-  ));
-  // runApp(MyApp());
+  // runApp( DevicePreview(
+  //   enabled: !kReleaseMode,
+  //   builder: (context) => MyApp(), // Wrap your app
+  // ));
+  runApp(MyApp());
   
 }
 

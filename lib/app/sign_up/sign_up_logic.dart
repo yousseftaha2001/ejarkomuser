@@ -260,23 +260,7 @@ class SignUpLogic extends GetxController {
               },
               (r) {
                 state.phoneVeriModel = r;
-              //   print(DateFormat.yMMMMEEEEd(state.phoneVeriModel!.tryAgain!).toString());
-              //  print(state.phoneVeriModel!.tryAgain!.minute -
-              //       DateTime.now().minute);
-              //   print(
-              //       state.phoneVeriModel!.tryAgain!.difference(DateTime.now()));
-              //   print(
-              //       DateTime.now().difference(state.phoneVeriModel!.tryAgain!));
-              //   var r2 =
-              //       DateTime.now().difference(state.phoneVeriModel!.tryAgain!);
-              //   print(DateTime(
-              //     state.phoneVeriModel!.tryAgain!.year,
-              //     state.phoneVeriModel!.tryAgain!.month,
-              //     state.phoneVeriModel!.tryAgain!.day,
-              //     DateTime.now().hour - r2.inHours,
-              //     DateTime.now().minute - r2.inMinutes,
-              //     DateTime.now().second - r2.inSeconds, 
-              //   ).toString()+'hhhh');
+             
                 state.timeIsOpen.value = true;
                 Get.back();
                 state.currentStep.value = state.currentStep.value + 1;

@@ -2,6 +2,7 @@ import 'package:ejarkom/app/login/ForgetPasswordMod/view.dart';
 import 'package:ejarkom/app/login/widgets/forget_password.dart';
 import 'package:ejarkom/app/login/widgets/selection_dialog.dart';
 import 'package:ejarkom/app/sign_up/sign_up_view.dart';
+import 'package:ejarkom/company_app/CompanyLogin/bindings.dart';
 import 'package:ejarkom/utils/langs/lang_controller.dart';
 import 'package:ejarkom/utils/widgets/auth_widgets.dart';
 import 'package:ejarkom/utils/widgets/my_indicator.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_signin_button/button_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../../company_app/CompanyLogin/view.dart';
 import 'logic.dart';
 
 class LoginPage extends StatelessWidget {
@@ -257,6 +259,17 @@ class LoginPage extends StatelessWidget {
                           )
                         ],
                       ),
+                      TextButton(
+                        onPressed: () {
+                          Get.to(()=>CompanyloginPage(),binding: CompanyLoginBinding(),);
+                        },
+                        child: Text(
+                          'As A Company?'.tr,
+                          style: Get.textTheme.bodyText1!.copyWith(
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 )

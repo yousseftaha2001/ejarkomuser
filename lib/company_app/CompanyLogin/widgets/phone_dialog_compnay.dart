@@ -1,14 +1,13 @@
-import 'package:ejarkom/app/login/logic.dart';
-import 'package:ejarkom/app/login/state.dart';
+import 'package:ejarkom/company_app/CompanyLogin/index.dart';
 import 'package:ejarkom/utils/widgets/auth_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class PhoneDialog extends StatelessWidget {
-   PhoneDialog({super.key});
-   final LoginLogic logic = Get.find<LoginLogic>();
-    final LoginState state = Get.find<LoginLogic>().state;
+class PhoneDialogCompany extends StatelessWidget {
+   PhoneDialogCompany({super.key});
+   final CompanyloginController logic = Get.find<CompanyloginController>();
+    final CompanyloginState state = Get.find<CompanyloginController>().state;
 
   @override
   Widget build(BuildContext context) {
