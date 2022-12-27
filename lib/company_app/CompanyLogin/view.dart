@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../../app/login/ForgetPasswordMod/view.dart';
-import '../CompanySignUp/view.dart';
+
 import 'index.dart';
 import 'widgets/widgets.dart';
 
