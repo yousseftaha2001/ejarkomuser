@@ -5,6 +5,7 @@ class MyDataBase {
 
   static Future<void> insertData({
     required String token,
+    required String type,
     required String pass,
     required String id,
     required String name,
@@ -13,6 +14,7 @@ class MyDataBase {
     required String photo,
   }) async {
     await box.write('token', token);
+    await box.write('type', type);
     await box.write('pass', pass);
     await box.write('id', id);
     await box.write('name', name);
@@ -23,6 +25,7 @@ class MyDataBase {
 
   static void removeDate() async {
     await box.remove('token');
+    await box.remove('type');
     await box.remove('pass');
     await box.remove('id');
     await box.remove('name');
@@ -36,6 +39,7 @@ class MyDataBase {
   }
 
   static String getToken() => box.read('token') ?? '';
+  static String getType() => box.read('type') ?? '';
 
   static String getPassword() => box.read('pass') ?? '';
 

@@ -177,6 +177,7 @@ class SignUpLogic extends GetxController {
             token: r.token!,
             id: r.user!.id!.toString(),
             pass: '',
+            type: '1',
             email: r.user!.email!,
             name: r.user!.name!,
             phone: r.user!.phone!,

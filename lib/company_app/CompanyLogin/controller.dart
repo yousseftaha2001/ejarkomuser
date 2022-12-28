@@ -1,4 +1,5 @@
 import 'package:ejarkom/app/sign_up/models/signup_requets.dart';
+import 'package:ejarkom/company_app/CompanyHome/view.dart';
 import 'package:ejarkom/company_app/CompanyLogin/models/login_model.dart';
 import 'package:ejarkom/utils/apis.dart';
 import 'package:ejarkom/utils/http_manager/auth_manager.dart';
@@ -229,6 +230,7 @@ class CompanyloginController extends GetxController {
           LoginModel loginResultModel = LoginModel.fromJson(r);
           MyDataBase.insertData(
             token: loginResultModel.token!,
+            type: '2',
             id: loginResultModel.user!.id!.toString(),
             pass: state.password.text,
             email: loginResultModel.user!.email!,
@@ -238,7 +240,7 @@ class CompanyloginController extends GetxController {
           );
           changeLoginState();
           // print(loginResultModel);
-          // Get.offAll(() => HomePage());
+          Get.offAll(() => CompanyhomePage());
         },
       );
     } else {
@@ -337,6 +339,7 @@ class CompanyloginController extends GetxController {
               MyDataBase.insertData(
                 token: r.token!,
                 id: r.user!.id!.toString(),
+                type: '2',
                 pass: state.password.text,
                 email: r.user!.email!,
                 name: r.user!.name!,
@@ -400,6 +403,7 @@ class CompanyloginController extends GetxController {
           MyDataBase.insertData(
             token: r.token!,
             id: r.user!.id!.toString(),
+            type: '2',
             pass: '',
             email: r.user!.email!,
             name: r.user!.name!,

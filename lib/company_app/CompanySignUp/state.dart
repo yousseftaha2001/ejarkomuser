@@ -21,6 +21,8 @@ class CompanysignupState {
   Rxn<Uint8List> photo = Rxn(Uint8List(0));
   Rxn<Uint8List> photo2 = Rxn(Uint8List(0));
   Rxn<Uint8List> photo3 = Rxn(Uint8List(0));
+     TextEditingController emailCode=TextEditingController();
+   TextEditingController phoneCode=TextEditingController();
   RxString address = ''.obs;
   // late Timer timer;
   PhoneVeriModel? phoneVeriModel;

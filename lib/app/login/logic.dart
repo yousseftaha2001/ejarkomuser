@@ -228,6 +228,7 @@ class LoginLogic extends GetxController {
         (r) {
           MyDataBase.insertData(
             token: r.token!,
+             type: '1',
             id: r.user!.id!.toString(),
             pass: state.password.text,
             email: r.user!.email!,
@@ -335,6 +336,7 @@ class LoginLogic extends GetxController {
               MyDataBase.insertData(
                 token: r.token!,
                 id: r.user!.id!.toString(),
+                 type: '1',
                 pass: state.password.text,
                 email: r.user!.email!,
                 name: r.user!.name!,
@@ -397,6 +399,7 @@ class LoginLogic extends GetxController {
           // changeSend();
           MyDataBase.insertData(
             token: r.token!,
+             type: '1',
             id: r.user!.id!.toString(),
             pass: '',
             email: r.user!.email!,

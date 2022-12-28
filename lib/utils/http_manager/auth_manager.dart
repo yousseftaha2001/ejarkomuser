@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:ejarkom/app/login/models/login_result.dart';
@@ -10,7 +11,160 @@ import 'package:ejarkom/utils/my_database.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/local_error.dart';
+
 class AuthManger {
+    static Future<Either<String, String>> actionOnRequest(
+      {required String id, required String api}) async {
+    try {
+      var token = MyDataBase.getToken();
+      var headers = {'Authorization': 'Bearer $token'};
+      var request = http.Request('GET', Uri.parse('$api$id'));
+
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        // print(await response.stream.bytesToString());
+        var result = await response.stream.bytesToString();
+        var formattedResult = jsonDecode(result);
+        if (jsonDecode(result)['status'] == true) {
+          print(formattedResult);
+          return const Right('Done');
+        } else {
+          return Left(formattedResult['msg']);
+        }
+      } else {
+        print(response.reasonPhrase);
+        return Left(response.reasonPhrase.toString());
+      }
+    } catch (e) {
+      print(e.toString());
+      return Left(
+        e.toString(),
+      );
+    }
+  }
+  static Future<Either<LocalError, String>> postRequestHelper({
+    required String api,
+    Map<String, String>? data,
+    var photo,
+    var photo2,
+    var photo1,
+    var video,
+    List<Uint8List>? photos,
+  }) async {
+    try {
+      var token = MyDataBase.getToken();
+      if (token.isNotEmpty) {
+        var headers = {'Authorization': 'Bearer $token'};
+        var request = http.MultipartRequest('POST', Uri.parse(api));
+        request.headers.addAll(headers);
+        if (data != null) {
+          request.fields.addAll(data);
+        }
+        if (photo != null) {
+          request.files.add(
+            http.MultipartFile.fromBytes('photo', photo, filename: 'name.png'),
+          );
+        }
+        if (photo1 != null) {
+          request.files.add(
+            http.MultipartFile.fromBytes('photo1', photo2,
+                filename: 'name.png'),
+          );
+        }
+        if (photo2 != null) {
+          request.files.add(
+            http.MultipartFile.fromBytes('photo2', photo2,
+                filename: 'name.png'),
+          );
+        }
+        if (photos != null) {
+          print('h');
+          for (int i = 0; i < photos.length; i++) {
+            // File f=File(createAdModel.photos![i]);
+            // Uint8List image= await f.readAsBytes();
+            // print(photos.first);
+            request.files.add(
+              http.MultipartFile.fromBytes('photo${i + 1}', photos[i],
+                  filename: 'name.png'),
+            );
+          }
+          print('h2');
+        }
+        if (video != null) {
+          request.files.add(
+            http.MultipartFile.fromBytes('video', video, filename: 'name.png'),
+          );
+        }
+        http.StreamedResponse response = await request.send();
+        if (response.statusCode == 200) {
+          var result = await response.stream.bytesToString();
+          print(result);
+          if (jsonDecode(result)['status']) {
+            return const Right('Task added successfully.');
+          } else {
+            return Left(
+                LocalError(error: jsonDecode(result)['msg'].toString()));
+          }
+        } else {
+          // print(jsonDecode(result)['status']);
+          print(response.statusCode.toString());
+          return Left(LocalError(error: 'Some thing want wrong1'));
+        }
+      } else {
+        return Left(LocalError(error: 'No tokne'));
+      }
+    } catch (e) {
+      return Left(LocalError(error: e.toString()));
+    }
+  }
+
+  static Future<Either<LocalError, dynamic>> getRequestHelper(
+      {required String api}) async {
+    try {
+      var token = MyDataBase.getToken();
+      if (token.isNotEmpty) {
+        var headers = {'Authorization': 'Bearer $token'};
+        var request = http.MultipartRequest('GET', Uri.parse(api));
+
+        request.headers.addAll(headers);
+
+        http.StreamedResponse response = await request.send();
+
+        if (response.statusCode == 200) {
+          // print(await response.stream.bytesToString());
+          var result = await response.stream.bytesToString();
+
+          var formattedResult = jsonDecode(result);
+          if (formattedResult['status']) {
+            print(formattedResult);
+            return Right(formattedResult);
+          } else {
+            return Left(LocalError(error: formattedResult['msg']));
+          }
+        } else {
+          // print(response.reasonPhrase);
+          return Left(
+            LocalError(
+              error: response.reasonPhrase.toString(),
+            ),
+          );
+        }
+      } else {
+        return Left(LocalError(error: 'No Token'));
+      }
+    } catch (e) {
+      return left(
+        LocalError(
+          error: e.toString(),
+          location: 'catch api services',
+        ),
+      );
+    }
+  }
   static Future<Either<String, dynamic>> postRequestHelperNoToken({
     required String api,
     required Map<String, String> data,
@@ -220,12 +374,14 @@ class AuthManger {
       return left(e.toString());
     }
   }
+  
 
   static Future<Either<String, WhatsVerModel>> sendWhats(
       {required String phone}) async {
     try {
       var request = http.MultipartRequest('POST', Uri.parse(sendWhatsAppAPI));
       // request.fields.addAll({'email': email});
+      print(phone);
 
       request.fields.addAll({'id': '+962$phone'});
 
@@ -349,6 +505,37 @@ class AuthManger {
       if (token.isNotEmpty) {
         var headers = {'Authorization': 'Bearer $token'};
         var request = http.Request('POST', Uri.parse(logoutAPI));
+
+        request.headers.addAll(headers);
+
+        http.StreamedResponse response = await request.send();
+
+        if (response.statusCode == 200) {
+          // print(await response.stream.bytesToString());
+          var result = await response.stream.bytesToString();
+          print(jsonDecode(result));
+          if (jsonDecode(result)['message'] == 'Logout successfuly') {
+            return Right('Done');
+          } else {
+            return Left('Error');
+          }
+        } else {
+          print(response.reasonPhrase);
+          return Left('Error');
+        }
+      } else {
+        return Left('Error');
+      }
+    } catch (e) {
+      return Left('Error');
+    }
+  }
+  static Future<Either<String, String>> logoutHTTPC() async {
+    try {
+      var token = MyDataBase.getToken();
+      if (token.isNotEmpty) {
+        var headers = {'Authorization': 'Bearer $token'};
+        var request = http.Request('POST', Uri.parse(logoutCAPI));
 
         request.headers.addAll(headers);
 

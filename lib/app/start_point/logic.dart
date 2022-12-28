@@ -9,6 +9,7 @@ class StartPointLogic extends GetxController {
   final StartPointState state = StartPointState();
 
   RxString token = ''.obs;
+  RxString type = ''.obs;
 
   void notificationInit() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
@@ -42,9 +43,11 @@ class StartPointLogic extends GetxController {
   checkToken() async {
     // MyDataBase.removeDate();
     var result = MyDataBase.getToken();
+    var result2 = MyDataBase.getType();
     printInfo(info: result);
 
     token.value = result;
+    type.value = result2;
   }
 
   @override
@@ -68,4 +71,5 @@ class StartPointLogic extends GetxController {
   }
 
   updateToken(String newToken) => token.value = newToken;
+  updateType(String newToken) => type.value = newToken;
 }

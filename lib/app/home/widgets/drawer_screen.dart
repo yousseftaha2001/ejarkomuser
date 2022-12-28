@@ -342,7 +342,7 @@ class DrawerScreen extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     Text(
-                      'Log out',
+                     'Log out'.tr,
                       style: Get.textTheme.bodyText1!.copyWith(
                         color: Colors.white70,
                       ),

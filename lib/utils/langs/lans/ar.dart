@@ -173,6 +173,67 @@ const Map<String, String> ar = {
   'User Not Found':'المستخدم غير موجود',
   'please enter your Phone or E-mail':'من فضلك ادخل الحساب الالكترونى او رقم الهاتف',
   // 'Change Password':'Change Password',
+  // 'Password':'Password', 'E-mail or phone':'الحساب الالكترونى او رقم الهاتف',
+
+  // 'Password':'Password',
+
+  'Logout':'تسجيل الخروج',
+ 
+  // 'please complete your data':'please complete your data',
+
+     
+  //--------------------Login---------------------------//
+
+  //--------------------Signup---------------------------//
+
+
+'Are you sure you want buy this package?':'هل انت متاكد من شراء هذه الباقة',
+  
+  'Buy':'شراء',
+  // 'Logout':'تسجيل الخروج',
+  'Number of Ads ':'عدد الاعلانات',
+  'ADS':'الاعلانات',
+  'Furnished':'مفروشة',
+  'Options':'مواصفات',
+  'Quarterly':'ربع سنوية',
+  'English':'اللغة الانجليزية',
+  'Arabic':'اللغة العربية',
+
+  'half a year':'نصف سنوية',
+  'Change Language':'تغير اللغة',
+  'Company Data':'بيانات الشركة',
+  'Number Of bathroom':'عدد الحمامات',
+  'Video':'فيديو',
+  'Amount':'المبلغ',
+  'Create Ad':'انشاء اعلان',
+  
+  'Waiting':'قيد الانتظار',
+  'Active':'قيد العمل',
+  'Canceld Or Rejected':'ملغية او مرفوضة',
+  // 'Finished':'انتهت',
+ 
+  'My Ads':'اعلاناتى',
+  
+  // 'Ads':'اعلانات',
+  
+  // 'No Ads Yet.':'لا توجد اعلانات',
+ 
+  'No requests Yet':'لا توجد طلبات حتى الان',
+  'Registration Request':'طلب انضمام',
+  'Add Company Logo':'اضافة شعار الشركة',
+  'Email':'الحساب الالكترونى',
+  // 'Requests':'الطلبات',
+ 
+  // 'Email Verification':'تأكيد البريد الالكترونى',
+  
+  'you do not have an data yet.':'لم تقم بـ اضافة بيانات بعد.',
+  'My Data':'معلوماتى',
+  'Add Company Id':'بطاقة الشركة',
+  'Add Owner Id':'بطاقة مالك الشركة',
+  'Send New Data':'ارسال بيانات جديدة.',
+
+  // 'Change Password':'Change Password',
+  // 'Change Password':'Change Password',
   // 'Password':'Password',
   
 };

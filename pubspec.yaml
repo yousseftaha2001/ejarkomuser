@@ -71,6 +71,7 @@ dependencies:
   flutter_countdown_timer: ^4.1.0
   google_sign_in: ^5.4.2
   flutter_signin_button: ^2.0.0
+  quickalert: ^1.0.0
   
 
   intl:

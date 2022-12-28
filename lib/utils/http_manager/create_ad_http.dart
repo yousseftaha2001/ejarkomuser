@@ -299,6 +299,7 @@ class CreateAdHttp {
         // print(await response.stream.bytesToString());
         var result = await response.stream.bytesToString();
         var formattedResult = jsonDecode(result);
+        // print(formattedResult);
         if (jsonDecode(result)['status'] == true) {
           return Right(AllAdsRequest.fromJson(result));
         } else {

@@ -36,3 +36,93 @@
 //         .toString());
 //   }
 // }
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
+Widget getState({required String s}) {
+  print(s);
+  if (s == 'Waiting' || s == 'waiting' || s == 'Waiting') {
+    return Container(
+      height: 80.h,
+      
+      decoration: BoxDecoration(
+          color: Colors.amber.withOpacity(0.6),
+          borderRadius: BorderRadius.circular(8.sp)),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Waiting....'.tr,
+              style: Get.theme.textTheme.bodyText1!.copyWith(
+                color: Colors.black38,
+                fontSize: 30.sp,
+              ),
+            ),
+            const Icon(
+              Icons.timer,
+              color: Colors.black38,
+            )
+          ],
+        ),
+      ),
+    );
+  } else if (s == 'Accept' || s == 'Accepted') {
+    return Container(
+      height: 80.h,
+      
+      decoration: BoxDecoration(
+          color: Colors.green.withOpacity(0.6),
+          borderRadius: BorderRadius.circular(8.sp)),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Accepted'.tr,
+              style: Get.theme.textTheme.bodyText1!.copyWith(
+                color: Colors.white,
+                fontSize: 30.sp,
+              ),
+            ),
+            Icon(
+              Icons.check,
+              color: Colors.white,
+            )
+          ],
+        ),
+      ),
+    );
+  } else {
+    return Container(
+      height: 80.h,
+      
+      decoration: BoxDecoration(
+          color: Colors.red.withOpacity(0.6),
+          borderRadius: BorderRadius.circular(8.sp)),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Rejected'.tr,
+              style: Get.theme.textTheme.bodyText1!.copyWith(
+                color: Colors.white,
+                fontSize: 30.sp,
+              ),
+            ),
+            Icon(
+              Icons.close,
+              color: Colors.white,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

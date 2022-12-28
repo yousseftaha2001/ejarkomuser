@@ -205,17 +205,7 @@ class CompanysignupPage extends GetView<CompanysignupController> {
                           },
                         ),
                          SizedBox(height: 50.h),
-                        CustomDataInput(
-                          title: 'Phone',
-                          maxLines: 1,
-                          enabled: !controller.state.loginState.value,
-                          obs: false,
-                          icon: Icon(Icons.phone),
-                          onChanged: (String? value) {
-                            // print(value);
-                            controller.state.phone.value = value!;
-                          },
-                        ),
+                        
                          SizedBox(height: 50.h),
                         CustomDataInput(
                           title: 'Address',
@@ -274,7 +264,8 @@ class CompanysignupPage extends GetView<CompanysignupController> {
                             icon: Icon(Icons.phone),
                             onChanged: (String? value) {
                               // print(value);
-                              controller.state.password.value = value!;
+                              controller.state.phone.value = value!;
+                              printInfo(info:controller.state.phone.value);
                             },
                           ),
                        ),
@@ -288,7 +279,7 @@ class CompanysignupPage extends GetView<CompanysignupController> {
                             ? MyIndicator()
                             : ElevatedButton(
                                 onPressed: () {
-                                  // controller.sendMail();
+                                  controller.sendMail();
                                   // Get.to(()=>SignUpSteper());
                                 },
                                 style: ElevatedButton.styleFrom(

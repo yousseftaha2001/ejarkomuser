@@ -7,6 +7,8 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 
+import '../../company_app/CompanyData/models/profile_request_model.dart';
+
 class ProfileHttp {
   Future<Either<String, ProfileModel>> getProfile() async {
     try {
@@ -24,6 +26,36 @@ class ProfileHttp {
         var formattedResult = jsonDecode(result);
         if (formattedResult['status'] == true) {
           return Right(ProfileModel.fromJson(formattedResult));
+        } else {
+          return formattedResult['msg'];
+        }
+      } else {
+        print(response.reasonPhrase);
+        return Left(response.reasonPhrase.toString());
+      }
+    } catch (e) {
+      print(e.toString());
+      return Left(
+        e.toString(),
+      );
+    }
+  }
+  Future<Either<String, ProfileRequestModel>> getProfileC() async {
+    try {
+      var token = MyDataBase.getToken();
+      var headers = {'Authorization': 'Bearer $token'};
+      var request = http.Request('GET', Uri.parse(profileAPI));
+
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        // print(await response.stream.bytesToString());
+        var result = await response.stream.bytesToString();
+        var formattedResult = jsonDecode(result);
+        if (formattedResult['status'] == true) {
+          return Right(ProfileRequestModel.fromJson(formattedResult));
         } else {
           return formattedResult['msg'];
         }

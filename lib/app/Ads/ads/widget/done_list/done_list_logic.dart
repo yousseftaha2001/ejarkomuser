@@ -31,6 +31,14 @@ class DoneListLogic extends GetxController {
     result.fold((l) => pageError(l), (r) => pageDone(r));
     update();
   }
+   void pageDone(AllAdsRequest adsRequest) {
+    state.ads = adsRequest.ads!;
+  }
+
+  void pageError(String e) {
+    // Get.snackbar('Error'.tr, e.toString());
+    mySnackBar(title: 'Error'.tr,body: e.toString());
+  }
   Future<void> newPusher() async {
     PusherChannelsFlutter pusher = PusherChannelsFlutter.getInstance();
     try {
@@ -70,14 +78,7 @@ class DoneListLogic extends GetxController {
     }
   }
 
-  void pageDone(AllAdsRequest adsRequest) {
-    state.ads = adsRequest.ads!;
-  }
-
-  void pageError(String e) {
-    // Get.snackbar('Error'.tr, e.toString());
-    mySnackBar(title: 'Error'.tr,body: e.toString());
-  }
+ 
 
   @override
   void onInit() {
