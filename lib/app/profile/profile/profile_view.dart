@@ -94,6 +94,7 @@ class _ProfileViewState extends State<ProfileView> {
                         controller: state.password,
                         hint: 'Password'.tr,
                         obs: true,
+                        maxL: 1,
                         onC: (value) {
                           state.isChanged.value = true;
                         },

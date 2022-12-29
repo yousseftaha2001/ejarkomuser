@@ -27,6 +27,7 @@ const Map<String, String> ar = {
   'Add Photo': 'اضافة صورة',
   'Full Name': 'الاسم بـ الكامل',
   'Phone': 'رقم الهاتف',
+  'JOD':'د.أ',
   // 'Password':'Password',
   're-password': "اعادة كلمة المرور",
   'Weak Password': 'كلمة مرور ضعيفة',
@@ -156,7 +157,8 @@ const Map<String, String> ar = {
   'Your Managment Request has a response':'طلبك للادارة لديه رد الان',
   'Your data has a response':'بيناناتك لديها رد',
   'Remove My Account':'حذف حسابى',
-  'JOD':'دينار اردنى',
+  'Verification Type':'طريقة التأكيد',
+  'Code Verification':'تأكيد الرمز',
   'Complete Signup':'اكمال التسجيل',
   // 'Email Verification':'تأكيد البريد الالكترونى',
   'Phone Verification Type':'طريقة تأكيد رقم الهاتف',
@@ -211,7 +213,7 @@ const Map<String, String> ar = {
   'Active':'قيد العمل',
   'Canceld Or Rejected':'ملغية او مرفوضة',
   // 'Finished':'انتهت',
- 
+  'Invalid Phone Number':'رقم غير صحيح',
   'My Ads':'اعلاناتى',
   
   // 'Ads':'اعلانات',

@@ -343,9 +343,9 @@ class ForgetpasswordmodPage extends GetView<ForgetpasswordmodController> {
                 ),
               ),
             ),
-            Center(
+            controller.state.findUserModel==null?Container():Center(
               child: Text(
-                controller.state.email.text.isEmail? '${controller.state.email.text}':'+962 ${controller.state.email.text}',
+                controller.state.selectedSendingOption.value== 'E-mail'.tr? '${controller.state.findUserModel!.email!}':' ${controller.state.findUserModel!.phone!}',
                 style: Get.textTheme.bodyText1!.copyWith(
                   fontSize: 35.sp,
                 ),

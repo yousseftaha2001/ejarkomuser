@@ -44,11 +44,30 @@ class LoginPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: 100.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    GetBuilder<LanguageController>(
+                        init: LanguageController(),
+                        builder: (logic1) {
+                          return IconButton(
+                            icon: Icon(Icons.language),
+                            onPressed: () {
+                              logic1.appLang == 'ar'
+                                  ? logic1.changeLang(langCode: 'en')
+                                  : logic1.changeLang(langCode: 'ar');
 
+                              // state.cureentScreen.value=0;
+                            },
+                          );
+                        }),
+                  ],
+                ),
                 Image.asset(
                   'assets/images/logo.jpg',
                   height: 300.sp,
                 ),
+
                 Text(
                   'Login to your account'.tr,
                   style: Get.textTheme.bodyText1!.copyWith(
@@ -261,7 +280,10 @@ class LoginPage extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.to(()=>CompanyloginPage(),binding: CompanyLoginBinding(),);
+                          Get.to(
+                            () => CompanyloginPage(),
+                            binding: CompanyLoginBinding(),
+                          );
                         },
                         child: Text(
                           'As A Company?'.tr,

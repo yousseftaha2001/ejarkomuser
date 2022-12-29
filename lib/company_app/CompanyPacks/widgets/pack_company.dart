@@ -72,7 +72,7 @@ class PackWidgetCompany extends StatelessWidget {
                 ),
                 SizedBox(height: 10.h),
                 Text(
-                  '${package.cost!} \$ ',
+                  '${package.cost!} ${'JOD'.tr} ',
                   style: Get.textTheme.bodyText1!.copyWith(
                     fontWeight: FontWeight.bold,
                     color: Get.theme.primaryColor,

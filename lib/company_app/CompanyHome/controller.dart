@@ -1,4 +1,5 @@
 import 'package:ejarkom/app/build/widgets/rend_indicator.dart';
+import 'package:ejarkom/company_app/CompanyLogin/bindings.dart';
 import 'package:ejarkom/company_app/CompanyLogin/index.dart';
 import 'package:ejarkom/utils/apis.dart';
 import 'package:ejarkom/utils/http_manager/auth_manager.dart';
@@ -31,6 +32,16 @@ class CompanyhomeController extends GetxController {
       },
     );
   }
+  String replaceFarsiNumber(String input) {
+  const english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9','+'];
+  const farsi = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹','+'];
+
+  for (int i = 0; i < english.length; i++) {
+    input = input.replaceAll(english[i], farsi[i]);
+  }
+
+  return input;
+}
   final state = CompanyhomeState();
   void changeLogoutState() =>
       state.logoutState.value = !state.logoutState.value;
@@ -49,7 +60,7 @@ class CompanyhomeController extends GetxController {
       (r) {
         MyDataBase.removeDate();
         Get.back();
-        Get.offAll(() => CompanyloginPage());
+        Get.offAll(() => CompanyloginPage(),binding: CompanyLoginBinding());
       },
     );
   }

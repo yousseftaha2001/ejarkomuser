@@ -6,6 +6,7 @@ import 'package:ejarkom/utils/widgets/my_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:phone_form_field/phone_form_field.dart';
 import 'package:pixel_perfect/pixel_perfect.dart';
 //padding= number/mockupwideth*width
 // text=wideth/mWidth
@@ -149,39 +150,60 @@ class _SignUpPageState extends State<SignUpPage> {
                       obs: true,
                     ),
                     SizedBox(height: 30.h),
-                    Row(
-                      children: [
-                        Container(
-                          height: 100.h,
-
-                          // width: 60.w,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(color: Colors.black12),
-                              borderRadius: BorderRadius.circular(10.sp)),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                '+962',
-                                style: Get.textTheme.bodyText1!.copyWith(
-                                  fontSize: 35.sp,
-                                ),
+                       PhoneFormField(
+                            key: Key('phone-field'),
+                            controller: state.phoneController, // controller & initialValue value
+                            initialValue:
+                                null,
+                                 // can't be supplied simultaneously
+                            shouldFormat: true,
+                            
+                            style: Get.textTheme.bodyText1, // default
+                            defaultCountry: IsoCode.JO, // default
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.sp),
                               ),
+                              errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.sp),
+                                
+                              ),
+                              hintTextDirection: TextDirection.ltr,
+                              
+                              hintText: 'Phone'.tr,
+                              errorStyle: Get.textTheme.bodyText1!.copyWith(fontSize: 25.sp),
+                              labelStyle: Get.textTheme.bodyText1,
+                              
                             ),
-                          ),
-                        ),
-                        SizedBox(width: 10.w),
-                        Flexible(
-                          child: DataInput(
-                            icon: Icon(Icons.phone),
-                            controller: state.phone,
-                            hint: 'Phone'.tr,
-                            keyboardType: TextInputType.phone,
-                          ),
-                        ),
-                      ],
-                    ),
+                            
+                            validator: (PhoneNumber? num){
+                              if (num!.isValid()) {
+                                
+                              }else{
+                                state.phone.text='';
+                                return 'Invalid Phone Number'.tr;
+                              }
+                            }, // default PhoneValidator.valid()
+                            isCountryChipPersistent: false, // default
+                            isCountrySelectionEnabled: false, // default
+                            
+                            showFlagInInput: true, // default
+                            flagSize: 40.sp, // default
+                            autofillHints: [
+                              AutofillHints.telephoneNumber
+                            ], // default to null
+                            enabled: true, // default
+                            autofocus: false, // default
+                            
+                            onSaved: (PhoneNumber? p) =>
+                                print('saved $p'), // default null
+                            onChanged: (PhoneNumber? p) {
+                              printInfo(info: p.toString());
+                               state.phone.text = p!.international.toString();
+                              printInfo(info:  state.phone.text);
+                            } // default null
+                            // ... + other textfield params
+                            ),
                     SizedBox(height: 100.h),
                     // Spacer(),
                     Obx(

@@ -148,7 +148,7 @@ class ForgetpasswordmodController extends GetxController {
 
   Future<void> sendWahts() async {
     Get.dialog(MyIndicatorDialog(), barrierDismissible: false);
-    var mailResult = await AuthManger.sendWhats(phone: state.email.text.trim());
+    var mailResult = await AuthManger.sendWhats(phone: state.findUserModel!.phone!);
     mailResult.fold(
       (l) {
         print(l.toString());
@@ -171,7 +171,7 @@ class ForgetpasswordmodController extends GetxController {
   Future<void> sendPhone() async {
     // var result = collectData();
     Get.dialog(MyIndicatorDialog(), barrierDismissible: false);
-    var mailResult = await AuthManger.sendSms(phone: state.email.text.trim());
+    var mailResult = await AuthManger.sendSms(phone: state.findUserModel!.phone!);
     mailResult.fold(
       (l) {
         print(l.toString());

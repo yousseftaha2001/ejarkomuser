@@ -41,28 +41,10 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ),
                 actions: [
-                  GetBuilder<LanguageController>(
-                    init: LanguageController(),
-                    builder: (controller) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.w),
-                        child: GestureDetector(
-                          onTap: () {
-                            controller.appLang == 'ar'
-                                ? controller.changeLang(langCode: 'en')
-                                : controller.changeLang(langCode: 'ar');
-                            // mySnackBar(title: 'Error', body: 'body');
-                          },
-                          child: const Center(
-                            child: Icon(
-                              Icons.language,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+                Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 10.w,vertical: 10.h),
+                child: Image.asset('assets/images/logo.jpg'),
+              )
                 ],
                 centerTitle: true,
                 backgroundColor: Colors.white,

@@ -352,7 +352,7 @@ class AuthManger {
       var request = http.MultipartRequest('POST', Uri.parse(sendSmsAPI));
       // request.fields.addAll({'email': email});
 
-      request.fields.addAll({'id': '+962$phone'});
+      request.fields.addAll({'id': '$phone'});
 
       http.StreamedResponse response = await request.send();
 
@@ -383,7 +383,7 @@ class AuthManger {
       // request.fields.addAll({'email': email});
       print(phone);
 
-      request.fields.addAll({'id': '+962$phone'});
+      request.fields.addAll({'id': '$phone'});
 
       http.StreamedResponse response = await request.send();
 
@@ -413,7 +413,7 @@ class AuthManger {
 
       // request.fields.addAll({'id': '+20$phone'});
       if (phone.isPhoneNumber) {
-        request.fields.addAll({'id': '+962$phone'});
+        request.fields.addAll({'id': '$phone'});
       } else {
         request.fields.addAll({'id': phone});
       }
@@ -545,7 +545,7 @@ class AuthManger {
           // print(await response.stream.bytesToString());
           var result = await response.stream.bytesToString();
           print(jsonDecode(result));
-          if (jsonDecode(result)['message'] == 'Logout successfuly') {
+          if (jsonDecode(result)['msg'] == 'Logout successfuly') {
             return Right('Done');
           } else {
             return Left('Error');

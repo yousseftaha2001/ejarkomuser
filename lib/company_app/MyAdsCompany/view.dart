@@ -38,22 +38,10 @@ class MyadscompanyPage extends GetView<MyadscompanyController> {
               ),
             ),
             actions: [
-              GetBuilder<LanguageController>(
-                  init: LanguageController(),
-                  builder: (logic) {
-                    return IconButton(
-                      onPressed: () {
-                        // controller.logout();
-                        logic.appLang == 'ar'
-                            ? logic.changeLang(langCode: 'en')
-                            : logic.changeLang(langCode: 'ar');
-                      },
-                      icon: Icon(
-                        Icons.language,
-                        color: Colors.black,
-                      ),
-                    );
-                  }),
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 10.w,vertical: 10.h),
+                child: Image.asset('assets/images/logo.jpg'),
+              )
             ],
             centerTitle: true,
             backgroundColor: Colors.white,
@@ -101,11 +89,14 @@ class MyadscompanyPage extends GetView<MyadscompanyController> {
                 () => CraeteadscompanyPage(),
                 binding: CraeteadscompanyBinding(),
               );
+              
             },
+            
             child: Icon(
               Icons.add,
             ),
           ),
+          // floatingActionButtonLocation: FloatingActionButtonLocation.,
           body: Container(
             decoration: const BoxDecoration(
               color: Colors.white,

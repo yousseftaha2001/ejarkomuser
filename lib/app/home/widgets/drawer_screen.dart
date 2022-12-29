@@ -1,4 +1,5 @@
 import 'package:ejarkom/app/home/logic.dart';
+import 'package:ejarkom/utils/langs/lang_controller.dart';
 import 'package:ejarkom/utils/my_database.dart';
 import 'package:ejarkom/utils/widgets/my_indicator.dart';
 import 'package:flutter/material.dart';
@@ -329,7 +330,27 @@ class DrawerScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 10.h),
+               SizedBox(height: 20.h),
+               GetBuilder<LanguageController>(
+                     init: LanguageController(),
+                    builder: (logic1) {
+                      return NewRow(
+                        text: 'Change Language'.tr,
+                        icon: Icons.language,
+                        ontap: () {
+                         state.isDrawerOpen
+                              ? logic.closeDrawer()
+                              : logic.openDrawer();
+                            logic1.appLang == 'ar'
+                                ? logic1.changeLang(langCode: 'en')
+                                : logic1.changeLang(langCode: 'ar');
+                                   state.cureentScreen.value = 0;
+                          // state.cureentScreen.value=0;
+                        },
+                      );
+                    }
+                  ),
+              SizedBox(height: 20.h),
               InkWell(
                 onTap: () {
                   logic.logoutMethod();

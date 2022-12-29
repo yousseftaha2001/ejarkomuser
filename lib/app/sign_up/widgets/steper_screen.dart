@@ -281,7 +281,7 @@ class SignUpSteper extends StatelessWidget {
             ),
             Center(
               child: Text(
-                '+962 ${state.phone.text}',
+                ' ${state.phone.text}',
                 style: Get.textTheme.bodyText1!.copyWith(
                   fontSize: 35.sp,
                 ),

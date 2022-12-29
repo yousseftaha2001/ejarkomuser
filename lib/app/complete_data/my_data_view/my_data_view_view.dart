@@ -85,7 +85,7 @@ class _MyDataViewViewState extends State<MyDataViewView> {
             () => state.getState.value
                 ? MyIndicator()
                 : state.myData.isEmpty
-                    ? Text('No Data Yet'.tr)
+                    ? Text('No Data Yet'.tr,style: Get.textTheme.bodyText1,)
                     : GetBuilder<MyDataViewLogic>(builder: (logic) {
                         return Padding(
                           padding: EdgeInsets.symmetric(

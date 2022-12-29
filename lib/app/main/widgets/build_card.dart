@@ -31,7 +31,7 @@ class BuildingWidget extends StatelessWidget {
         child: Container(
           // color: Colors.black,
           width: Get.width / 2,
-          height: 500.h,
+          // height: 550.h,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10.sp),
@@ -101,7 +101,7 @@ class BuildingWidget extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
+                           ads.numRoom!.toString()=='0'?Container(): Row(
                               children: [
                                 Icon(
                                   Icons.meeting_room_outlined,
@@ -119,7 +119,7 @@ class BuildingWidget extends StatelessWidget {
                               ],
                             ),
                             SizedBox(width: 20.w),
-                            Row(
+                           ads.numBathroom!.toString()=='0'?Container(): Row(
                               children: [
                                 Icon(
                                   Icons.bathroom_outlined,
@@ -140,7 +140,7 @@ class BuildingWidget extends StatelessWidget {
                         ),
                         const Spacer(),
                         Text(
-                          '${ads.cost}\$',
+                          '${ads.cost} ${'JOD'.tr}',
                           style: Get.textTheme.bodyText1!.copyWith(
                             color: Colors.amber,
                             fontSize: 40.sp,

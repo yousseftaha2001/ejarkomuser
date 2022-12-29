@@ -51,7 +51,7 @@ class _DrawerScreenCompanyState extends State<DrawerScreenCompany> {
                         // borderRadius: BorderRadius.circular(100.sp),
                         radius: 120.sp,
                         backgroundImage:NetworkImage(
-                            '$photoAPI${MyDataBase.getPhoto()}',
+                            '${MyDataBase.getPhoto()}',
                             // 'https://media.istockphoto.com/id/1338134336/photo/headshot-portrait-african-30s-man-smile-look-at-camera.jpg?b=1&s=170667a&w=0&k=20&c=j-oMdWCMLx5rIx-_W33o3q3aW9CiAWEvv9XrJQ3fTMU=',
                             // fit: BoxFit.contain,
                             // width: 400.h,
@@ -93,6 +93,7 @@ class _DrawerScreenCompanyState extends State<DrawerScreenCompany> {
                                      fontSize: 30.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
+                                    textDirection: TextDirection.ltr,
                                   ),
                                   Text(
                                     '${'Current package:'.tr} ${state.profile!.dataUser!.numAds}',
@@ -119,7 +120,27 @@ class _DrawerScreenCompanyState extends State<DrawerScreenCompany> {
                     ),
                   ),
                   SizedBox(height: 40.h),
-
+                  //  GetBuilder<LanguageController>(
+                  // init: LanguageController(),
+                  // builder: (logic1) {
+                  //   return IconButton(
+                  //     onPressed: () {
+                  //       // controller.logout();
+                  //       state.isDrawerOpen
+                  //         ? logic.closeDrawer()
+                  //         : logic.openDrawer();
+                  //       logic1.appLang == 'ar'
+                  //           ? logic1.changeLang(langCode: 'en')
+                  //           : logic1.changeLang(langCode: 'ar');
+                  //              state.cureentScreen.value = 0;
+                      
+                  //     },
+                  //     icon: Icon(
+                  //       Icons.language,
+                  //       color: Colors.black,
+                  //     ),
+                  //   );
+                  // }),
                   
                   SizedBox(height: 5.h),
                   NewRow(
@@ -133,6 +154,8 @@ class _DrawerScreenCompanyState extends State<DrawerScreenCompany> {
                       // state.cureentScreen.value=0;
                     },
                   ),
+                  SizedBox(height: 5.h),
+                 
                   
                  
                 
@@ -167,6 +190,7 @@ class _DrawerScreenCompanyState extends State<DrawerScreenCompany> {
                 ],
               ),
               const Spacer(),
+               
               // InkWell(
               //   onTap: () {
               //     logic.deleteMyAcocount();
@@ -249,7 +273,27 @@ class _DrawerScreenCompanyState extends State<DrawerScreenCompany> {
                   ),
                 ],
               ),
-              SizedBox(height: 10.h),
+              SizedBox(height: 20.h),
+              GetBuilder<LanguageController>(
+                     init: LanguageController(),
+                    builder: (logic1) {
+                      return NewRow(
+                        text: 'Change Language'.tr,
+                        icon: Icons.language,
+                        ontap: () {
+                         state.isDrawerOpen
+                              ? logic.closeDrawer()
+                              : logic.openDrawer();
+                            logic1.appLang == 'ar'
+                                ? logic1.changeLang(langCode: 'en')
+                                : logic1.changeLang(langCode: 'ar');
+                                   state.cureentScreen.value = 0;
+                          // state.cureentScreen.value=0;
+                        },
+                      );
+                    }
+                  ),
+              SizedBox(height: 20.h),
               InkWell(
                 onTap: () {
                   logic.logoutMethod();

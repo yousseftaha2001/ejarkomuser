@@ -72,67 +72,77 @@ class FinishedadscompanyPage extends GetView<FinishedadscompanyController> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Row(
-                                                    children: [
-                                                      Icon(
-                                                        Icons
-                                                            .meeting_room_outlined,
+                                             Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                controller.state.ads[index]
+                                                            .numRoom!
+                                                            .toString() ==
+                                                        '0'
+                                                    ?  Container(): Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons
+                                                          .meeting_room_outlined,
+                                                      color: Get
+                                                          .theme.primaryColor,
+                                                      size: 60.sp,
+                                                    ),
+                                                    SizedBox(width: 6.w),
+                                                    Text(
+                                                      controller.state
+                                                          .ads[index].numRoom!
+                                                          .toString(),
+                                                      style: Get
+                                                          .textTheme.bodyText1!
+                                                          .copyWith(
                                                         color: Get
                                                             .theme.primaryColor,
-                                                        size: 60.sp,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 35.sp,
                                                       ),
-                                                      SizedBox(width: 6.w),
-                                                      Text(
-                                                        controller.state
-                                                            .ads[index].numRoom!
-                                                            .toString(),
-                                                        style: Get.textTheme
-                                                            .bodyText1!
-                                                            .copyWith(
-                                                          color: Get.theme
-                                                              .primaryColor,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 35.sp,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Icon(
-                                                        Icons.bathroom_outlined,
-                                                        color: Get
-                                                            .theme.primaryColor,
-                                                        size: 60.sp,
-                                                      ),
-                                                      SizedBox(width: 6.w),
-                                                      Text(
-                                                        controller
-                                                            .state
-                                                            .ads[index]
+                                                    ),
+                                                  ],
+                                                ),
+                                                controller.state.ads[index]
                                                             .numBathroom!
-                                                            .toString(),
-                                                        style: Get.textTheme
-                                                            .bodyText1!
-                                                            .copyWith(
-                                                          color: Get.theme
-                                                              .primaryColor,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          // fontSize: 20.sp,
-                                                          fontSize: 30.sp,
-                                                        ),
+                                                            .toString() ==
+                                                        '0'
+                                                    ? Container()
+                                                    : Row(
+                                                        children: [
+                                                          Icon(
+                                                            Icons
+                                                                .bathroom_outlined,
+                                                            color: Get.theme
+                                                                .primaryColor,
+                                                            size: 60.sp,
+                                                          ),
+                                                          SizedBox(width: 6.w),
+                                                          Text(
+                                                            controller
+                                                                .state
+                                                                .ads[index]
+                                                                .numBathroom!
+                                                                .toString(),
+                                                            style: Get.textTheme
+                                                                .bodyText1!
+                                                                .copyWith(
+                                                              color: Get.theme
+                                                                  .primaryColor,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 30.sp,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
+                                              ],
+                                            ),
                                               SizedBox(height: 3.h),
                                               Row(
                                                 children: [
@@ -198,7 +208,7 @@ class FinishedadscompanyPage extends GetView<FinishedadscompanyController> {
                                                   ),
                                                   const Spacer(),
                                                   Text(
-                                                    '${controller.state.ads[index].id}\$',
+                                                  '${controller.state.ads[index].cost} ${'JOD'.tr}',
                                                     style: Get
                                                         .textTheme.bodyText1!
                                                         .copyWith(

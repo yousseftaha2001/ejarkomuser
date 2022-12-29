@@ -225,7 +225,9 @@ class _BuildViewState extends State<BuildView> {
                                               // mainAxisAlignment:
                                               //     MainAxisAlignment.spaceBetween,
                                               children: [
-                                                Row(
+                                               state.viewModel!.data!
+                                                          .numRoom!
+                                                          .toString()=='0'?Container(): Row(
                                                   children: [
                                                     Icon(
                                                       Icons
@@ -250,7 +252,9 @@ class _BuildViewState extends State<BuildView> {
                                                   ],
                                                 ),
                                                 SizedBox(width: 30.w),
-                                                Row(
+                                              state.viewModel!.data!
+                                                          .numBathroom!
+                                                          .toString()=='0'?Container():  Row(
                                                   children: [
                                                     Icon(
                                                       Icons.bathroom_outlined,

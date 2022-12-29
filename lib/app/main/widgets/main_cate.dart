@@ -52,7 +52,7 @@ class MainCategory extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 500.h,
+                height: 530.h,
                 child: ListView.builder(
                   // shrinkWrap: true,
                   itemCount: ads.items!.length,

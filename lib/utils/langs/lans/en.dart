@@ -22,6 +22,9 @@ const Map<String, String> en = {
   'The user or password is incorrect': 'The user or password is incorrect',
   //--------------------Login---------------------------//
   'Add Photo': 'Add Photo',
+    'Verification Type':'Verification Type',
+    // 'No Data Yet':'No Data Yet',
+  'Code Verification': 'Code Verification',
   'Full Name': 'Full Name',
   'Phone': 'Phone',
   // 'Password':'Password',

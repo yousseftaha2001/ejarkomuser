@@ -29,7 +29,9 @@ class CraeteadscompanyPage extends GetView<CraeteadscompanyController> {
             backgroundColor: Colors.white,
             elevation: 0,
             leading: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+              },
               icon: Icon(
                 Icons.arrow_back_ios,
                 color: Get.theme.primaryColor,

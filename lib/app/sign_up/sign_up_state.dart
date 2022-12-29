@@ -5,6 +5,7 @@ import 'package:ejarkom/app/sign_up/models/phone_veri_model.dart';
 import 'package:ejarkom/app/sign_up/models/whats_ver_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:phone_form_field/phone_form_field.dart';
 
 import 'models/whats_ver_model.dart';
 
@@ -28,6 +29,7 @@ class SignUpState {
   late TextEditingController emailCode;
   late TextEditingController phoneCode;
   late TextEditingController rePassword;
+   PhoneController phoneController=PhoneController(PhoneNumber(isoCode: IsoCode.JO, nsn: ''));
   // late Timer timer;
   PhoneVeriModel? phoneVeriModel;
   WhatsVerModel? whatsVerModel;

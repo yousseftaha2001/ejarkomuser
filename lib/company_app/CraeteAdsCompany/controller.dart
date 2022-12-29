@@ -144,8 +144,7 @@ class CraeteadscompanyController extends GetxController {
       state.costType.value.isEmpty ||
       state.cost.value.isEmpty ||
     
-      state.numOfBathRoom.value.isEmpty ||
-      state.numOfRoom.value.isEmpty ||
+      
       state.photos.isEmpty;
   bool checkDataA() =>
       state.nameA.value.isEmpty ||
@@ -154,8 +153,7 @@ class CraeteadscompanyController extends GetxController {
       state.costType.value.isEmpty ||
       state.cost.value.isEmpty ||
      
-      state.numOfBathRoom.value.isEmpty ||
-      state.numOfRoom.value.isEmpty ||
+    
       state.photos.isEmpty;
   bool checkDataE() =>
       state.nameE.value.isEmpty ||
@@ -164,8 +162,7 @@ class CraeteadscompanyController extends GetxController {
       state.costType.value.isEmpty ||
       state.cost.value.isEmpty ||
      
-      state.numOfBathRoom.value.isEmpty ||
-      state.numOfRoom.value.isEmpty ||
+      
       state.photos.isEmpty;
 
   void addAdd() async {
@@ -192,8 +189,8 @@ class CraeteadscompanyController extends GetxController {
             : state.addressA.value,
         'zone_id': state.selectedZone!.id!.toString(),
         'type_build': state.selectedBuildType!.id!.toString(),
-        'num_room': state.numOfRoom.value,
-        'num_bathroom': state.numOfBathRoom.value,
+        'num_room': state.numOfRoom.value==''?'0':state.numOfRoom.value,
+        'num_bathroom': state.numOfBathRoom.value==''?"0":state.numOfBathRoom.value,
         'furnished': state.furnished.value.toString(),
       },
       photos: state.photos,
