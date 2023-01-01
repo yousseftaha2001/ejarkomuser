@@ -216,6 +216,7 @@ class CompanysignupPage extends GetView<CompanysignupController> {
                             initialValue:
                                 null, // can't be supplied simultaneously
                             shouldFormat: true,
+                              textAlign: TextAlign.left,
                             style: Get.textTheme.bodyText1, // default
                             defaultCountry: IsoCode.JO, // default
                             decoration: InputDecoration(
@@ -226,6 +227,7 @@ class CompanysignupPage extends GetView<CompanysignupController> {
                                 borderRadius: BorderRadius.circular(5.sp),
                                 
                               ),
+                              
                               hintText: 'Phone'.tr,
                               errorStyle: Get.textTheme.bodyText1!.copyWith(fontSize: 25.sp),
                               labelStyle: Get.textTheme.bodyText1

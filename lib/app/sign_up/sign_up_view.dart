@@ -157,7 +157,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 null,
                                  // can't be supplied simultaneously
                             shouldFormat: true,
-                            
+                            textAlign: TextAlign.left,
                             style: Get.textTheme.bodyText1, // default
                             defaultCountry: IsoCode.JO, // default
                             decoration: InputDecoration(
